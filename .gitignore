@@ -34,6 +34,7 @@ pnpm-debug.log
 .env
 .env.*
 
+
 # Miscellaneous
 /.angular/cache
 .sass-cache/
