@@ -33,8 +33,6 @@ pnpm-debug.log
 # Environment files
 .env
 .env.*
-src/environments/environment.development.ts
-src/environments/environment.ts
 
 # Miscellaneous
 /.angular/cache
