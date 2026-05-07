@@ -1,1 +1,55 @@
-/* You can add global styles to this file, and also import other style files */
+/* Importación de íconos de PrimeNG */
+@import "primeicons/primeicons.css";
+
+/* --------------------------------------------------------
+   Variables de Marca de Demy
+-------------------------------------------------------- */
+:root {
+  --demy-primary: #3F51B5;   /* Índigo */
+  --demy-secondary: #F57C00; /* Naranja */
+  --demy-tertiary: #AB47BC;  /* Morado */
+}
+
+/* --------------------------------------------------------
+   Estilos Globales Base
+-------------------------------------------------------- */
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  /* Usamos variables de PrimeNG para el fondo y texto, ideal si luego sumas Modo Oscuro */
+  color: var(--p-surface-950, #000);
+  background-color: var(--p-surface-50, #fff);
+  font-family: 'Inter', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* --------------------------------------------------------
+   Tipografía y Elementos Comunes
+-------------------------------------------------------- */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  color: var(--demy-primary); /* Color Primario para títulos */
+  font-weight: 600;
+  margin-top: 0;
+  transition: color 0.3s ease;
+}
+
+a {
+  color: var(--demy-secondary); /* Color Secundario para enlaces/acciones */
+  text-decoration: none;
+  transition: color 0.2s ease;
+
+  &:hover {
+    filter: brightness(0.9); /* Efecto hover nativo sencillo */
+  }
+}
+
+/* Clases utilitarias globales */
+.container-with-spacing {
+  padding: 1.5rem; /* 24px spacing around the container */
+}
