@@ -4,7 +4,7 @@ import {catchError, map, Observable} from 'rxjs';
 import {SignUpAssembler} from './sign-up-assembler';
 import {SignUpResource, SignUpResponse} from './sign-up-response';
 import {SignUpCommand} from '../domain/model/sign-up.command';
-import {environment} from '../../../environments/environments.development';
+import {environment} from '../../../environments/environment.development';
 
 const signUpApiEndpointUrl = `${environment.platformProviderApiBaseUrl}${environment.platformProviderSignUpEndpointPath}`;
 
