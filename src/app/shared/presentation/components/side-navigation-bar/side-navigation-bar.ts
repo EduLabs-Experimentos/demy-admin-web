@@ -38,7 +38,7 @@ export class SideNavigationBar {
     {
       title: 'sidebar.sections.academy',
       items: [
-        { icon: 'pi pi-briefcase', label: 'sidebar.teachers', route: '/organization/teachers', roles: ['ADMIN'] },
+        { icon: 'pi pi-briefcase', label: 'sidebar.teachers', route: '/teachers', roles: ['ADMIN'] },
         { icon: 'pi pi-users', label: 'sidebar.students', route: '/students', roles: ['ADMIN'] }
       ]
     },

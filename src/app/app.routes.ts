@@ -19,7 +19,8 @@ export const routes: Routes = [
     path: '',
     component: Layout,
     children: [
-      { path: 'home', loadComponent: () => import('./dashboard/home-page').then(m => m.HomePage) }
+      { path: 'home', loadComponent: () => import('./dashboard/home-page').then(m => m.HomePage) },
+      { path: 'teachers', loadChildren: () => import('./teachers/presentation/teachers.routes').then(m => m.teachersRoutes) }
     ]
   }
 ];

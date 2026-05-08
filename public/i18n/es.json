@@ -178,5 +178,29 @@
   },
   "footer": {
     "rights": "Todos los derechos reservados."
+  },
+  "teachers": {
+    "page": {
+      "title": "Profesores",
+      "subtitle": "Gestiona el personal docente de tu academia"
+    },
+    "form": {
+      "title": "Registrar Profesor",
+      "firstName": "Nombre",
+      "firstName-placeholder": "Ingresa el nombre",
+      "lastName": "Apellido",
+      "lastName-placeholder": "Ingresa el apellido",
+      "email": "Correo Electrónico",
+      "email-placeholder": "Ingresa el correo",
+      "countryCode": "Código",
+      "phone": "Teléfono",
+      "phone-placeholder": "Ingresa el teléfono",
+      "register": "Registrar Profesor"
+    },
+    "list": {
+      "search": "Buscar profesores...",
+      "loading": "Cargando profesores...",
+      "empty": "No hay profesores registrados aún"
+    }
   }
 }
