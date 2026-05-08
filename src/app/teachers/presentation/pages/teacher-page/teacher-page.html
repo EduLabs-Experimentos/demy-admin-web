@@ -1,0 +1,21 @@
+<div class="teacher-page">
+  <div class="page-header">
+    <h1 class="page-title">{{ 'teachers.page.title' | translate }}</h1>
+    <p class="page-subtitle">{{ 'teachers.page.subtitle' | translate }}</p>
+
+    @if (store.error(); as error) {
+      <div class="error-banner">
+        <i class="pi pi-exclamation-triangle"></i>
+        <span>{{ error }}</span>
+        <button class="error-dismiss" (click)="store.clearError()">
+          <i class="pi pi-times"></i>
+        </button>
+      </div>
+    }
+  </div>
+
+  <div class="page-content">
+    <app-teacher-form />
+    <app-teacher-list />
+  </div>
+</div>
