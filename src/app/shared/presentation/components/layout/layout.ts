@@ -6,6 +6,7 @@ import {FooterContent} from '../footer-content/footer-content';
 import {
   AuthenticationSection
 } from '../../../../iam/presentation/components/authentication-section/authentication-section';
+import { Sidebar } from '../sidebar/sidebar';
 
 /**
  * Main layout Component that provides the application's navigation structure and common UI elements in the presentation layer of the shared bounded context.
@@ -19,7 +20,8 @@ import {
     TranslatePipe,
     LanguageSwitcher,
     FooterContent,
-    AuthenticationSection
+    AuthenticationSection,
+    Sidebar
   ],
   templateUrl: './layout.html',
   styleUrl: './layout.scss'

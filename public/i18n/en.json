@@ -1,0 +1,20 @@
+{
+  "layout":{
+    "search": "Search..."
+  },
+
+  "sidebar": {
+    "dashboard": "Dashboard",
+    "teachers": "Teachers",
+    "students": "Students",
+    "periods": "Periods",
+    "courses": "Courses",
+    "classrooms": "Classrooms",
+    "schedules": "Schedules",
+    "enrollments": "Enrollments",
+    "scheduling": "Scheduling",
+    "settings": "Settings",
+    "logout": "Log out"
+  }
+
+}

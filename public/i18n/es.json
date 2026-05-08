@@ -1,0 +1,18 @@
+{
+  "layout": {
+    "search": "Buscar..."
+  },
+  "sidebar": {
+    "dashboard": "Panel de Control",
+    "teachers": "Profesores",
+    "students": "Estudiantes",
+    "periods": "Periodos",
+    "courses": "Cursos",
+    "classrooms": "Aulas",
+    "schedules": "Horarios",
+    "enrollments": "Inscripciones",
+    "scheduling": "Programación",
+    "settings": "Ajustes",
+    "logout": "Cerrar sesión"
+  }
+}
