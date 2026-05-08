@@ -15,8 +15,18 @@
     </div>
   }
 
-  <div class="nav-section logout-section">
+  <div class="nav-section bottom-section">
     <div class="section-divider" [class.collapsed]="collapsed"></div>
+    @for (item of bottomItems; track item.label) {
+      <a [routerLink]="item.route"
+         routerLinkActive="active-link"
+         class="side-nav-item"
+         [title]="collapsed ? (item.label | translate) : ''"
+         (click)="onNavigate()">
+        <i [class]="item.icon"></i>
+        <span [class.hidden]="collapsed">{{ item.label | translate }}</span>
+      </a>
+    }
     <button class="side-nav-item logout-item" [title]="collapsed ? ('sidebar.logout' | translate) : ''" (click)="onLogout()">
       <i class="pi pi-sign-out"></i>
       <span [class.hidden]="collapsed">{{ 'sidebar.logout' | translate }}</span>
