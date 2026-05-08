@@ -1,54 +1,68 @@
-<div class="form-card">
-  <h3 class="form-title">{{ 'teachers.form.title' | translate }}</h3>
+<article class="teacher-form">
+  <h3 class="teacher-form__title">{{ 'teachers.form.title' | translate }}</h3>
 
-  <div class="form-field">
-    <label for="firstName">{{ 'teachers.form.firstName' | translate }}</label>
-    <input pInputText id="firstName" type="text"
+  <div class="teacher-form__field">
+    <label class="teacher-form__label" for="teacher-firstName">{{ 'teachers.form.firstName' | translate }}</label>
+    <input pInputText id="teacher-firstName" type="text"
+           class="teacher-form__input"
            [value]="store.formData().firstName"
            (input)="store.onFieldChange('firstName', $any($event.target).value)"
            [placeholder]="'teachers.form.firstName-placeholder' | translate"
-           class="form-input" autocomplete="given-name" />
+           autocomplete="given-name" />
   </div>
 
-  <div class="form-field">
-    <label for="lastName">{{ 'teachers.form.lastName' | translate }}</label>
-    <input pInputText id="lastName" type="text"
+  <div class="teacher-form__field">
+    <label class="teacher-form__label" for="teacher-lastName">{{ 'teachers.form.lastName' | translate }}</label>
+    <input pInputText id="teacher-lastName" type="text"
+           class="teacher-form__input"
            [value]="store.formData().lastName"
            (input)="store.onFieldChange('lastName', $any($event.target).value)"
            [placeholder]="'teachers.form.lastName-placeholder' | translate"
-           class="form-input" autocomplete="family-name" />
+           autocomplete="family-name" />
   </div>
 
-  <div class="form-field">
-    <label for="emailAddress">{{ 'teachers.form.email' | translate }}</label>
-    <input pInputText id="emailAddress" type="email"
+  <div class="teacher-form__field">
+    <label class="teacher-form__label" for="teacher-emailAddress">{{ 'teachers.form.email' | translate }}</label>
+    <input pInputText id="teacher-emailAddress" type="email"
+           class="teacher-form__input"
            [value]="store.formData().emailAddress"
            (input)="store.onFieldChange('emailAddress', $any($event.target).value)"
            [placeholder]="'teachers.form.email-placeholder' | translate"
-           class="form-input" autocomplete="email" />
+           autocomplete="email" />
   </div>
 
-  <div class="form-row">
-    <div class="form-field form-field-small">
-      <label for="countryCode">{{ 'teachers.form.countryCode' | translate }}</label>
-      <input pInputText id="countryCode" type="text"
+  <div class="teacher-form__row">
+    <div class="teacher-form__field teacher-form__field--small">
+      <label class="teacher-form__label" for="teacher-countryCode">{{ 'teachers.form.countryCode' | translate }}</label>
+      <input pInputText id="teacher-countryCode" type="text"
+             class="teacher-form__input"
              [value]="store.formData().countryCode"
-             (input)="store.onFieldChange('countryCode', $any($event.target).value)"
-             class="form-input" />
+             (input)="store.onFieldChange('countryCode', $any($event.target).value)" />
     </div>
-    <div class="form-field form-field-flex">
-      <label for="phone">{{ 'teachers.form.phone' | translate }}</label>
-      <input pInputText id="phone" type="tel"
+    <div class="teacher-form__field teacher-form__field--grow">
+      <label class="teacher-form__label" for="teacher-phone">{{ 'teachers.form.phone' | translate }}</label>
+      <input pInputText id="teacher-phone" type="tel"
+             class="teacher-form__input"
              [value]="store.formData().phone"
              (input)="store.onFieldChange('phone', $any($event.target).value)"
              [placeholder]="'teachers.form.phone-placeholder' | translate"
-             class="form-input" autocomplete="tel" />
+             autocomplete="tel" />
     </div>
   </div>
 
   <p-button [label]="'teachers.form.register' | translate"
-            styleClass="submit-button"
+            styleClass="teacher-form__submit"
             [loading]="store.isLoading()"
             [rounded]="true"
             (onClick)="register()" />
-</div>
+
+  @if (store.error(); as error) {
+    <div class="teacher-form__error">
+      <i class="pi pi-exclamation-triangle" aria-hidden="true"></i>
+      <span>{{ error }}</span>
+      <button class="teacher-form__error-dismiss" (click)="store.clearError()" aria-label="Dismiss">
+        <i class="pi pi-times"></i>
+      </button>
+    </div>
+  }
+</article>

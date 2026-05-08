@@ -1,115 +1,149 @@
-.list-container {
+:host { display: block; }
+
+.teacher-roster__toolbar {
   display: flex;
-  flex-direction: column;
-  gap: 1rem;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
 }
 
-.search-bar {
-  :host ::ng-deep .p-input-icon-left {
+.teacher-roster__search {
+  position: relative;
+  width: 100%;
+
+  .pi {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 14px;
+    color: var(--p-surface-500);
+  }
+
+  input {
     width: 100%;
+    height: 40px;
+    padding: 0 14px 0 40px;
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    border: 1px solid var(--p-surface-200);
+    border-radius: 10px;
+    background: var(--p-surface-0);
+    color: var(--p-surface-950);
+    transition: border-color 120ms ease;
 
-    .pi {
-      left: 0.875rem;
-      color: #999;
+    &::placeholder {
+      color: var(--p-surface-500);
     }
 
-    .search-input {
-      width: 100%;
-      padding: 0.625rem 0.875rem 0.625rem 2.5rem;
-      font-size: 0.875rem;
-      border: 1.5px solid var(--p-surface-300, #e0e0e0);
-      border-radius: 8px;
-      background: var(--p-surface-0, #fff);
-      transition: border-color 0.2s ease;
-
-      &:focus {
-        border-color: var(--demy-primary, #3F51B5);
-        box-shadow: 0 0 0 3px rgba(63, 81, 181, 0.12);
-        outline: none;
-      }
+    &:focus {
+      border-color: var(--p-primary-color);
+      outline: none;
     }
   }
 }
 
-.loading-state,
-.empty-state {
-  display: flex;
-  flex-direction: column;
+.teacher-roster__scroll {
+  overflow-x: auto;
+  border: 1px solid var(--p-surface-200);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.teacher-roster {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  background: var(--p-surface-0);
+}
+
+.teacher-roster th,
+.teacher-roster td {
+  padding: 14px 18px;
+  text-align: left;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.teacher-roster thead th {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--p-surface-600);
+  border-bottom: 1px solid var(--p-surface-200);
+}
+
+.teacher-roster__row {
+  border-bottom: 1px solid var(--p-surface-100);
+  transition: background-color 120ms ease;
+}
+
+.teacher-roster__row:last-child {
+  border-bottom: 0;
+}
+
+.teacher-roster__row:hover {
+  background: var(--p-surface-50);
+}
+
+.teacher-roster__profile {
+  display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 3rem 1rem;
-  color: var(--p-surface-400, #bdbdbd);
-  text-align: center;
-
-  i {
-    font-size: 1.5rem;
-  }
-
-  span, p {
-    font-size: 0.875rem;
-    margin: 0;
-  }
+  gap: 12px;
 }
 
-.teachers-grid {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-.teacher-card {
-  display: flex;
-  align-items: center;
-  gap: 0.875rem;
-  padding: 0.875rem 1rem;
-  background: var(--p-surface-0, #fff);
-  border: 1px solid var(--p-surface-100, #f5f5f5);
-  border-radius: 10px;
-  transition: box-shadow 0.2s ease, border-color 0.2s ease;
-
-  &:hover {
-    border-color: var(--p-surface-300, #e0e0e0);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-  }
-}
-
-.teacher-avatar {
-  display: flex;
+.teacher-roster__avatar {
+  display: inline-flex;
   align-items: center;
   justify-content: center;
   width: 40px;
   height: 40px;
-  border-radius: 10px;
-  background: linear-gradient(135deg, #3F51B5 0%, #5C6BC0 100%);
-  color: #fff;
-  font-size: 0.8125rem;
+  border-radius: 50%;
+  background: var(--p-surface-200);
+  color: var(--p-surface-600);
+  font-size: 13px;
   font-weight: 700;
   flex-shrink: 0;
-  user-select: none;
 }
 
-.teacher-info {
+.teacher-roster__profile-text {
   display: flex;
   flex-direction: column;
-  gap: 0.125rem;
-  min-width: 0;
+  line-height: 1.25;
 }
 
-.teacher-name {
-  font-size: 0.875rem;
-  font-weight: 600;
-  color: #1a1a2e;
+.teacher-roster__name {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  color: var(--p-surface-950);
 }
 
-.teacher-email {
-  font-size: 0.8125rem;
-  color: var(--p-surface-500, #757575);
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+.teacher-roster__cell {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--p-surface-950);
 }
 
-.teacher-phone {
-  font-size: 0.75rem;
-  color: var(--p-surface-400, #bdbdbd);
+.teacher-roster__cell-icon {
+  font-size: 13px;
+  color: var(--p-surface-500);
+}
+
+.teacher-roster__empty {
+  padding: 40px 16px !important;
+  text-align: center;
+  color: var(--p-surface-500);
+
+  i {
+    display: block;
+    font-size: 22px;
+    margin-bottom: 8px;
+    opacity: 0.5;
+  }
+
+  span {
+    font-size: 13px;
+  }
 }

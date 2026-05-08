@@ -200,7 +200,8 @@
     "list": {
       "search": "Search teachers...",
       "loading": "Loading teachers...",
-      "empty": "No teachers registered yet"
+      "empty": "No teachers registered yet",
+      "profile": "Teacher"
     }
   }
 }

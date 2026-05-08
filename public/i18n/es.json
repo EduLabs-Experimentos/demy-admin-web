@@ -200,7 +200,8 @@
     "list": {
       "search": "Buscar profesores...",
       "loading": "Cargando profesores...",
-      "empty": "No hay profesores registrados aún"
+      "empty": "No hay profesores registrados aún",
+      "profile": "Profesor"
     }
   }
 }

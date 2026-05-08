@@ -1,41 +1,63 @@
-<div class="list-container">
-  <div class="search-bar">
-    <span class="p-input-icon-left w-full">
-      <i class="pi pi-search"></i>
-      <input pInputText type="text"
-             [value]="store.searchQuery()"
-             (input)="store.onSearchQueryChange($any($event.target).value)"
-             [placeholder]="'teachers.list.search' | translate"
-             class="search-input" />
-    </span>
-  </div>
+<header class="teacher-roster__toolbar">
+  <span class="p-input-icon-left teacher-roster__search">
+    <i class="pi pi-search"></i>
+    <input pInputText type="text"
+           [value]="store.searchQuery()"
+           (input)="store.onSearchQueryChange($any($event.target).value)"
+           [placeholder]="'teachers.list.search' | translate" />
+  </span>
+</header>
 
-  @if (store.isLoadingTeachers()) {
-    <div class="loading-state">
-      <i class="pi pi-spin pi-spinner"></i>
-      <span>{{ 'teachers.list.loading' | translate }}</span>
-    </div>
-  } @else if (store.filteredTeachers().length === 0) {
-    <div class="empty-state">
-      <i class="pi pi-users"></i>
-      <p>{{ 'teachers.list.empty' | translate }}</p>
-    </div>
-  } @else {
-    <div class="teachers-grid">
-      @for (teacher of store.filteredTeachers(); track teacher.id) {
-        <div class="teacher-card">
-          <div class="teacher-avatar">
-            {{ teacher.firstName.charAt(0) }}{{ teacher.lastName.charAt(0) }}
-          </div>
-          <div class="teacher-info">
-            <span class="teacher-name">{{ teacher.firstName }} {{ teacher.lastName }}</span>
-            <span class="teacher-email">{{ teacher.emailAddress }}</span>
-            @if (teacher.phoneNumber) {
-              <span class="teacher-phone">{{ teacher.countryCode }} {{ teacher.phoneNumber }}</span>
-            }
-          </div>
-        </div>
+<div class="teacher-roster__scroll">
+  <table class="teacher-roster">
+    <thead>
+      <tr>
+        <th>{{ 'teachers.list.profile' | translate }}</th>
+        <th>{{ 'teachers.form.email' | translate }}</th>
+        <th>{{ 'teachers.form.phone' | translate }}</th>
+      </tr>
+    </thead>
+    <tbody>
+      @if (store.isLoadingTeachers()) {
+        <tr>
+          <td colspan="3" class="teacher-roster__empty">
+            <i class="pi pi-spin pi-spinner"></i>
+            <span>{{ 'teachers.list.loading' | translate }}</span>
+          </td>
+        </tr>
+      } @else if (store.filteredTeachers().length === 0) {
+        <tr>
+          <td colspan="3" class="teacher-roster__empty">
+            <i class="pi pi-users"></i>
+            <span>{{ 'teachers.list.empty' | translate }}</span>
+          </td>
+        </tr>
+      } @else {
+        @for (teacher of store.filteredTeachers(); track teacher.id) {
+          <tr class="teacher-roster__row">
+            <td>
+              <div class="teacher-roster__profile">
+                <span class="teacher-roster__avatar">{{ teacher.firstName.charAt(0) }}{{ teacher.lastName.charAt(0) }}</span>
+                <div class="teacher-roster__profile-text">
+                  <span class="teacher-roster__name">{{ teacher.firstName }} {{ teacher.lastName }}</span>
+                </div>
+              </div>
+            </td>
+            <td>
+              <div class="teacher-roster__cell">
+                <i class="pi pi-envelope teacher-roster__cell-icon" aria-hidden="true"></i>
+                <span>{{ teacher.emailAddress }}</span>
+              </div>
+            </td>
+            <td>
+              <div class="teacher-roster__cell">
+                <i class="pi pi-phone teacher-roster__cell-icon" aria-hidden="true"></i>
+                <span>{{ teacher.phoneNumber }}</span>
+              </div>
+            </td>
+          </tr>
+        }
       }
-    </div>
-  }
+    </tbody>
+  </table>
 </div>

@@ -1,73 +1,57 @@
-.teacher-page {
-  max-width: 1100px;
-}
-
-.page-header {
-  margin-bottom: 1.5rem;
-}
-
-.page-title {
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  font-size: 1.35rem;
-  font-weight: 700;
-  color: #1a1a2e;
-  margin: 0 0 0.25rem 0;
-}
-
-.page-subtitle {
-  font-size: 0.875rem;
-  color: var(--p-surface-500, #757575);
-  margin: 0 0 0.75rem 0;
-}
-
-.error-banner {
+:host {
   display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.625rem 1rem;
-  background: rgba(220, 53, 69, 0.06);
-  border: 1px solid rgba(220, 53, 69, 0.2);
-  border-radius: 8px;
-  color: #dc3545;
-  font-size: 0.8125rem;
-  font-weight: 500;
-  animation: shake 0.4s ease;
-
-  i {
-    font-size: 0.9375rem;
-  }
+  flex-direction: column;
+  gap: 24px;
 }
 
-.error-dismiss {
-  all: unset;
-  cursor: pointer;
-  margin-left: auto;
-  color: #dc3545;
-  opacity: 0.6;
-  font-size: 0.75rem;
-
-  &:hover {
-    opacity: 1;
-  }
+.teachers-page__header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
 }
 
-.page-content {
+.teachers-page__header-text {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.teachers-page__eyebrow {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--p-surface-600);
+}
+
+.teachers-page__title {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--p-surface-950);
+  margin: 0;
+}
+
+.teachers-page__subtitle {
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  color: var(--p-surface-600);
+  margin: 0;
+}
+
+.teachers-page__content {
   display: grid;
-  grid-template-columns: 360px 1fr;
-  gap: 1.5rem;
+  grid-template-columns: 340px 1fr;
+  gap: 20px;
   align-items: start;
 }
 
-@keyframes shake {
-  0%, 100% { transform: translateX(0); }
-  20% { transform: translateX(-4px); }
-  40% { transform: translateX(4px); }
-  60% { transform: translateX(-4px); }
-  80% { transform: translateX(2px); }
-}
-
-@media (max-width: 768px) {
-  .page-content {
+@media (max-width: 960px) {
+  .teachers-page__content {
     grid-template-columns: 1fr;
   }
 }
