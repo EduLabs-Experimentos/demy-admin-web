@@ -1,0 +1,111 @@
+<form [formGroup]="form" (ngSubmit)="setupAcademy()" class="academy-form">
+  <div class="form-field">
+    <label for="academyName">{{ 'setup-academy.academyName' | translate }}</label>
+    <input pInputText
+           id="academyName"
+           type="text"
+           formControlName="academyName"
+           placeholder="{{ 'setup-academy.academyName-placeholder' | translate }}"
+           class="form-input" />
+  </div>
+
+  <div class="form-field">
+    <label for="academyDescription">{{ 'setup-academy.academyDescription' | translate }}</label>
+    <input pInputText
+           id="academyDescription"
+           type="text"
+           formControlName="academyDescription"
+           placeholder="{{ 'setup-academy.academyDescription-placeholder' | translate }}"
+           class="form-input" />
+  </div>
+
+  <div class="form-field">
+    <label for="ruc">{{ 'setup-academy.ruc' | translate }}</label>
+    <input pInputText
+           id="ruc"
+           type="text"
+           formControlName="ruc"
+           placeholder="{{ 'setup-academy.ruc-placeholder' | translate }}"
+           class="form-input" />
+  </div>
+
+  <div class="form-field">
+    <label for="street">{{ 'setup-academy.street' | translate }}</label>
+    <input pInputText
+           id="street"
+           type="text"
+           formControlName="street"
+           placeholder="{{ 'setup-academy.street-placeholder' | translate }}"
+           class="form-input" />
+  </div>
+
+  <div class="form-row">
+    <div class="form-field">
+      <label for="district">{{ 'setup-academy.district' | translate }}</label>
+      <input pInputText
+             id="district"
+             type="text"
+             formControlName="district"
+             placeholder="{{ 'setup-academy.district-placeholder' | translate }}"
+             class="form-input" />
+    </div>
+
+    <div class="form-field">
+      <label for="province">{{ 'setup-academy.province' | translate }}</label>
+      <input pInputText
+             id="province"
+             type="text"
+             formControlName="province"
+             placeholder="{{ 'setup-academy.province-placeholder' | translate }}"
+             class="form-input" />
+    </div>
+  </div>
+
+  <div class="form-field">
+    <label for="department">{{ 'setup-academy.department' | translate }}</label>
+    <input pInputText
+           id="department"
+           type="text"
+           formControlName="department"
+           placeholder="{{ 'setup-academy.department-placeholder' | translate }}"
+           class="form-input" />
+  </div>
+
+  <div class="form-field">
+    <label for="emailAddress">{{ 'setup-academy.email' | translate }}</label>
+    <input pInputText
+           id="emailAddress"
+           type="email"
+           formControlName="emailAddress"
+           placeholder="{{ 'setup-academy.email-placeholder' | translate }}"
+           class="form-input" />
+  </div>
+
+  <div class="form-row">
+    <div class="form-field small">
+      <label for="countryCode">{{ 'setup-academy.countryCode' | translate }}</label>
+      <input pInputText
+             id="countryCode"
+             type="text"
+             formControlName="countryCode"
+             placeholder="{{ 'setup-academy.countryCode-placeholder' | translate }}"
+             class="form-input" />
+    </div>
+
+    <div class="form-field large">
+      <label for="phone">{{ 'setup-academy.phone' | translate }}</label>
+      <input pInputText
+             id="phone"
+             type="text"
+             formControlName="phone"
+             placeholder="{{ 'setup-academy.phone-placeholder' | translate }}"
+             class="form-input" />
+    </div>
+  </div>
+
+  <p-button type="submit"
+            label="{{ 'setup-academy.submit' | translate }}"
+            styleClass="submit-button"
+            [loading]="store.isLoadingUsers()"
+            [rounded]="true" />
+</form>

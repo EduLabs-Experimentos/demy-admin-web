@@ -1,0 +1,25 @@
+<nav class="side-nav" [class.collapsed]="collapsed">
+  @for (section of visibleSections; track section.title) {
+    <div class="nav-section">
+      <h3 class="section-title" [class.hidden]="collapsed">{{ section.title | translate }}</h3>
+      @for (item of section.items; track item.label) {
+        <a [routerLink]="item.route"
+           routerLinkActive="active-link"
+           class="side-nav-item"
+           [title]="collapsed ? (item.label | translate) : ''"
+           (click)="onNavigate()">
+          <i [class]="item.icon"></i>
+          <span [class.hidden]="collapsed">{{ item.label | translate }}</span>
+        </a>
+      }
+    </div>
+  }
+
+  <div class="nav-section logout-section">
+    <div class="section-divider" [class.collapsed]="collapsed"></div>
+    <button class="side-nav-item logout-item" [title]="collapsed ? ('sidebar.logout' | translate) : ''" (click)="onLogout()">
+      <i class="pi pi-sign-out"></i>
+      <span [class.hidden]="collapsed">{{ 'sidebar.logout' | translate }}</span>
+    </button>
+  </div>
+</nav>

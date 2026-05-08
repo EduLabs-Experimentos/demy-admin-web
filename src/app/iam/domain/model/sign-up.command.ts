@@ -1,34 +1,36 @@
 /**
  * Command object for user sign-up operations in the domain layer of the IAM bounded context.
- * Contains the username and password for registration.
+ * Contains the email address, password, and roles for registration.
  */
 export class SignUpCommand {
-  private _username: string;
+  private _emailAddress: string;
   private _password: string;
+  private _roles: string[];
 
   /**
    * Creates a new SignUpCommand instance.
-   * @param resource An object containing username and password.
+   * @param resource An object containing emailAddress, password, and roles.
    */
-  constructor(resource: {username: string, password: string}) {
-    this._username = resource.username;
+  constructor(resource: {emailAddress: string, password: string, roles?: string[]}) {
+    this._emailAddress = resource.emailAddress;
     this._password = resource.password;
+    this._roles = resource.roles || ['ROLE_USER'];
   }
 
   /**
-   * Gets the username for sign-up.
-   * @returns The username.
+   * Gets the email address for sign-up.
+   * @returns The email address.
    */
-  get username(): string {
-    return this._username;
+  get emailAddress(): string {
+    return this._emailAddress;
   }
 
   /**
-   * Sets the username for sign-up.
-   * @param value The username.
+   * Sets the email address for sign-up.
+   * @param value The email address.
    */
-  set username(value: string) {
-    this._username = value;
+  set emailAddress(value: string) {
+    this._emailAddress = value;
   }
 
   /**
@@ -45,5 +47,21 @@ export class SignUpCommand {
    */
   set password(value: string) {
     this._password = value;
+  }
+
+  /**
+   * Gets the roles for sign-up.
+   * @returns The roles array.
+   */
+  get roles(): string[] {
+    return this._roles;
+  }
+
+  /**
+   * Sets the roles for sign-up.
+   * @param value The roles array.
+   */
+  set roles(value: string[]) {
+    this._roles = value;
   }
 }

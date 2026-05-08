@@ -14,7 +14,8 @@ export class SignUpAssembler {
   toResourceFromResponse(response: SignUpResponse): SignUpResource {
     return {
       id: response.id,
-      username: response.username,
+      emailAddress: response.emailAddress,
+      roles: response.roles,
     } as SignUpResource;
   }
 
@@ -25,8 +26,9 @@ export class SignUpAssembler {
    */
   toRequestFromCommand(command: SignUpCommand): SignUpRequest {
     return {
-      username: command.username,
+      emailAddress: command.emailAddress,
       password: command.password,
+      roles: command.roles,
     } as SignUpRequest;
   }
 }
