@@ -178,5 +178,30 @@
   },
   "footer": {
     "rights": "All rights reserved."
+  },
+  "teachers": {
+    "page": {
+      "title": "Teachers",
+      "subtitle": "Manage your academy's teaching staff"
+    },
+    "form": {
+      "title": "Register Teacher",
+      "firstName": "First Name",
+      "firstName-placeholder": "Enter first name",
+      "lastName": "Last Name",
+      "lastName-placeholder": "Enter last name",
+      "email": "Email",
+      "email-placeholder": "Enter email address",
+      "countryCode": "Code",
+      "phone": "Phone",
+      "phone-placeholder": "Enter phone number",
+      "register": "Register Teacher"
+    },
+    "list": {
+      "search": "Search teachers...",
+      "loading": "Loading teachers...",
+      "empty": "No teachers registered yet",
+      "profile": "Teacher"
+    }
   }
 }

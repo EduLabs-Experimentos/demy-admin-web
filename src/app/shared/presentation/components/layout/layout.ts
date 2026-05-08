@@ -1,6 +1,7 @@
 import {Component, HostListener, inject, signal} from '@angular/core';
 import {Router, RouterOutlet} from '@angular/router';
 import {LanguageSwitcher} from '../language-switcher/language-switcher';
+import {ThemeSwitcher} from '../theme-switcher/theme-switcher';
 import {FooterContent} from '../footer-content/footer-content';
 import {SideNavigationBar} from '../side-navigation-bar/side-navigation-bar';
 import {IamStore} from '../../../../iam/application/iam.store';
@@ -10,6 +11,7 @@ import {IamStore} from '../../../../iam/application/iam.store';
   imports: [
     RouterOutlet,
     LanguageSwitcher,
+    ThemeSwitcher,
     FooterContent,
     SideNavigationBar
   ],

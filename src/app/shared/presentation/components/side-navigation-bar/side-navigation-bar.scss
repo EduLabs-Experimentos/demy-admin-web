@@ -1,3 +1,10 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  flex: 1;
+}
+
 .side-nav {
   display: flex;
   flex-direction: column;
@@ -115,15 +122,15 @@
   }
 }
 
-.logout-section {
+.bottom-section {
   margin-top: auto;
 }
 
 .logout-item {
-  color: #e57373;
+  color: var(--p-red-400, #e57373);
 
   &:hover {
-    background: rgba(229, 115, 115, 0.08);
-    color: #e57373;
+    background: color-mix(in srgb, var(--p-red-400, #e57373) 12%, transparent);
+    color: var(--p-red-300, #ef9a9a);
   }
 }

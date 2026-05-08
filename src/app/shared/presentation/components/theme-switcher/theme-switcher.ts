@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ButtonModule } from 'primeng/button';
 import { CommonModule } from '@angular/common';
-import { Tooltip } from 'primeng/tooltip';
 
 @Component({
   selector: 'app-theme-switcher',
-  imports: [CommonModule, ButtonModule, Tooltip],
+  imports: [CommonModule, ButtonModule],
   templateUrl: './theme-switcher.html',
   styleUrl: './theme-switcher.scss',
 })

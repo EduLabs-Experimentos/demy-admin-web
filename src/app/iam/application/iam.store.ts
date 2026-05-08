@@ -39,7 +39,12 @@ export class IamStore {
   readonly currentAcademy = this.currentAcademySignal.asReadonly();
 
   constructor(private iamApi: IamApi) {
-    this.isSignedInSignal.set(false);
+    const token = localStorage.getItem('token');
+    if (token) {
+      this.isSignedInSignal.set(true);
+    } else {
+      this.isSignedInSignal.set(false);
+    }
     this.currentEmailSignal.set(null);
     this.currentUserIdSignal.set(null);
   }

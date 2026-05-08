@@ -38,7 +38,7 @@ export class SideNavigationBar {
     {
       title: 'sidebar.sections.academy',
       items: [
-        { icon: 'pi pi-briefcase', label: 'sidebar.teachers', route: '/organization/teachers', roles: ['ADMIN'] },
+        { icon: 'pi pi-briefcase', label: 'sidebar.teachers', route: '/teachers', roles: ['ADMIN'] },
         { icon: 'pi pi-users', label: 'sidebar.students', route: '/students', roles: ['ADMIN'] }
       ]
     },
@@ -71,10 +71,21 @@ export class SideNavigationBar {
 
   get visibleSections(): NavSection[] {
     const role = this.userService.getUserRole();
-    return this.navSections.map(section => ({
-      title: section.title,
-      items: section.items.filter(item => item.roles.includes(role))
-    })).filter(section => section.items.length > 0);
+    return this.navSections
+      .filter(section => section.title !== 'sidebar.sections.general')
+      .map(section => ({
+        title: section.title,
+        items: section.items.filter(item => item.roles.includes(role))
+      }))
+      .filter(section => section.items.length > 0);
+  }
+
+  get bottomItems(): NavItem[] {
+    const role = this.userService.getUserRole();
+    const generalSection = this.navSections.find(s => s.title === 'sidebar.sections.general');
+    return generalSection
+      ? generalSection.items.filter(item => item.roles.includes(role))
+      : [];
   }
 
   onNavigate() {
