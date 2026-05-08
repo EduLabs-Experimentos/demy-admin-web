@@ -1,0 +1,61 @@
+<form [formGroup]="form" (ngSubmit)="completeAccount()" class="complete-form">
+  <div class="form-row">
+    <div class="form-field">
+      <label for="firstName">{{ 'complete-account.firstName' | translate }}</label>
+      <input pInputText
+             id="firstName"
+             type="text"
+             formControlName="firstName"
+             placeholder="{{ 'complete-account.firstName-placeholder' | translate }}"
+             class="form-input" />
+    </div>
+
+    <div class="form-field">
+      <label for="lastName">{{ 'complete-account.lastName' | translate }}</label>
+      <input pInputText
+             id="lastName"
+             type="text"
+             formControlName="lastName"
+             placeholder="{{ 'complete-account.lastName-placeholder' | translate }}"
+             class="form-input" />
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-field small">
+      <label for="countryCode">{{ 'complete-account.countryCode' | translate }}</label>
+      <input pInputText
+             id="countryCode"
+             type="text"
+             formControlName="countryCode"
+             placeholder="{{ 'complete-account.countryCode-placeholder' | translate }}"
+             class="form-input" />
+    </div>
+
+    <div class="form-field large">
+      <label for="phone">{{ 'complete-account.phone' | translate }}</label>
+      <input pInputText
+             id="phone"
+             type="text"
+             formControlName="phone"
+             placeholder="{{ 'complete-account.phone-placeholder' | translate }}"
+             class="form-input" />
+    </div>
+  </div>
+
+  <div class="form-field">
+    <label for="dniNumber">{{ 'complete-account.dni' | translate }}</label>
+    <input pInputText
+           id="dniNumber"
+           type="text"
+           formControlName="dniNumber"
+           placeholder="{{ 'complete-account.dni-placeholder' | translate }}"
+           class="form-input" />
+  </div>
+
+  <p-button type="submit"
+            label="{{ 'complete-account.submit' | translate }}"
+            styleClass="submit-button"
+            [loading]="store.isLoadingUsers()"
+            [rounded]="true" />
+</form>

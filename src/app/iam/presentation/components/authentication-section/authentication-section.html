@@ -1,6 +1,6 @@
 <div class="auth-section">
   @if (store.isSignedIn()) {
-    <span class="welcome-text">Welcome, <strong>{{ store.currentUsername() }}</strong></span>
+    <span class="welcome-text">Welcome, <strong>{{ store.currentEmail() }}</strong></span>
     <span class="divider"></span>
     <button type="button" class="btn-link" (click)="performSignOut()">Sign-Out</button>
   } @else {

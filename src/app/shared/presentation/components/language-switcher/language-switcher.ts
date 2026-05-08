@@ -8,30 +8,25 @@ import {TranslateService} from '@ngx-translate/core';
   styleUrl: './language-switcher.scss'
 })
 export class LanguageSwitcher {
-  protected currentLang: string = 'en';
+  protected currentLang: string = 'es';
+  protected languages: string[] = ['es', 'en'];
 
-  /** List of available language codes */
-  protected languages: string[] = ['en', 'es'];
-  /** Translation service instance */
-  private translate: TranslateService;
+  private translate: TranslateService = inject(TranslateService);
 
-  /**
-   * Creates an instance of LanguageSwitcherComponent.
-   * Initializes the current language from the translation service.
-   */
   constructor() {
-    this.translate = inject(TranslateService);
-    this.currentLang = this.translate.getCurrentLang();
+    const savedLang = localStorage.getItem('language');
+    if (savedLang && this.languages.includes(savedLang)) {
+      this.currentLang = savedLang;
+      this.translate.use(savedLang);
+    } else {
+      this.translate.setFallbackLang('es');
+      this.translate.use('es');
+    }
   }
 
-  /**
-   * Changes the application's current language.
-   * Updates both the translation service and the component's local state.
-   *
-   * @param language - The language code to switch to (e.g., 'en', 'es')
-   */
   useLanguage(language: string) {
     this.translate.use(language);
     this.currentLang = language;
+    localStorage.setItem('language', language);
   }
 }

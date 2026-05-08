@@ -1,16 +1,15 @@
-import {
-  ApplicationConfig,
-  provideBrowserGlobalErrorListeners,
-} from '@angular/core';
+import { ApplicationConfig, provideBrowserGlobalErrorListeners } from '@angular/core';
 import { provideRouter } from '@angular/router';
-
-import { routes } from './app.routes';
 import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
 import { provideTranslateService } from '@ngx-translate/core';
 import { provideTranslateHttpLoader } from '@ngx-translate/http-loader';
+
+import { routes } from './app.routes';
 import { iamInterceptor } from './iam/infrastructure/iam.interceptor';
 import { providePrimeNG } from 'primeng/config';
 import { appPreset } from './app.preset';
+
+const interceptors = [iamInterceptor];
 
 /**
  * Application configuration for dependency injection and providers in the infrastructure layer.
@@ -18,11 +17,7 @@ import { appPreset } from './app.preset';
 export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
-    provideHttpClient(withFetch(), withInterceptors([iamInterceptor])),
-    provideTranslateService({
-      loader: provideTranslateHttpLoader({ prefix: './i18n/', suffix: '.json' }),
-      fallbackLang: 'en',
-    }),
+    provideHttpClient(withFetch(), withInterceptors(interceptors)),
     provideRouter(routes),
     providePrimeNG({
       ripple: true,
@@ -34,6 +29,13 @@ export const appConfig: ApplicationConfig = {
           cssLayer: false,
         },
       },
+    }),
+    provideTranslateService({
+      fallbackLang: 'en',
+      loader: provideTranslateHttpLoader({
+        prefix: './i18n/',
+        suffix: '.json',
+      }),
     }),
   ],
 };

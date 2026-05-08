@@ -1,21 +1,32 @@
-<header class="main-header">
-  <nav class="nav-container">
-    <h1>EduLabs - Demy</h1>
+<div class="backdrop" [class.visible]="isSidenavOpen" (click)="closeSidenav()"></div>
+
+<aside class="sidenav" [class.open]="isSidenavOpen" [class.collapsed]="!isSidenavExpanded()">
+  <button class="sidenav-close" (click)="closeSidenav()">
+    <i class="pi pi-times"></i>
+  </button>
+
+  <div class="sidenav-header">
+    <img class="sidenav-logo" src="/images/solo-logo-demy.png" alt="Demy Logo" />
+    <span class="sidenav-brand">Demy</span>
+  </div>
+
+  <app-side-navigation-bar
+    [collapsed]="!isSidenavExpanded()"
+    (navigated)="closeSidenav()"
+    (logout)="onLogout()" />
+
+</aside>
+
+<div class="layout-shell" [class.sidenav-expanded]="isSidenavExpanded()" [class.sidenav-collapsed]="!isSidenavExpanded()">
+  <header class="main-header">
+    <button class="menu-toggle" (click)="toggleSidenav()" aria-label="Toggle menu">
+      <i class="pi pi-bars"></i>
+    </button>
     <div class="spacer"></div>
-    <div class="nav-links">
-      @for (option of options; track option.label) {
-        <a [routerLink]="option.link"
-           routerLinkActive="active-link"
-           class="nav-item">
-          {{ option.label | translate }}
-        </a>
-      }
-    </div>
-    <app-authentication-section/>
     <app-language-switcher/>
-  </nav>
-</header>
-<main>
-  <router-outlet/>
-</main>
-<app-footer-content/>
+  </header>
+  <main class="main-content">
+    <router-outlet/>
+  </main>
+  <app-footer-content/>
+</div>

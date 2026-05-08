@@ -6,7 +6,8 @@ import {BaseResource, BaseResponse} from '../../shared/infrastructure/base-respo
  */
 export interface SignUpResource extends BaseResource {
   id: number;
-  username: string;
+  emailAddress: string;
+  roles: string[];
 }
 
 /**

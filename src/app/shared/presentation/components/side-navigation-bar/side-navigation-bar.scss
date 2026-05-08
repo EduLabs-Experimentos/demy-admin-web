@@ -1,0 +1,129 @@
+.side-nav {
+  display: flex;
+  flex-direction: column;
+  padding: 0 10px;
+  gap: 2px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  flex: 1;
+  min-height: 0;
+
+  &.collapsed {
+    padding: 0 6px;
+  }
+}
+
+.nav-section {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding-bottom: 6px;
+}
+
+.section-title {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--p-surface-400, #bdbdbd);
+  margin: 14px 0 4px 14px;
+  user-select: none;
+  white-space: nowrap;
+  overflow: hidden;
+  transition: opacity 0.2s ease, height 0.2s ease;
+
+  &.hidden {
+    opacity: 0;
+    height: 0;
+    margin: 0;
+    visibility: hidden;
+  }
+}
+
+.side-nav-item {
+  all: unset;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 9px 14px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  font-family: 'Inter', sans-serif;
+  color: var(--p-surface-600, #757575);
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  overflow: hidden;
+
+  i {
+    font-size: 1.05rem;
+    width: 20px;
+    text-align: center;
+    flex-shrink: 0;
+  }
+
+  span {
+    transition: opacity 0.2s ease, width 0.2s ease;
+    opacity: 1;
+
+    &.hidden {
+      opacity: 0;
+      width: 0;
+      visibility: hidden;
+    }
+  }
+
+  &:hover {
+    background: rgba(63, 81, 181, 0.06);
+    color: var(--demy-primary, #3F51B5);
+  }
+
+  &.active-link {
+    background: rgba(63, 81, 181, 0.1);
+    color: var(--demy-primary, #3F51B5);
+    font-weight: 600;
+
+    &:hover {
+      background: rgba(63, 81, 181, 0.14);
+      color: var(--demy-primary, #3F51B5);
+    }
+  }
+
+  .collapsed & {
+    padding: 9px 0;
+    justify-content: center;
+    gap: 0;
+
+    i {
+      width: auto;
+    }
+  }
+}
+
+.section-divider {
+  height: 1px;
+  background: var(--p-surface-200, #e0e0e0);
+  margin: 4px 14px 8px 14px;
+  transition: margin 0.3s ease;
+
+  &.collapsed {
+    margin: 4px 8px 8px 8px;
+  }
+}
+
+.logout-section {
+  margin-top: auto;
+}
+
+.logout-item {
+  color: #e57373;
+
+  &:hover {
+    background: rgba(229, 115, 115, 0.08);
+    color: #e57373;
+  }
+}

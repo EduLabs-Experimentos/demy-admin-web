@@ -1,40 +1,50 @@
 import {Component, inject} from '@angular/core';
-import {BaseForm} from '../../../../shared/presentation/components/base-form/base-form';
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
-import {Router} from '@angular/router';
+import {Router, RouterModule} from '@angular/router';
+import {InputTextModule} from 'primeng/inputtext';
+import {PasswordModule} from 'primeng/password';
+import {CheckboxModule} from 'primeng/checkbox';
+import {ButtonModule} from 'primeng/button';
+import {TranslateModule} from '@ngx-translate/core';
 import {IamStore} from '../../../application/iam.store';
 import {SignUpCommand} from '../../../domain/model/sign-up.command';
+import {BaseForm} from '../../../../shared/presentation/components/base-form/base-form';
 
-/**
- * Component for the sign-up form view in the presentation layer of the IAM bounded context.
- * Allows users to register with a username and password.
- */
 @Component({
   selector: 'app-sign-up-form',
-  imports: [ReactiveFormsModule],
+  standalone: true,
+  imports: [
+    ReactiveFormsModule,
+    RouterModule,
+    TranslateModule,
+    InputTextModule,
+    PasswordModule,
+    CheckboxModule,
+    ButtonModule
+  ],
   templateUrl: './sign-up-form.html',
   styleUrl: './sign-up-form.scss'
 })
 export class SignUpForm extends BaseForm {
   private router = inject(Router);
-  private store = inject(IamStore);
+  protected store = inject(IamStore);
 
-  /**
-   * Form-group for the sign-up form.
-   */
   form = new FormGroup({
-    username: new FormControl('', {nonNullable: true, validators: [Validators.required]}),
-    password: new FormControl('', {nonNullable: true, validators: [Validators.required]})
+    email: new FormControl('', {nonNullable: true, validators: [Validators.required, Validators.email]}),
+    password: new FormControl('', {nonNullable: true, validators: [Validators.required, Validators.minLength(8)]}),
+    terms: new FormControl(false, {nonNullable: true, validators: [Validators.requiredTrue]})
   });
 
-  /**
-   * Performs the sign-up operation if the form is valid.
-   */
   performSignUp() {
-    if (this.form.invalid) return;
+    if (this.form.invalid) {
+      this.form.markAllAsTouched();
+      return;
+    }
+    const formData = this.form.value;
     const signUpCommand = new SignUpCommand({
-      username: this.form.value.username!,
-      password: this.form.value.password!
+      emailAddress: formData.email!,
+      password: formData.password!,
+      roles: ['ROLE_USER']
     });
     this.store.signUp(signUpCommand, this.router);
   }
