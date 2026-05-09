@@ -1,0 +1,59 @@
+<header class="period-roster__toolbar">
+  <span class="p-input-icon-left period-roster__search">
+    <i class="pi pi-search"></i>
+    <input pInputText type="text" [value]="store.searchQuery()"
+           (input)="store.onSearchQueryChange($any($event.target).value)"
+           [placeholder]="'academic-periods.list.search' | translate" />
+  </span>
+</header>
+
+<div class="period-roster__scroll">
+  <table class="period-roster">
+    <thead>
+      <tr>
+        <th>{{ 'academic-periods.list.name' | translate }}</th>
+        <th>{{ 'academic-periods.list.startDate' | translate }}</th>
+        <th>{{ 'academic-periods.list.endDate' | translate }}</th>
+        <th>{{ 'academic-periods.list.status' | translate }}</th>
+        <th class="period-roster__actions-col">{{ 'academic-periods.list.actions' | translate }}</th>
+      </tr>
+    </thead>
+    <tbody>
+      @if (store.isLoadingPeriods()) {
+        <tr><td colspan="5" class="period-roster__empty"><i class="pi pi-spin pi-spinner"></i><span>{{ 'academic-periods.list.loading' | translate }}</span></td></tr>
+      } @else if (store.filteredPeriods().length === 0) {
+        <tr><td colspan="5" class="period-roster__empty"><i class="pi pi-calendar-clock"></i><span>{{ 'academic-periods.list.empty' | translate }}</span></td></tr>
+      } @else {
+        @for (period of store.filteredPeriods(); track period.id) {
+          <tr class="period-roster__row" [class.period-roster__row--editing]="store.selectedPeriodId() === period.id">
+            <td>
+              <div class="period-roster__profile">
+                <span class="period-roster__avatar">{{ period.periodName.charAt(0) }}</span>
+                <span class="period-roster__name">{{ period.periodName }}</span>
+              </div>
+            </td>
+            <td><span class="period-roster__date">{{ period.startDate | date:'mediumDate' }}</span></td>
+            <td><span class="period-roster__date">{{ period.endDate | date:'mediumDate' }}</span></td>
+            <td>
+              <span class="period-roster__status" [class.period-roster__status--active]="period.isActive">
+                {{ (period.isActive ? 'academic-periods.list.active' : 'academic-periods.list.inactive') | translate }}
+              </span>
+            </td>
+            <td class="period-roster__actions-col">
+              <div class="period-roster__actions">
+                <button class="period-roster__action-btn" [disabled]="store.isLoading() || store.isDeleting()"
+                        (click)="editPeriod(period.id)" [attr.aria-label]="'academic-periods.list.edit' | translate">
+                  <i class="pi pi-pencil"></i>
+                </button>
+                <button class="period-roster__action-btn period-roster__action-btn--danger" [disabled]="store.isLoading() || store.isDeleting()"
+                        (click)="deletePeriod(period.id)" [attr.aria-label]="'academic-periods.list.delete' | translate">
+                  <i class="pi pi-trash"></i>
+                </button>
+              </div>
+            </td>
+          </tr>
+        }
+      }
+    </tbody>
+  </table>
+</div>
