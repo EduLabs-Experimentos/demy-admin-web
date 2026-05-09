@@ -179,6 +179,66 @@
   "footer": {
     "rights": "All rights reserved."
   },
+  "classrooms": {
+    "page": {
+      "title": "Classrooms",
+      "subtitle": "Manage your academy's classrooms and facilities"
+    },
+    "form": {
+      "title-create": "Create Classroom",
+      "title-edit": "Edit Classroom",
+      "code": "Code",
+      "code-placeholder": "Enter classroom code",
+      "capacity": "Capacity",
+      "capacity-placeholder": "Enter capacity",
+      "campus": "Campus",
+      "campus-placeholder": "Enter campus location",
+      "create": "Create Classroom",
+      "update": "Update Classroom",
+      "cancel": "Cancel"
+    },
+    "list": {
+      "search": "Search classrooms...",
+      "loading": "Loading classrooms...",
+      "empty": "No classrooms registered yet",
+      "code": "Code",
+      "capacity": "Capacity",
+      "campus": "Campus",
+      "actions": "Actions",
+      "edit": "Edit",
+      "delete": "Delete"
+    }
+  },
+  "courses": {
+    "page": {
+      "title": "Courses",
+      "subtitle": "Manage your academy's course catalog"
+    },
+    "form": {
+      "title-create": "Create Course",
+      "title-edit": "Edit Course",
+      "name": "Name",
+      "name-placeholder": "Enter course name",
+      "code": "Code",
+      "code-placeholder": "Enter course code",
+      "description": "Description",
+      "description-placeholder": "Enter course description",
+      "create": "Create Course",
+      "update": "Update Course",
+      "cancel": "Cancel"
+    },
+    "list": {
+      "search": "Search courses...",
+      "loading": "Loading courses...",
+      "empty": "No courses registered yet",
+      "name": "Name",
+      "code": "Code",
+      "description": "Description",
+      "actions": "Actions",
+      "edit": "Edit",
+      "delete": "Delete"
+    }
+  },
   "teachers": {
     "page": {
       "title": "Teachers",

@@ -179,6 +179,66 @@
   "footer": {
     "rights": "Todos los derechos reservados."
   },
+  "classrooms": {
+    "page": {
+      "title": "Salones",
+      "subtitle": "Gestiona los salones e instalaciones de tu academia"
+    },
+    "form": {
+      "title-create": "Crear Salón",
+      "title-edit": "Editar Salón",
+      "code": "Código",
+      "code-placeholder": "Ingresa el código del salón",
+      "capacity": "Capacidad",
+      "capacity-placeholder": "Ingresa la capacidad",
+      "campus": "Sede",
+      "campus-placeholder": "Ingresa la sede",
+      "create": "Crear Salón",
+      "update": "Actualizar Salón",
+      "cancel": "Cancelar"
+    },
+    "list": {
+      "search": "Buscar salones...",
+      "loading": "Cargando salones...",
+      "empty": "No hay salones registrados aún",
+      "code": "Código",
+      "capacity": "Capacidad",
+      "campus": "Sede",
+      "actions": "Acciones",
+      "edit": "Editar",
+      "delete": "Eliminar"
+    }
+  },
+  "courses": {
+    "page": {
+      "title": "Cursos",
+      "subtitle": "Gestiona el catálogo de cursos de tu academia"
+    },
+    "form": {
+      "title-create": "Crear Curso",
+      "title-edit": "Editar Curso",
+      "name": "Nombre",
+      "name-placeholder": "Ingresa el nombre del curso",
+      "code": "Código",
+      "code-placeholder": "Ingresa el código del curso",
+      "description": "Descripción",
+      "description-placeholder": "Ingresa la descripción del curso",
+      "create": "Crear Curso",
+      "update": "Actualizar Curso",
+      "cancel": "Cancelar"
+    },
+    "list": {
+      "search": "Buscar cursos...",
+      "loading": "Cargando cursos...",
+      "empty": "No hay cursos registrados aún",
+      "name": "Nombre",
+      "code": "Código",
+      "description": "Descripción",
+      "actions": "Acciones",
+      "edit": "Editar",
+      "delete": "Eliminar"
+    }
+  },
   "teachers": {
     "page": {
       "title": "Profesores",
