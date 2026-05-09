@@ -1,0 +1,61 @@
+<article class="course-form">
+  <h3 class="course-form__title">
+    {{ (store.isEditing() ? 'courses.form.title-edit' : 'courses.form.title-create') | translate }}
+  </h3>
+
+  <div class="course-form__field">
+    <label class="course-form__label" for="course-name">{{ 'courses.form.name' | translate }}</label>
+    <input pInputText id="course-name" type="text"
+           class="course-form__input"
+           [value]="store.formData().name"
+           (input)="store.onFieldChange('name', $any($event.target).value)"
+           [placeholder]="'courses.form.name-placeholder' | translate"
+           autocomplete="off" />
+  </div>
+
+  <div class="course-form__field">
+    <label class="course-form__label" for="course-code">{{ 'courses.form.code' | translate }}</label>
+    <input pInputText id="course-code" type="text"
+           class="course-form__input"
+           [value]="store.formData().code"
+           (input)="store.onFieldChange('code', $any($event.target).value)"
+           [placeholder]="'courses.form.code-placeholder' | translate"
+           autocomplete="off" />
+  </div>
+
+  <div class="course-form__field">
+    <label class="course-form__label" for="course-description">{{ 'courses.form.description' | translate }}</label>
+    <textarea pTextarea id="course-description"
+              class="course-form__input course-form__textarea"
+              [value]="store.formData().description"
+              (input)="store.onFieldChange('description', $any($event.target).value)"
+              [placeholder]="'courses.form.description-placeholder' | translate"
+              [rows]="4"
+              [autoResize]="true"></textarea>
+  </div>
+
+  <div class="course-form__actions">
+    <p-button [label]="(store.isEditing() ? 'courses.form.update' : 'courses.form.create') | translate"
+              styleClass="course-form__submit"
+              [loading]="store.isLoading()"
+              [rounded]="true"
+              (onClick)="submit()" />
+    @if (store.isEditing()) {
+      <p-button [label]="'courses.form.cancel' | translate"
+                styleClass="course-form__cancel"
+                [rounded]="true"
+                severity="secondary"
+                (onClick)="store.cancelEdit()" />
+    }
+  </div>
+
+  @if (store.error(); as error) {
+    <div class="course-form__error">
+      <i class="pi pi-exclamation-triangle" aria-hidden="true"></i>
+      <span>{{ error }}</span>
+      <button class="course-form__error-dismiss" (click)="store.clearError()" aria-label="Dismiss">
+        <i class="pi pi-times"></i>
+      </button>
+    </div>
+  }
+</article>

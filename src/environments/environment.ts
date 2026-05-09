@@ -6,4 +6,6 @@ export const environment = {
   platformProviderRequestResetPasswordEndpointPath: '/request-reset-password',
   platformProviderVerifyResetCodeEndpointPath: '/verify-reset-code',
   platformProviderResetPasswordEndpointPath: '/reset-password',
+  platformProviderCoursesEndpointPath: '/api/v1/courses',
+  platformProviderClassroomsEndpointPath: '/api/v1/classrooms',
 };
