@@ -1,0 +1,56 @@
+<div class="timetable__wrapper">
+  <div class="timetable__scroll">
+    <table class="timetable">
+      <thead>
+        <tr>
+          <th class="timetable__hour-header"></th>
+          @for (day of grid.days; track day) {
+            <th class="timetable__day-header">{{ 'scheduling.days.' + day | translate }}</th>
+          }
+        </tr>
+      </thead>
+      <tbody>
+        @for (hour of grid.hours; track hour; let hourIndex = $index) {
+          <tr class="timetable__row" [class.timetable__row--hour-start]="true">
+            <td class="timetable__hour-cell">
+              <span class="timetable__hour-label">{{ hour }}</span>
+            </td>
+            @for (day of grid.days; track day; let dayIndex = $index) {
+              @if (!grid.slots[hourIndex][dayIndex].hidden) {
+                @if (grid.slots[hourIndex][dayIndex].session; as session) {
+                  <td class="timetable__cell timetable__cell--occupied"
+                      [attr.rowspan]="grid.slots[hourIndex][dayIndex].rowspan"
+                      [style.width]="getColumnWidth()"
+                      [style.border-left-color]="getCourseColor(session.course.name)">
+                    <div class="timetable__session"
+                         [style.background]="getCourseColor(session.course.name) + '10'">
+                      <div class="timetable__session-accent"
+                           [style.background]="getCourseColor(session.course.name)"></div>
+                      <span class="timetable__session-course">{{ session.course.name }}</span>
+                      <span class="timetable__session-time">
+                        <i class="pi pi-clock"></i>
+                        {{ session.startTime }} - {{ session.endTime }}
+                      </span>
+                      <span class="timetable__session-classroom">
+                        <i class="pi pi-map-marker"></i>
+                        {{ session.classroom.code }}
+                      </span>
+                      <span class="timetable__session-teacher">
+                        <i class="pi pi-user"></i>
+                        {{ session.teacher.firstName }} {{ session.teacher.lastName }}
+                      </span>
+                    </div>
+                  </td>
+                } @else {
+                  <td class="timetable__cell timetable__cell--free" [style.width]="getColumnWidth()">
+                    <div class="timetable__empty-slot"></div>
+                  </td>
+                }
+              }
+            }
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</div>

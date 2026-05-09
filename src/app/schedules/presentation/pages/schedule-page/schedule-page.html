@@ -1,0 +1,20 @@
+<header class="schedules-page__header">
+  <div class="schedules-page__header-text">
+    <span class="schedules-page__eyebrow">{{ 'sidebar.sections.classes' | translate }}</span>
+    <h1 class="schedules-page__title">{{ 'schedules.page.title' | translate }}</h1>
+    <p class="schedules-page__subtitle">{{ 'schedules.page.subtitle' | translate }}</p>
+  </div>
+</header>
+
+<div class="schedules-page__content">
+  <aside class="schedules-page__form-col">
+    <app-schedule-form />
+    @if (store.selectedScheduleId()) {
+      <app-class-session-form />
+    }
+  </aside>
+
+  <section class="schedules-page__list-col">
+    <app-schedule-list />
+  </section>
+</div>

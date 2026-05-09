@@ -1,0 +1,49 @@
+<header class="scheduling-page__header">
+  <div class="scheduling-page__header-text">
+    <span class="scheduling-page__eyebrow">{{ 'sidebar.sections.administration' | translate }}</span>
+    <h1 class="scheduling-page__title">{{ 'scheduling.page.title' | translate }}</h1>
+    <p class="scheduling-page__subtitle">{{ 'scheduling.page.subtitle' | translate }}</p>
+  </div>
+</header>
+
+<div class="scheduling-page__toolbar">
+  <div class="scheduling-page__select-wrapper">
+    <i class="pi pi-calendar scheduling-page__select-icon"></i>
+    <select class="scheduling-page__select"
+            [value]="store.selectedScheduleId() ?? ''"
+            (change)="onScheduleChange($event)">
+      <option value="" disabled>{{ 'scheduling.dropdown.placeholder' | translate }}</option>
+      @for (schedule of store.schedules(); track schedule.id) {
+        <option [value]="schedule.id">
+          {{ schedule.name }} — {{ schedule.classSessions.length }} {{ 'scheduling.dropdown.sessions' | translate }}
+        </option>
+      }
+    </select>
+    @if (store.selectedScheduleId()) {
+      <i class="pi pi-check-circle scheduling-page__select-check"></i>
+    }
+  </div>
+
+  @if (store.isLoadingSchedules()) {
+    <i class="pi pi-spin pi-spinner scheduling-page__spinner"></i>
+  }
+</div>
+
+@if (store.error()) {
+  <div class="scheduling-page__error">
+    <i class="pi pi-exclamation-triangle"></i>
+    <span>{{ store.error() }}</span>
+    <button class="scheduling-page__error-dismiss" (click)="store.clearError()" aria-label="Dismiss">
+      <i class="pi pi-times"></i>
+    </button>
+  </div>
+}
+
+@if (store.timetableGrid()) {
+  <app-timetable [grid]="store.timetableGrid()!" />
+} @else if (store.selectedSchedule() && store.selectedSchedule()!.classSessions.length === 0) {
+  <div class="scheduling-page__empty">
+    <i class="pi pi-calendar"></i>
+    <span>{{ 'scheduling.timetable.empty' | translate }}</span>
+  </div>
+}
