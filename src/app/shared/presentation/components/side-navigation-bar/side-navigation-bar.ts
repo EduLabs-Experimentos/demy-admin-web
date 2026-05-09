@@ -45,10 +45,10 @@ export class SideNavigationBar {
     {
       title: 'sidebar.sections.classes',
       items: [
-        { icon: 'pi pi-calendar-clock', label: 'sidebar.academic-periods', route: '/organization/academic-periods', roles: ['ADMIN'] },
-        { icon: 'pi pi-book', label: 'sidebar.courses', route: '/organization/courses', roles: ['ADMIN'] },
-        { icon: 'pi pi-map', label: 'sidebar.classrooms', route: '/organization/classrooms', roles: ['ADMIN'] },
-        { icon: 'pi pi-calendar', label: 'sidebar.schedules', route: '/organization/weekly-schedules', roles: ['ADMIN'] }
+        { icon: 'pi pi-calendar-clock', label: 'sidebar.academic-periods', route: '/academic-periods', roles: ['ADMIN'] },
+        { icon: 'pi pi-book', label: 'sidebar.courses', route: '/courses', roles: ['ADMIN'] },
+        { icon: 'pi pi-map', label: 'sidebar.classrooms', route: '/classrooms', roles: ['ADMIN'] },
+        { icon: 'pi pi-calendar', label: 'sidebar.schedules', route: '/schedules', roles: ['ADMIN'] }
       ]
     },
     {

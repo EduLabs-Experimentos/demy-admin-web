@@ -164,7 +164,7 @@
     "dashboard": "Dashboard",
     "teachers": "Teachers",
     "students": "Students",
-    "academic-periods": "Academic Periods",
+    "academic-periods": "Periods",
     "courses": "Courses",
     "classrooms": "Classrooms",
     "schedules": "Schedules",
@@ -178,6 +178,61 @@
   },
   "footer": {
     "rights": "All rights reserved."
+  },
+  "schedules": {
+    "page": {
+      "title": "Weekly Schedules",
+      "subtitle": "Manage your academy's weekly class schedules"
+    },
+    "form": {
+      "title-create-weekly": "Create Schedule",
+      "title-edit-weekly": "Edit Schedule Name",
+      "name": "Name",
+      "name-placeholder": "Enter schedule name",
+      "create-weekly": "Create Schedule",
+      "update-weekly": "Update Name",
+      "cancel": "Cancel",
+      "title-add-session": "Add Class Session",
+      "title-edit-session": "Edit Class Session",
+      "course": "Course",
+      "select-course": "Select a course",
+      "classroom": "Classroom",
+      "select-classroom": "Select a classroom",
+      "capacity": "Capacity",
+      "teacher": "Teacher",
+      "select-teacher": "Select a teacher",
+      "day": "Day of Week",
+      "select-day": "Select a day",
+      "startTime": "Start Time",
+      "endTime": "End Time",
+      "add-session": "Add Session",
+      "update-session": "Update Session"
+    },
+    "list": {
+      "search": "Search schedules...",
+      "loading": "Loading schedules...",
+      "empty": "No weekly schedules yet",
+      "sessions": "sessions",
+      "no-sessions": "No class sessions added yet",
+      "edit": "Edit",
+      "delete": "Delete",
+      "edit-session": "Edit class session",
+      "delete-session": "Delete class session",
+      "day": "Day",
+      "time": "Time",
+      "course": "Course",
+      "teacher": "Teacher",
+      "actions": "Actions"
+    },
+    "days": {
+      "MONDAY": "Monday",
+      "TUESDAY": "Tuesday",
+      "WEDNESDAY": "Wednesday",
+      "THURSDAY": "Thursday",
+      "FRIDAY": "Friday",
+      "SATURDAY": "Saturday",
+      "SUNDAY": "Sunday"
+    }
   },
   "classrooms": {
     "page": {
@@ -207,6 +262,45 @@
       "actions": "Actions",
       "edit": "Edit",
       "delete": "Delete"
+    }
+  },
+  "academic-periods": {
+    "page": { "title": "Academic Periods", "subtitle": "Manage your academy's academic periods" },
+    "form": {
+      "title-create": "Create Period", "title-edit": "Edit Period",
+      "name": "Name", "name-placeholder": "Enter period name",
+      "startDate": "Start Date", "endDate": "End Date",
+      "active": "Active", "create": "Create Period", "update": "Update Period", "cancel": "Cancel"
+    },
+    "list": {
+      "search": "Search periods...", "loading": "Loading periods...", "empty": "No academic periods yet",
+      "name": "Name", "startDate": "Start", "endDate": "End", "status": "Status",
+      "active": "Active", "inactive": "Inactive", "actions": "Actions", "edit": "Edit", "delete": "Delete"
+    }
+  },
+  "scheduling": {
+    "page": {
+      "title": "Search Schedules",
+      "subtitle": "View your academy's weekly class timetables"
+    },
+    "dropdown": {
+      "placeholder": "Select a schedule...",
+      "sessions": "sessions"
+    },
+    "timetable": {
+      "empty": "This schedule has no class sessions",
+      "course": "Course",
+      "classroom": "Classroom",
+      "teacher": "Teacher"
+    },
+    "days": {
+      "MONDAY": "Monday",
+      "TUESDAY": "Tuesday",
+      "WEDNESDAY": "Wednesday",
+      "THURSDAY": "Thursday",
+      "FRIDAY": "Friday",
+      "SATURDAY": "Saturday",
+      "SUNDAY": "Sunday"
     }
   },
   "courses": {

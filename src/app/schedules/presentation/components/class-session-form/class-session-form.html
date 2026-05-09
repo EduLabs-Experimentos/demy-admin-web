@@ -1,0 +1,99 @@
+<article class="session-form">
+  <h3 class="session-form__title">
+    {{ (store.isEditingSession() ? 'schedules.form.title-edit-session' : 'schedules.form.title-add-session') | translate }}
+  </h3>
+
+  <div class="session-form__field">
+    <label class="session-form__label" for="session-course">{{ 'schedules.form.course' | translate }}</label>
+    <select id="session-course"
+            class="session-form__select"
+            [value]="store.sessionFormData().courseId ?? ''"
+            (change)="store.onSessionFieldChangeNumber('courseId', $any($event.target).value)">
+      <option value="" disabled>{{ 'schedules.form.select-course' | translate }}</option>
+      @for (course of store.courses(); track course.id) {
+        <option [value]="course.id">{{ course.name }} ({{ course.code }})</option>
+      }
+    </select>
+  </div>
+
+  <div class="session-form__field">
+    <label class="session-form__label" for="session-classroom">{{ 'schedules.form.classroom' | translate }}</label>
+    <select id="session-classroom"
+            class="session-form__select"
+            [value]="store.sessionFormData().classroomId ?? ''"
+            (change)="store.onSessionFieldChangeNumber('classroomId', $any($event.target).value)">
+      <option value="" disabled>{{ 'schedules.form.select-classroom' | translate }}</option>
+      @for (classroom of store.classrooms(); track classroom.id) {
+        <option [value]="classroom.id">{{ classroom.code }} ({{ 'schedules.form.capacity' | translate }}: {{ classroom.capacity }})</option>
+      }
+    </select>
+  </div>
+
+  <div class="session-form__field">
+    <label class="session-form__label" for="session-teacher">{{ 'schedules.form.teacher' | translate }}</label>
+    <select id="session-teacher"
+            class="session-form__select"
+            [value]="store.sessionFormData().teacherId ?? ''"
+            (change)="store.onSessionFieldChangeNumber('teacherId', $any($event.target).value)">
+      <option value="" disabled>{{ 'schedules.form.select-teacher' | translate }}</option>
+      @for (teacher of store.teachers(); track teacher.id) {
+        <option [value]="teacher.id">{{ teacher.firstName }} {{ teacher.lastName }}</option>
+      }
+    </select>
+  </div>
+
+  <div class="session-form__field">
+    <label class="session-form__label" for="session-day">{{ 'schedules.form.day' | translate }}</label>
+    <select id="session-day"
+            class="session-form__select"
+            [value]="store.sessionFormData().dayOfWeek"
+            (change)="store.onSessionFieldChange('dayOfWeek', $any($event.target).value)">
+      <option value="" disabled>{{ 'schedules.form.select-day' | translate }}</option>
+      @for (day of daysOfWeek; track day) {
+        <option [value]="day">{{ 'schedules.days.' + day | translate }}</option>
+      }
+    </select>
+  </div>
+
+  <div class="session-form__row">
+    <div class="session-form__field">
+      <label class="session-form__label" for="session-startTime">{{ 'schedules.form.startTime' | translate }}</label>
+      <input pInputText id="session-startTime" type="time"
+             class="session-form__input"
+             [value]="store.sessionFormData().startTime"
+             (input)="store.onSessionFieldChange('startTime', $any($event.target).value)" />
+    </div>
+    <div class="session-form__field">
+      <label class="session-form__label" for="session-endTime">{{ 'schedules.form.endTime' | translate }}</label>
+      <input pInputText id="session-endTime" type="time"
+             class="session-form__input"
+             [value]="store.sessionFormData().endTime"
+             (input)="store.onSessionFieldChange('endTime', $any($event.target).value)" />
+    </div>
+  </div>
+
+  <div class="session-form__actions">
+    <p-button [label]="(store.isEditingSession() ? 'schedules.form.update-session' : 'schedules.form.add-session') | translate"
+              styleClass="session-form__submit"
+              [loading]="store.isLoading()"
+              [rounded]="true"
+              (onClick)="submit()" />
+    @if (store.isEditingSession()) {
+      <p-button [label]="'schedules.form.cancel' | translate"
+                styleClass="session-form__cancel"
+                [rounded]="true"
+                severity="secondary"
+                (onClick)="store.cancelEditSession()" />
+    }
+  </div>
+
+  @if (store.error(); as error) {
+    <div class="session-form__error">
+      <i class="pi pi-exclamation-triangle" aria-hidden="true"></i>
+      <span>{{ error }}</span>
+      <button class="session-form__error-dismiss" (click)="store.clearError()" aria-label="Dismiss">
+        <i class="pi pi-times"></i>
+      </button>
+    </div>
+  }
+</article>

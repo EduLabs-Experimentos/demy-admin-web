@@ -1,0 +1,50 @@
+<article class="period-form">
+  <h3 class="period-form__title">{{ (store.isEditing() ? 'academic-periods.form.title-edit' : 'academic-periods.form.title-create') | translate }}</h3>
+
+  <div class="period-form__field">
+    <label class="period-form__label" for="period-name">{{ 'academic-periods.form.name' | translate }}</label>
+    <input pInputText id="period-name" type="text" class="period-form__input"
+           [value]="store.formData().periodName"
+           (input)="store.onFieldChange('periodName', $any($event.target).value)"
+           [placeholder]="'academic-periods.form.name-placeholder' | translate" autocomplete="off" />
+  </div>
+
+  <div class="period-form__row">
+    <div class="period-form__field">
+      <label class="period-form__label" for="period-startDate">{{ 'academic-periods.form.startDate' | translate }}</label>
+      <input pInputText id="period-startDate" type="date" class="period-form__input"
+             [value]="store.formData().startDate"
+             (input)="store.onFieldChange('startDate', $any($event.target).value)" />
+    </div>
+    <div class="period-form__field">
+      <label class="period-form__label" for="period-endDate">{{ 'academic-periods.form.endDate' | translate }}</label>
+      <input pInputText id="period-endDate" type="date" class="period-form__input"
+             [value]="store.formData().endDate"
+             (input)="store.onFieldChange('endDate', $any($event.target).value)" />
+    </div>
+  </div>
+
+  @if (store.isEditing()) {
+    <div class="period-form__toggle">
+      <label class="period-form__label">{{ 'academic-periods.form.active' | translate }}</label>
+      <p-toggleswitch [ngModel]="store.formData().isActive" (ngModelChange)="store.onIsActiveChange($event)" />
+    </div>
+  }
+
+  <div class="period-form__actions">
+    <p-button [label]="(store.isEditing() ? 'academic-periods.form.update' : 'academic-periods.form.create') | translate"
+              styleClass="period-form__submit" [loading]="store.isLoading()" [rounded]="true" (onClick)="submit()" />
+    @if (store.isEditing()) {
+      <p-button [label]="'academic-periods.form.cancel' | translate"
+                styleClass="period-form__cancel" [rounded]="true" severity="secondary" (onClick)="store.cancelEdit()" />
+    }
+  </div>
+
+  @if (store.error(); as error) {
+    <div class="period-form__error">
+      <i class="pi pi-exclamation-triangle" aria-hidden="true"></i>
+      <span>{{ error }}</span>
+      <button class="period-form__error-dismiss" (click)="store.clearError()" aria-label="Dismiss"><i class="pi pi-times"></i></button>
+    </div>
+  }
+</article>
