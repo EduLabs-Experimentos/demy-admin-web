@@ -1,0 +1,57 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.classrooms-page__header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.classrooms-page__header-text {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.classrooms-page__eyebrow {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--p-surface-600);
+}
+
+.classrooms-page__title {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--p-surface-950);
+  margin: 0;
+}
+
+.classrooms-page__subtitle {
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  color: var(--p-surface-600);
+  margin: 0;
+}
+
+.classrooms-page__content {
+  display: grid;
+  grid-template-columns: 340px 1fr;
+  gap: 20px;
+  align-items: start;
+}
+
+@media (max-width: 960px) {
+  .classrooms-page__content {
+    grid-template-columns: 1fr;
+  }
+}
