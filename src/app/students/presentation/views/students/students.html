@@ -49,6 +49,33 @@
       <p-datepicker formControlName="birthDate" placeholder="mm/dd/yyyy" dateFormat="mm/dd/yy" styleClass="w-full" [showIcon]="true"></p-datepicker>
     </div>
 
+    <!-- NUEVOS CAMPOS DE DIRECCIÓN PARA EL BACKEND -->
+    <div class="field">
+      <label for="street">Street Address</label>
+      <input pInputText id="street" formControlName="street" placeholder="Av. Los Pinos 123" />
+    </div>
+
+    <div class="field">
+      <label for="district">District</label>
+      <input pInputText id="district" formControlName="district" placeholder="Villa El Salvador" />
+    </div>
+
+    <div class="field">
+      <label for="province">Province</label>
+      <input pInputText id="province" formControlName="province" placeholder="Lima" />
+    </div>
+
+    <div class="field">
+      <label for="department">Department</label>
+      <input pInputText id="department" formControlName="department" placeholder="Lima" />
+    </div>
+
+    <div class="field">
+      <label for="countryCode">Country Code</label>
+      <input pInputText id="countryCode" formControlName="countryCode" placeholder="PE" />
+    </div>
+    <!-- FIN DE NUEVOS CAMPOS -->
+
     <div class="form-actions">
       <p-button type="submit" [label]="isEdit ? 'Update Student' : 'Save Student'" [disabled]="form.invalid" severity="primary"></p-button>
       @if(isEdit) {

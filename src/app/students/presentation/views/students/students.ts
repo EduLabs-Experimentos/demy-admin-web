@@ -57,7 +57,13 @@ export class Students implements OnInit {
       studentCode: ['', Validators.required],
       phone: ['', Validators.required],
       sex: [null, Validators.required],
-      birthDate: [null, Validators.required]
+      birthDate: [null, Validators.required],
+      // Nuevos controles de formulario
+      street: ['', Validators.required],
+      district: ['', Validators.required],
+      province: ['', Validators.required],
+      department: ['', Validators.required],
+      countryCode: ['PE', Validators.required]
     });
   }
 
@@ -74,7 +80,13 @@ export class Students implements OnInit {
       studentCode: formValues.studentCode,
       phone: formValues.phone,
       sex: formValues.sex,
-      birthDate: formValues.birthDate
+      birthDate: formValues.birthDate,
+      // Pasamos la data al constructor
+      street: formValues.street,
+      district: formValues.district,
+      province: formValues.province,
+      department: formValues.department,
+      countryCode: formValues.countryCode
     });
 
     if (this.isEdit) {
@@ -97,8 +109,13 @@ export class Students implements OnInit {
       studentCode: student.studentCode,
       phone: student.phone,
       sex: student.sex,
-      // DatePicker de PrimeNG necesita un objeto Date nativo
-      birthDate: new Date(student.birthDate)
+      birthDate: new Date(student.birthDate),
+      // Cargar la data al editar
+      street: student.street,
+      district: student.district,
+      province: student.province,
+      department: student.department,
+      countryCode: student.countryCode
     });
   }
 

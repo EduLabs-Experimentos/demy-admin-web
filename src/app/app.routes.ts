@@ -17,10 +17,14 @@ export const routes: Routes = [
   },
   {
     path: '',
-    component: Layout,
+    component: Layout, // <--- Aquí empieza el área privada con Sidenav
     children: [
       { path: 'home', loadComponent: () => import('./dashboard/home-page').then(m => m.HomePage) },
       { path: 'teachers', loadChildren: () => import('./teachers/presentation/teachers.routes').then(m => m.teachersRoutes) },
+
+      // 👇 ¡AQUÍ ESTÁ TU RUTA DE ESTUDIANTES! 👇
+      { path: 'students', loadChildren: () => import('./students/presentation/students.routes').then(m => m.studentsRoutes) },
+
       { path: 'organization/courses', loadChildren: () => import('./courses/presentation/courses.routes').then(m => m.coursesRoutes) },
       { path: 'organization/classrooms', loadChildren: () => import('./classrooms/presentation/classrooms.routes').then(m => m.classroomsRoutes) }
     ]

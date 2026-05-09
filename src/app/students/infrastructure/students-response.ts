@@ -25,6 +25,12 @@ export interface CreateStudentResource {
   sex: string;
   birthDate: string;
   phone: string;
+  // Agregamos los faltantes
+  street: string;
+  district: string;
+  province: string;
+  department: string;
+  countryCode: string;
   // Agrega los campos de dirección si el backend los requiere en la creación
 }
 

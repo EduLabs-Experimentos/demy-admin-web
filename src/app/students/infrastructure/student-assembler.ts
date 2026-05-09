@@ -31,10 +31,15 @@ export class StudentAssembler implements BaseAssembler<Student, StudentResource,
       dni: entity.dni,
       emailAddress: entity.emailAddress,
       sex: entity.sex,
-      // Convertimos el Date a un string con formato YYYY-MM-DD para el backend (Spring Boot)
       birthDate: entity.birthDate.toISOString().split('T')[0],
       phone: entity.phone,
-      studentCode: entity.studentCode
+      studentCode: entity.studentCode,
+      // Mapeamos los nuevos campos hacia el backend
+      street: entity.street,
+      district: entity.district,
+      province: entity.province,
+      department: entity.department,
+      countryCode: entity.countryCode
     } as StudentResource;
   }
 }
