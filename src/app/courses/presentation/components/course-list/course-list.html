@@ -1,0 +1,72 @@
+<header class="course-roster__toolbar">
+  <span class="p-input-icon-left course-roster__search">
+    <i class="pi pi-search"></i>
+    <input pInputText type="text"
+           [value]="store.searchQuery()"
+           (input)="store.onSearchQueryChange($any($event.target).value)"
+           [placeholder]="'courses.list.search' | translate" />
+  </span>
+</header>
+
+<div class="course-roster__scroll">
+  <table class="course-roster">
+    <thead>
+      <tr>
+        <th>{{ 'courses.list.name' | translate }}</th>
+        <th>{{ 'courses.list.code' | translate }}</th>
+        <th>{{ 'courses.list.description' | translate }}</th>
+        <th class="course-roster__actions-col">{{ 'courses.list.actions' | translate }}</th>
+      </tr>
+    </thead>
+    <tbody>
+      @if (store.isLoadingCourses()) {
+        <tr>
+          <td colspan="4" class="course-roster__empty">
+            <i class="pi pi-spin pi-spinner"></i>
+            <span>{{ 'courses.list.loading' | translate }}</span>
+          </td>
+        </tr>
+      } @else if (store.filteredCourses().length === 0) {
+        <tr>
+          <td colspan="4" class="course-roster__empty">
+            <i class="pi pi-book"></i>
+            <span>{{ 'courses.list.empty' | translate }}</span>
+          </td>
+        </tr>
+      } @else {
+        @for (course of store.filteredCourses(); track course.id) {
+          <tr class="course-roster__row" [class.course-roster__row--editing]="store.selectedCourseId() === course.id">
+            <td>
+              <div class="course-roster__profile">
+                <span class="course-roster__avatar">{{ course.name.charAt(0) }}</span>
+                <span class="course-roster__name">{{ course.name }}</span>
+              </div>
+            </td>
+            <td>
+              <code class="course-roster__code">{{ course.code }}</code>
+            </td>
+            <td>
+              <span class="course-roster__description">{{ course.description }}</span>
+            </td>
+            <td class="course-roster__actions-col">
+              <div class="course-roster__actions">
+                <button class="course-roster__action-btn"
+                        [disabled]="store.isLoading() || store.isDeleting()"
+                        (click)="editCourse(course.id)"
+                        [attr.aria-label]="'courses.list.edit' | translate">
+                  <i class="pi pi-pencil"></i>
+                </button>
+                <button class="course-roster__action-btn course-roster__action-btn--danger"
+                        [disabled]="store.isLoading() || store.isDeleting()"
+                        (click)="deleteCourse(course.id)"
+                        [attr.aria-label]="'courses.list.delete' | translate">
+                  <i class="pi pi-trash"></i>
+                </button>
+              </div>
+            </td>
+          </tr>
+        }
+      }
+    </tbody>
+  </table>
+</div>
