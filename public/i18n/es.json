@@ -1,18 +1,267 @@
 {
-  "layout": {
-    "search": "Buscar..."
+  "sign-up": {
+    "title": "Crear Cuenta",
+    "subtitle": "Ingresa tu correo y contraseña para comenzar",
+    "email": "Correo Electrónico",
+    "email-placeholder": "Ingresa tu correo",
+    "password": "Contraseña",
+    "password-placeholder": "Ingresa tu contraseña",
+    "terms": "Acepto los términos y condiciones",
+    "register": "Crear Cuenta",
+    "login": "Iniciar Sesión",
+    "already-account": "¿Ya tienes una cuenta?",
+    "errors": {
+      "required": "Este campo es requerido",
+      "invalid-email": "Por favor ingresa un correo válido",
+      "min-length": "Mínimo 8 caracteres requeridos",
+      "accept-terms": "Debes aceptar los términos y condiciones"
+    },
+    "success": "¡Cuenta creada! Por favor verifica tu correo.",
+    "error": "Ocurrió un error durante el registro"
+  },
+  "verify-account": {
+    "title": "Verifica Tu Cuenta",
+    "subtitle": "Ingresa el código de 6 dígitos enviado a tu correo",
+    "code-sent-to": "Código enviado a:",
+    "code": "Código de Verificación",
+    "code-placeholder": "Ingresa código de 6 dígitos",
+    "didnt-receive": "¿No recibiste el código?",
+    "verify": "Verificar Cuenta",
+    "resend-code": "Reenviar Código",
+    "errors": {
+      "required": "El código de verificación es requerido",
+      "invalid-code": "Código de verificación inválido"
+    },
+    "success": "¡Cuenta verificada exitosamente!",
+    "error": "Verificación fallida. Por favor intenta de nuevo."
+  },
+  "complete-account": {
+    "title": "Completa Tu Perfil",
+    "subtitle": "Ingresa tu información personal",
+    "firstName": "Nombre",
+    "firstName-placeholder": "Ingresa tu nombre",
+    "lastName": "Apellido",
+    "lastName-placeholder": "Ingresa tu apellido",
+    "countryCode": "Código de País",
+    "countryCode-placeholder": "+51",
+    "phone": "Teléfono",
+    "phone-placeholder": "Ingresa tu número de teléfono",
+    "dni": "DNI",
+    "dni-placeholder": "Ingresa tu número de DNI",
+    "submit": "Continuar",
+    "errors": {
+      "required": "Este campo es requerido",
+      "min-length": "Mínimo 8 caracteres requeridos"
+    },
+    "success": "¡Perfil completado exitosamente!",
+    "error": "Ocurrió un error"
+  },
+  "sign-in": {
+    "title": "Bienvenido de Nuevo",
+    "subtitle": "Ingresa tus credenciales para acceder a tu cuenta",
+    "email": "Correo Electrónico",
+    "email-placeholder": "Ingresa tu correo",
+    "password": "Contraseña",
+    "password-placeholder": "Ingresa tu contraseña",
+    "sign-in": "Iniciar Sesión",
+    "forgot-password": "¿Olvidaste tu contraseña?",
+    "no-account": "¿No tienes una cuenta?",
+    "sign-up": "Crear Cuenta",
+    "errors": {
+      "required": "Este campo es requerido",
+      "invalid-email": "Por favor ingresa un correo válido"
+    },
+    "success": "¡Sesión iniciada exitosamente!",
+    "error": "Credenciales inválidas. Por favor intenta de nuevo."
+  },
+  "setup-academy": {
+    "title": "Configura Tu Academia",
+    "subtitle": "Ingresa la información de tu academia",
+    "academyName": "Nombre de Academia",
+    "academyName-placeholder": "Ingresa el nombre de la academia",
+    "academyDescription": "Descripción",
+    "academyDescription-placeholder": "Ingresa la descripción",
+    "ruc": "RUC",
+    "ruc-placeholder": "Ingresa el número de RUC",
+    "street": "Dirección",
+    "street-placeholder": "Ingresa la dirección",
+    "district": "Distrito",
+    "district-placeholder": "Ingresa el distrito",
+    "province": "Provincia",
+    "province-placeholder": "Ingresa la provincia",
+    "department": "Departamento",
+    "department-placeholder": "Ingresa el departamento",
+    "email": "Correo de Academia",
+    "email-placeholder": "Ingresa el correo de la academia",
+    "countryCode": "Código de País",
+    "countryCode-placeholder": "+51",
+    "phone": "Teléfono",
+    "phone-placeholder": "Ingresa el número de teléfono",
+    "submit": "Completar Configuración",
+    "errors": {
+      "required": "Este campo es requerido"
+    },
+    "success": "¡Academia configurada exitosamente!",
+    "error": "Ocurrió un error"
+  },
+  "plan-select": {
+    "title": "Elige Tu Plan",
+    "subtitle": "Selecciona el plan que mejor se adapte a las necesidades de tu academia",
+    "continue": "Continuar",
+    "plans": {
+      "basic": {
+        "badge": "Básico",
+        "name": "Básico",
+        "price": "29",
+        "features": ["Hasta 5 profesores", "Hasta 50 estudiantes", "Control de asistencia básico", "Soporte por email"]
+      },
+      "extra": {
+        "badge": "Popular",
+        "name": "Extra",
+        "price": "59",
+        "features": ["Hasta 20 profesores", "Hasta 200 estudiantes", "Asistencia y calificaciones avanzadas", "Módulo financiero", "Soporte prioritario"]
+      },
+      "deluxe": {
+        "badge": "Deluxe",
+        "name": "Deluxe",
+        "price": "99",
+        "features": ["Profesores ilimitados", "Estudiantes ilimitados", "Acceso completo a funciones", "Reportes personalizados", "Soporte dedicado", "Acceso API"]
+      }
+    }
+  },
+  "reset-password": {
+    "title": "Restablecer Contraseña",
+    "email": "Correo Electrónico",
+    "email-placeholder": "Ingresa tu correo",
+    "code": "Código de Verificación",
+    "code-placeholder": "Ingresa código de 6 dígitos",
+    "new-password": "Nueva Contraseña",
+    "new-password-placeholder": "Ingresa nueva contraseña",
+    "confirm-password": "Confirmar Contraseña",
+    "confirm-password-placeholder": "Confirma nueva contraseña",
+    "send-code": "Enviar Código",
+    "verify-code": "Verificar Código",
+    "reset": "Restablecer Contraseña",
+    "back": "Volver",
+    "back-to-signin": "Volver a Iniciar Sesión",
+    "step-email-description": "Ingresa tu correo electrónico y te enviaremos un código para restablecer tu contraseña.",
+    "step-code-description": "Ingresa el código de 6 dígitos enviado a tu correo.",
+    "step-password-description": "Crea una nueva contraseña para tu cuenta.",
+    "errors": {
+      "required": "Este campo es requerido",
+      "valid-email": "Por favor ingresa un correo válido",
+      "min-length": "Mínimo 8 caracteres requeridos"
+    }
   },
   "sidebar": {
+    "sections": {
+      "overview": "Resumen",
+      "academy": "Academia",
+      "classes": "Clases",
+      "administration": "Administración",
+      "general": "General"
+    },
     "dashboard": "Panel de Control",
     "teachers": "Profesores",
     "students": "Estudiantes",
-    "periods": "Periodos",
+    "academic-periods": "Períodos Académicos",
     "courses": "Cursos",
-    "classrooms": "Aulas",
+    "classrooms": "Salones",
     "schedules": "Horarios",
-    "enrollments": "Inscripciones",
+    "enrollment": "Matrículas",
     "scheduling": "Programación",
-    "settings": "Ajustes",
-    "logout": "Cerrar sesión"
+    "billing": "Cobranzas",
+    "accounting": "Contabilidad",
+    "settings": "Configuración",
+    "help": "Ayuda",
+    "logout": "Cerrar Sesión"
+  },
+  "footer": {
+    "rights": "Todos los derechos reservados."
+  },
+  "classrooms": {
+    "page": {
+      "title": "Salones",
+      "subtitle": "Gestiona los salones e instalaciones de tu academia"
+    },
+    "form": {
+      "title-create": "Crear Salón",
+      "title-edit": "Editar Salón",
+      "code": "Código",
+      "code-placeholder": "Ingresa el código del salón",
+      "capacity": "Capacidad",
+      "capacity-placeholder": "Ingresa la capacidad",
+      "campus": "Sede",
+      "campus-placeholder": "Ingresa la sede",
+      "create": "Crear Salón",
+      "update": "Actualizar Salón",
+      "cancel": "Cancelar"
+    },
+    "list": {
+      "search": "Buscar salones...",
+      "loading": "Cargando salones...",
+      "empty": "No hay salones registrados aún",
+      "code": "Código",
+      "capacity": "Capacidad",
+      "campus": "Sede",
+      "actions": "Acciones",
+      "edit": "Editar",
+      "delete": "Eliminar"
+    }
+  },
+  "courses": {
+    "page": {
+      "title": "Cursos",
+      "subtitle": "Gestiona el catálogo de cursos de tu academia"
+    },
+    "form": {
+      "title-create": "Crear Curso",
+      "title-edit": "Editar Curso",
+      "name": "Nombre",
+      "name-placeholder": "Ingresa el nombre del curso",
+      "code": "Código",
+      "code-placeholder": "Ingresa el código del curso",
+      "description": "Descripción",
+      "description-placeholder": "Ingresa la descripción del curso",
+      "create": "Crear Curso",
+      "update": "Actualizar Curso",
+      "cancel": "Cancelar"
+    },
+    "list": {
+      "search": "Buscar cursos...",
+      "loading": "Cargando cursos...",
+      "empty": "No hay cursos registrados aún",
+      "name": "Nombre",
+      "code": "Código",
+      "description": "Descripción",
+      "actions": "Acciones",
+      "edit": "Editar",
+      "delete": "Eliminar"
+    }
+  },
+  "teachers": {
+    "page": {
+      "title": "Profesores",
+      "subtitle": "Gestiona el personal docente de tu academia"
+    },
+    "form": {
+      "title": "Registrar Profesor",
+      "firstName": "Nombre",
+      "firstName-placeholder": "Ingresa el nombre",
+      "lastName": "Apellido",
+      "lastName-placeholder": "Ingresa el apellido",
+      "email": "Correo Electrónico",
+      "email-placeholder": "Ingresa el correo",
+      "countryCode": "Código",
+      "phone": "Teléfono",
+      "phone-placeholder": "Ingresa el teléfono",
+      "register": "Registrar Profesor"
+    },
+    "list": {
+      "search": "Buscar profesores...",
+      "loading": "Cargando profesores...",
+      "empty": "No hay profesores registrados aún",
+      "profile": "Profesor"
+    }
   }
 }

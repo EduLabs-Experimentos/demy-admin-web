@@ -1,17 +1,28 @@
 import { Routes } from '@angular/router';
-import { Home } from './shared/presentation/views/home/home';
-import { iamGuard } from './iam/infrastructure/iam.guard';
-
-// 1. Ya NO importamos studentsRoutes aquí arriba.
-// Dejamos que Angular lo importe dinámicamente con la función de abajo.
-
-// 2. Le cambiamos el nombre a la función para que sea súper claro
-const loadStudentRoutes = () => import('./students/presentation/students.route').then(m => m.studentsRoutes);
+import { Layout } from './shared/presentation/components/layout/layout';
 
 export const routes: Routes = [
-  { path: 'home', component: Home },
-  // 3. Llamamos a la función que acabamos de crear
-  { path: 'students', loadChildren: loadStudentRoutes, canActivate: [iamGuard] },
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
-  // ... resto de tus rutas
+  { path: '', redirectTo: 'sign-up', pathMatch: 'full' },
+  {
+    path: '',
+    children: [
+      { path: 'sign-up', loadComponent: () => import('./public/pages/sign-up-page/sign-up-page').then(m => m.SignUpPage) },
+      { path: 'sign-in', loadComponent: () => import('./public/pages/sign-in-page/sign-in-page').then(m => m.SignInPage) },
+      { path: 'verify-account', loadComponent: () => import('./public/pages/verify-account-page/verify-account-page').then(m => m.VerifyAccountPage) },
+      { path: 'complete-account', loadComponent: () => import('./public/pages/complete-account-page/complete-account-page').then(m => m.CompleteAccountPage) },
+      { path: 'setup-academy', loadComponent: () => import('./public/pages/setup-academy-page/setup-academy-page').then(m => m.SetupAcademyPage) },
+      { path: 'plan-select', loadComponent: () => import('./public/pages/plan-select-page/plan-select-page').then(m => m.PlanSelectPage) },
+      { path: 'reset-password', loadComponent: () => import('./public/pages/reset-password-page/reset-password-page').then(m => m.ResetPasswordPage) }
+    ]
+  },
+  {
+    path: '',
+    component: Layout,
+    children: [
+      { path: 'home', loadComponent: () => import('./dashboard/home-page').then(m => m.HomePage) },
+      { path: 'teachers', loadChildren: () => import('./teachers/presentation/teachers.routes').then(m => m.teachersRoutes) },
+      { path: 'organization/courses', loadChildren: () => import('./courses/presentation/courses.routes').then(m => m.coursesRoutes) },
+      { path: 'organization/classrooms', loadChildren: () => import('./classrooms/presentation/classrooms.routes').then(m => m.classroomsRoutes) }
+    ]
+  }
 ];

@@ -1,0 +1,68 @@
+<article class="teacher-form">
+  <h3 class="teacher-form__title">{{ 'teachers.form.title' | translate }}</h3>
+
+  <div class="teacher-form__field">
+    <label class="teacher-form__label" for="teacher-firstName">{{ 'teachers.form.firstName' | translate }}</label>
+    <input pInputText id="teacher-firstName" type="text"
+           class="teacher-form__input"
+           [value]="store.formData().firstName"
+           (input)="store.onFieldChange('firstName', $any($event.target).value)"
+           [placeholder]="'teachers.form.firstName-placeholder' | translate"
+           autocomplete="given-name" />
+  </div>
+
+  <div class="teacher-form__field">
+    <label class="teacher-form__label" for="teacher-lastName">{{ 'teachers.form.lastName' | translate }}</label>
+    <input pInputText id="teacher-lastName" type="text"
+           class="teacher-form__input"
+           [value]="store.formData().lastName"
+           (input)="store.onFieldChange('lastName', $any($event.target).value)"
+           [placeholder]="'teachers.form.lastName-placeholder' | translate"
+           autocomplete="family-name" />
+  </div>
+
+  <div class="teacher-form__field">
+    <label class="teacher-form__label" for="teacher-emailAddress">{{ 'teachers.form.email' | translate }}</label>
+    <input pInputText id="teacher-emailAddress" type="email"
+           class="teacher-form__input"
+           [value]="store.formData().emailAddress"
+           (input)="store.onFieldChange('emailAddress', $any($event.target).value)"
+           [placeholder]="'teachers.form.email-placeholder' | translate"
+           autocomplete="email" />
+  </div>
+
+  <div class="teacher-form__row">
+    <div class="teacher-form__field teacher-form__field--small">
+      <label class="teacher-form__label" for="teacher-countryCode">{{ 'teachers.form.countryCode' | translate }}</label>
+      <input pInputText id="teacher-countryCode" type="text"
+             class="teacher-form__input"
+             [value]="store.formData().countryCode"
+             (input)="store.onFieldChange('countryCode', $any($event.target).value)" />
+    </div>
+    <div class="teacher-form__field teacher-form__field--grow">
+      <label class="teacher-form__label" for="teacher-phone">{{ 'teachers.form.phone' | translate }}</label>
+      <input pInputText id="teacher-phone" type="tel"
+             class="teacher-form__input"
+             [value]="store.formData().phone"
+             (input)="store.onFieldChange('phone', $any($event.target).value)"
+             [placeholder]="'teachers.form.phone-placeholder' | translate"
+             autocomplete="tel" />
+    </div>
+  </div>
+
+  <p-button [label]="'teachers.form.register' | translate"
+            styleClass="teacher-form__submit"
+            [loading]="store.isLoading()"
+            [rounded]="true"
+            (onClick)="register()" />
+
+  @if (store.error(); as error) {
+    <div class="teacher-form__error">
+      <i class="pi pi-exclamation-triangle" aria-hidden="true"></i>
+      <span>{{ error }}</span>
+      <button class="teacher-form__error-dismiss" (click)="store.clearError()" aria-label="Dismiss">
+        <i class="pi pi-times"></i>
+      </button>
+    </div>
+  }
+</article>

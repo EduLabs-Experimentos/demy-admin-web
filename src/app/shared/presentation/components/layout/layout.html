@@ -1,26 +1,33 @@
-<div class="app-wrapper">
+<div class="backdrop" [class.visible]="isSidenavOpen" (click)="closeSidenav()"></div>
 
-  <app-sidebar></app-sidebar>
+<aside class="sidenav" [class.open]="isSidenavOpen" [class.collapsed]="!isSidenavExpanded()">
+  <button class="sidenav-close" (click)="closeSidenav()">
+    <i class="pi pi-times"></i>
+  </button>
 
-  <div class="main-content">
-    <header class="top-bar">
-      <div class="search-container">
-        <i class="pi pi-search"></i>
-        <input type="text" [placeholder]="'layout.search' | translate" class="search-input">
-      </div>
-
-      <div class="top-actions">
-        <app-language-switcher></app-language-switcher>
-        <i class="pi pi-bell notification-icon"></i>
-        <div class="avatar-circle">
-          <i class="pi pi-user"></i>
-        </div>
-      </div>
-    </header>
-
-    <main class="page-container">
-      <router-outlet></router-outlet>
-    </main>
+  <div class="sidenav-header">
+    <img class="sidenav-logo" src="/images/solo-logo-demy.png" alt="Demy Logo" />
+    <span class="sidenav-brand">Demy</span>
   </div>
 
+  <app-side-navigation-bar
+    [collapsed]="!isSidenavExpanded()"
+    (navigated)="closeSidenav()"
+    (logout)="onLogout()" />
+
+</aside>
+
+<div class="layout-shell" [class.sidenav-expanded]="isSidenavExpanded()" [class.sidenav-collapsed]="!isSidenavExpanded()">
+  <header class="main-header">
+    <button class="menu-toggle" (click)="toggleSidenav()" aria-label="Toggle menu">
+      <i class="pi pi-bars"></i>
+    </button>
+    <div class="spacer"></div>
+    <app-theme-switcher/>
+    <app-language-switcher/>
+  </header>
+  <main class="main-content">
+    <router-outlet/>
+  </main>
+  <app-footer-content/>
 </div>

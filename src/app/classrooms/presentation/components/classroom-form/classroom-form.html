@@ -1,0 +1,60 @@
+<article class="classroom-form">
+  <h3 class="classroom-form__title">
+    {{ (store.isEditing() ? 'classrooms.form.title-edit' : 'classrooms.form.title-create') | translate }}
+  </h3>
+
+  <div class="classroom-form__field">
+    <label class="classroom-form__label" for="classroom-code">{{ 'classrooms.form.code' | translate }}</label>
+    <input pInputText id="classroom-code" type="text"
+           class="classroom-form__input"
+           [value]="store.formData().code"
+           (input)="store.onFieldChange('code', $any($event.target).value)"
+           [placeholder]="'classrooms.form.code-placeholder' | translate"
+           autocomplete="off" />
+  </div>
+
+  <div class="classroom-form__field">
+    <label class="classroom-form__label" for="classroom-capacity">{{ 'classrooms.form.capacity' | translate }}</label>
+    <input pInputText id="classroom-capacity" type="number"
+           class="classroom-form__input"
+           [value]="store.formData().capacity"
+           (input)="store.onFieldChange('capacity', $any($event.target).value)"
+           [placeholder]="'classrooms.form.capacity-placeholder' | translate"
+           min="1" />
+  </div>
+
+  <div class="classroom-form__field">
+    <label class="classroom-form__label" for="classroom-campus">{{ 'classrooms.form.campus' | translate }}</label>
+    <input pInputText id="classroom-campus" type="text"
+           class="classroom-form__input"
+           [value]="store.formData().campus"
+           (input)="store.onFieldChange('campus', $any($event.target).value)"
+           [placeholder]="'classrooms.form.campus-placeholder' | translate"
+           autocomplete="off" />
+  </div>
+
+  <div class="classroom-form__actions">
+    <p-button [label]="(store.isEditing() ? 'classrooms.form.update' : 'classrooms.form.create') | translate"
+              styleClass="classroom-form__submit"
+              [loading]="store.isLoading()"
+              [rounded]="true"
+              (onClick)="submit()" />
+    @if (store.isEditing()) {
+      <p-button [label]="'classrooms.form.cancel' | translate"
+                styleClass="classroom-form__cancel"
+                [rounded]="true"
+                severity="secondary"
+                (onClick)="store.cancelEdit()" />
+    }
+  </div>
+
+  @if (store.error(); as error) {
+    <div class="classroom-form__error">
+      <i class="pi pi-exclamation-triangle" aria-hidden="true"></i>
+      <span>{{ error }}</span>
+      <button class="classroom-form__error-dismiss" (click)="store.clearError()" aria-label="Dismiss">
+        <i class="pi pi-times"></i>
+      </button>
+    </div>
+  }
+</article>

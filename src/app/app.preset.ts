@@ -125,7 +125,7 @@ export const appPreset: Preset = definePreset(Aura, {
       },
       dark: {
         surface: {
-          0: '#ffffff',
+          0: '{neutral.800}',
           50: '{dark.200}',
           100: '{neutral.800}',
           200: '{dark.300}',

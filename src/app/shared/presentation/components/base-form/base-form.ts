@@ -25,8 +25,25 @@ export class BaseForm {
   private errorMessageForControl(controlName: string, errorKey: string): string {
     switch (errorKey) {
       case 'required': return `The field ${controlName} is required.`;
+      case 'email': return `Please enter a valid email address.`;
+      case 'minlength': return `Minimum ${this.getMinLengthError(controlName)} characters required.`;
+      case 'maxlength': return `Maximum ${this.getMaxLengthError(controlName)} characters allowed.`;
       default: return `The field ${controlName} is invalid.`;
     }
+  }
+
+  private getMinLengthError(controlName: string): number {
+    const control = this.getControlByName(controlName);
+    return control?.errors?.['minlength']?.requiredLength || 8;
+  }
+
+  private getMaxLengthError(controlName: string): number {
+    const control = this.getControlByName(controlName);
+    return control?.errors?.['maxlength']?.requiredLength || 11;
+  }
+
+  private getControlByName(controlName: string): any {
+    return null;
   }
 
   /**

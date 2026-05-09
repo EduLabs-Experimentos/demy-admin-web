@@ -1,0 +1,17 @@
+<header class="courses-page__header">
+  <div class="courses-page__header-text">
+    <span class="courses-page__eyebrow">{{ 'sidebar.sections.classes' | translate }}</span>
+    <h1 class="courses-page__title">{{ 'courses.page.title' | translate }}</h1>
+    <p class="courses-page__subtitle">{{ 'courses.page.subtitle' | translate }}</p>
+  </div>
+</header>
+
+<div class="courses-page__content">
+  <aside class="courses-page__form-col">
+    <app-course-form />
+  </aside>
+
+  <section class="courses-page__list-col">
+    <app-course-list />
+  </section>
+</div>

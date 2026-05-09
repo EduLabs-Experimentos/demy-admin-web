@@ -3,5 +3,9 @@ export const environment = {
   platformProviderApiBaseUrl: '',
   platformProviderSignInEndpointPath: '/sign-in',
   platformProviderSignUpEndpointPath: '/sign-up',
-  platformProviderStudentsEndpointPath: '/students'
+  platformProviderRequestResetPasswordEndpointPath: '/request-reset-password',
+  platformProviderVerifyResetCodeEndpointPath: '/verify-reset-code',
+  platformProviderResetPasswordEndpointPath: '/reset-password',
+  platformProviderCoursesEndpointPath: '/api/v1/courses',
+  platformProviderClassroomsEndpointPath: '/api/v1/classrooms',
 };

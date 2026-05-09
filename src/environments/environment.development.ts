@@ -1,7 +1,16 @@
 export const environment = {
   production: false,
-  platformProviderApiBaseUrl: '',
-  platformProviderSignInEndpointPath: '/sign-in',
-  platformProviderSignUpEndpointPath: '/sign-up',
-  platformProviderStudentsEndpointPath: '/students'
+  platformProviderApiBaseUrl: 'http://localhost:8080',
+  platformProviderSignInEndpointPath: '/api/v1/authentication/sign-in',
+  platformProviderSignUpEndpointPath: '/api/v1/authentication/sign-up',
+  platformProviderVerifyEndpointPath: '/api/v1/authentication/verify',
+  platformProviderResendCodeEndpointPath: '/api/v1/authentication/resend-code',
+  platformProviderAdminRegisterEndpointPath: '/api/v1/administrators',
+  platformProviderAcademyRegisterEndpointPath: '/api/v1/academies',
+  platformProviderRequestResetPasswordEndpointPath: '/api/v1/authentication/request-reset-password',
+  platformProviderVerifyResetCodeEndpointPath: '/api/v1/authentication/verify-reset-code',
+  platformProviderResetPasswordEndpointPath: '/api/v1/authentication/reset-password',
+  platformProviderTeachersEndpointPath: '/api/v1/teachers',
+  platformProviderCoursesEndpointPath: '/api/v1/courses',
+  platformProviderClassroomsEndpointPath: '/api/v1/classrooms',
 };

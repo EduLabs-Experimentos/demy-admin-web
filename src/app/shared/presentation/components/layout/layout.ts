@@ -1,37 +1,54 @@
-import {Component} from '@angular/core';
-import {RouterLink, RouterLinkActive, RouterOutlet} from '@angular/router';
-import {TranslatePipe} from '@ngx-translate/core';
+import {Component, HostListener, inject, signal} from '@angular/core';
+import {Router, RouterOutlet} from '@angular/router';
 import {LanguageSwitcher} from '../language-switcher/language-switcher';
+import {ThemeSwitcher} from '../theme-switcher/theme-switcher';
 import {FooterContent} from '../footer-content/footer-content';
-import {
-  AuthenticationSection
-} from '../../../../iam/presentation/components/authentication-section/authentication-section';
-import { Sidebar } from '../sidebar/sidebar';
+import {SideNavigationBar} from '../side-navigation-bar/side-navigation-bar';
+import {IamStore} from '../../../../iam/application/iam.store';
 
-/**
- * Main layout Component that provides the application's navigation structure and common UI elements in the presentation layer of the shared bounded context.
- */
 @Component({
   selector: 'app-layout',
   imports: [
     RouterOutlet,
-    RouterLink,
-    RouterLinkActive,
-    TranslatePipe,
     LanguageSwitcher,
+    ThemeSwitcher,
     FooterContent,
-    AuthenticationSection,
-    Sidebar
+    SideNavigationBar
   ],
   templateUrl: './layout.html',
   styleUrl: './layout.scss'
 })
 export class Layout {
-  /**
-   * Array of navigation options for the application's menu.
-   */
-  options = [
-    {link: '/home', label: 'option.home'},
-    {link: '/about', label: 'option.about'},
-  ]
+  private store = inject(IamStore);
+  private router = inject(Router);
+
+  protected isSidenavOpen = false;
+  protected isSidenavExpanded = signal(true);
+  protected isMobile = signal(window.innerWidth < 1024);
+
+  @HostListener('window:resize')
+  onResize() {
+    const mobile = window.innerWidth < 1024;
+    this.isMobile.set(mobile);
+    if (mobile) {
+      this.isSidenavOpen = false;
+    }
+  }
+
+  toggleSidenav(): void {
+    if (this.isMobile()) {
+      this.isSidenavOpen = !this.isSidenavOpen;
+    } else {
+      this.isSidenavExpanded.update(v => !v);
+    }
+  }
+
+  closeSidenav(): void {
+    this.isSidenavOpen = false;
+  }
+
+  onLogout(): void {
+    this.isSidenavOpen = false;
+    this.store.signOut(this.router);
+  }
 }

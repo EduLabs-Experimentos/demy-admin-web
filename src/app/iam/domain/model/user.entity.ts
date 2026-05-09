@@ -1,51 +1,16 @@
 import {BaseEntity} from '../../../shared/domain/model/base-entity';
 
-/**
- * Represents a user entity in the domain layer of the IAM bounded context.
- * Implements the BaseEntity interface.
- */
 export class User implements BaseEntity {
   private _id: number;
-  private _username: string;
+  private _emailAddress: string;
 
-  /**
-   * Creates a new User instance.
-   * @param user An object containing the user's ID and username.
-   */
-  constructor(user:{id: number, username: string}) {
+  constructor(user: {id: number, emailAddress: string}) {
     this._id = user.id;
-    this._username = user.username;
+    this._emailAddress = user.emailAddress;
   }
 
-  /**
-   * Sets the username of the user.
-   * @param value The new username.
-   */
-  set username(value: string) {
-    this._username = value;
-  }
-
-  /**
-   * Sets the ID of the user.
-   * @param value The new ID.
-   */
-  set id(value: number) {
-    this._id = value;
-  }
-
-  /**
-   * Gets the username of the user.
-   * @returns The username.
-   */
-  get username(): string {
-    return this._username;
-  }
-
-  /**
-   * Gets the ID of the user.
-   * @returns The ID.
-   */
-  get id(): number {
-    return this._id;
-  }
+  set emailAddress(value: string) { this._emailAddress = value; }
+  set id(value: number) { this._id = value; }
+  get emailAddress(): string { return this._emailAddress; }
+  get id(): number { return this._id; }
 }

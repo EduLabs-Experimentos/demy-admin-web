@@ -1,20 +1,267 @@
 {
-  "layout":{
-    "search": "Search..."
+  "sign-up": {
+    "title": "Create Account",
+    "subtitle": "Enter your email and password to get started",
+    "email": "Email",
+    "email-placeholder": "Enter your email",
+    "password": "Password",
+    "password-placeholder": "Enter your password",
+    "terms": "I accept the terms and conditions",
+    "register": "Create Account",
+    "login": "Log In",
+    "already-account": "Already have an account?",
+    "errors": {
+      "required": "This field is required",
+      "invalid-email": "Please enter a valid email",
+      "min-length": "Minimum 8 characters required",
+      "accept-terms": "You must accept the terms and conditions"
+    },
+    "success": "Account created! Please verify your email.",
+    "error": "An error occurred during registration"
   },
-
+  "verify-account": {
+    "title": "Verify Your Account",
+    "subtitle": "Enter the 6-digit code sent to your email",
+    "code-sent-to": "Code sent to:",
+    "code": "Verification Code",
+    "code-placeholder": "Enter 6-digit code",
+    "didnt-receive": "Didn't receive the code?",
+    "verify": "Verify Account",
+    "resend-code": "Resend Code",
+    "errors": {
+      "required": "Verification code is required",
+      "invalid-code": "Invalid verification code"
+    },
+    "success": "Account verified successfully!",
+    "error": "Verification failed. Please try again."
+  },
+  "complete-account": {
+    "title": "Complete Your Profile",
+    "subtitle": "Enter your personal information",
+    "firstName": "First Name",
+    "firstName-placeholder": "Enter your first name",
+    "lastName": "Last Name",
+    "lastName-placeholder": "Enter your last name",
+    "countryCode": "Country Code",
+    "countryCode-placeholder": "+51",
+    "phone": "Phone Number",
+    "phone-placeholder": "Enter your phone number",
+    "dni": "DNI",
+    "dni-placeholder": "Enter your DNI number",
+    "submit": "Continue",
+    "errors": {
+      "required": "This field is required",
+      "min-length": "Minimum 8 characters required"
+    },
+    "success": "Profile completed successfully!",
+    "error": "An error occurred"
+  },
+  "sign-in": {
+    "title": "Welcome Back",
+    "subtitle": "Enter your credentials to access your account",
+    "email": "Email",
+    "email-placeholder": "Enter your email",
+    "password": "Password",
+    "password-placeholder": "Enter your password",
+    "sign-in": "Sign In",
+    "forgot-password": "Forgot password?",
+    "no-account": "Don't have an account?",
+    "sign-up": "Sign Up",
+    "errors": {
+      "required": "This field is required",
+      "invalid-email": "Please enter a valid email"
+    },
+    "success": "Signed in successfully!",
+    "error": "Invalid credentials. Please try again."
+  },
+  "setup-academy": {
+    "title": "Set Up Your Academy",
+    "subtitle": "Enter your academy information",
+    "academyName": "Academy Name",
+    "academyName-placeholder": "Enter academy name",
+    "academyDescription": "Description",
+    "academyDescription-placeholder": "Enter academy description",
+    "ruc": "RUC",
+    "ruc-placeholder": "Enter RUC number",
+    "street": "Street Address",
+    "street-placeholder": "Enter street address",
+    "district": "District",
+    "district-placeholder": "Enter district",
+    "province": "Province",
+    "province-placeholder": "Enter province",
+    "department": "Department",
+    "department-placeholder": "Enter department",
+    "email": "Academy Email",
+    "email-placeholder": "Enter academy email",
+    "countryCode": "Country Code",
+    "countryCode-placeholder": "+51",
+    "phone": "Phone",
+    "phone-placeholder": "Enter phone number",
+    "submit": "Complete Setup",
+    "errors": {
+      "required": "This field is required"
+    },
+    "success": "Academy set up successfully!",
+    "error": "An error occurred"
+  },
+  "plan-select": {
+    "title": "Choose Your Plan",
+    "subtitle": "Select the plan that best fits your academy's needs",
+    "continue": "Continue",
+    "plans": {
+      "basic": {
+        "badge": "Basic",
+        "name": "Basic",
+        "price": "29",
+        "features": ["Up to 5 teachers", "Up to 50 students", "Basic attendance tracking", "Email support"]
+      },
+      "extra": {
+        "badge": "Popular",
+        "name": "Extra",
+        "price": "59",
+        "features": ["Up to 20 teachers", "Up to 200 students", "Advanced attendance & grades", "Finance module", "Priority support"]
+      },
+      "deluxe": {
+        "badge": "Deluxe",
+        "name": "Deluxe",
+        "price": "99",
+        "features": ["Unlimited teachers", "Unlimited students", "Full feature access", "Custom reports", "Dedicated support", "API access"]
+      }
+    }
+  },
+  "reset-password": {
+    "title": "Reset Password",
+    "email": "Email",
+    "email-placeholder": "Enter your email",
+    "code": "Verification Code",
+    "code-placeholder": "Enter 6-digit code",
+    "new-password": "New Password",
+    "new-password-placeholder": "Enter new password",
+    "confirm-password": "Confirm Password",
+    "confirm-password-placeholder": "Confirm new password",
+    "send-code": "Send Code",
+    "verify-code": "Verify Code",
+    "reset": "Reset Password",
+    "back": "Back",
+    "back-to-signin": "Back to Sign In",
+    "step-email-description": "Enter your email address and we'll send you a code to reset your password.",
+    "step-code-description": "Enter the 6-digit code sent to your email.",
+    "step-password-description": "Create a new password for your account.",
+    "errors": {
+      "required": "This field is required",
+      "valid-email": "Please enter a valid email",
+      "min-length": "Minimum 8 characters required"
+    }
+  },
   "sidebar": {
+    "sections": {
+      "overview": "Overview",
+      "academy": "Academy",
+      "classes": "Classes",
+      "administration": "Administration",
+      "general": "General"
+    },
     "dashboard": "Dashboard",
     "teachers": "Teachers",
     "students": "Students",
-    "periods": "Periods",
+    "academic-periods": "Academic Periods",
     "courses": "Courses",
     "classrooms": "Classrooms",
     "schedules": "Schedules",
-    "enrollments": "Enrollments",
+    "enrollment": "Enrollment",
     "scheduling": "Scheduling",
+    "billing": "Billing",
+    "accounting": "Accounting",
     "settings": "Settings",
-    "logout": "Log out"
+    "help": "Help",
+    "logout": "Sign Out"
+  },
+  "footer": {
+    "rights": "All rights reserved."
+  },
+  "classrooms": {
+    "page": {
+      "title": "Classrooms",
+      "subtitle": "Manage your academy's classrooms and facilities"
+    },
+    "form": {
+      "title-create": "Create Classroom",
+      "title-edit": "Edit Classroom",
+      "code": "Code",
+      "code-placeholder": "Enter classroom code",
+      "capacity": "Capacity",
+      "capacity-placeholder": "Enter capacity",
+      "campus": "Campus",
+      "campus-placeholder": "Enter campus location",
+      "create": "Create Classroom",
+      "update": "Update Classroom",
+      "cancel": "Cancel"
+    },
+    "list": {
+      "search": "Search classrooms...",
+      "loading": "Loading classrooms...",
+      "empty": "No classrooms registered yet",
+      "code": "Code",
+      "capacity": "Capacity",
+      "campus": "Campus",
+      "actions": "Actions",
+      "edit": "Edit",
+      "delete": "Delete"
+    }
+  },
+  "courses": {
+    "page": {
+      "title": "Courses",
+      "subtitle": "Manage your academy's course catalog"
+    },
+    "form": {
+      "title-create": "Create Course",
+      "title-edit": "Edit Course",
+      "name": "Name",
+      "name-placeholder": "Enter course name",
+      "code": "Code",
+      "code-placeholder": "Enter course code",
+      "description": "Description",
+      "description-placeholder": "Enter course description",
+      "create": "Create Course",
+      "update": "Update Course",
+      "cancel": "Cancel"
+    },
+    "list": {
+      "search": "Search courses...",
+      "loading": "Loading courses...",
+      "empty": "No courses registered yet",
+      "name": "Name",
+      "code": "Code",
+      "description": "Description",
+      "actions": "Actions",
+      "edit": "Edit",
+      "delete": "Delete"
+    }
+  },
+  "teachers": {
+    "page": {
+      "title": "Teachers",
+      "subtitle": "Manage your academy's teaching staff"
+    },
+    "form": {
+      "title": "Register Teacher",
+      "firstName": "First Name",
+      "firstName-placeholder": "Enter first name",
+      "lastName": "Last Name",
+      "lastName-placeholder": "Enter last name",
+      "email": "Email",
+      "email-placeholder": "Enter email address",
+      "countryCode": "Code",
+      "phone": "Phone",
+      "phone-placeholder": "Enter phone number",
+      "register": "Register Teacher"
+    },
+    "list": {
+      "search": "Search teachers...",
+      "loading": "Loading teachers...",
+      "empty": "No teachers registered yet",
+      "profile": "Teacher"
+    }
   }
-
 }
