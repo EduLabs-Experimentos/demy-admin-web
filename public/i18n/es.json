@@ -179,6 +179,61 @@
   "footer": {
     "rights": "Todos los derechos reservados."
   },
+  "schedules": {
+    "page": {
+      "title": "Horarios Semanales",
+      "subtitle": "Gestiona los horarios de clase de tu academia"
+    },
+    "form": {
+      "title-create-weekly": "Crear Horario",
+      "title-edit-weekly": "Editar Nombre del Horario",
+      "name": "Nombre",
+      "name-placeholder": "Ingresa el nombre del horario",
+      "create-weekly": "Crear Horario",
+      "update-weekly": "Actualizar Nombre",
+      "cancel": "Cancelar",
+      "title-add-session": "Agregar Sesión",
+      "title-edit-session": "Editar Sesión",
+      "course": "Curso",
+      "select-course": "Selecciona un curso",
+      "classroom": "Salón",
+      "select-classroom": "Selecciona un salón",
+      "capacity": "Capacidad",
+      "teacher": "Profesor",
+      "select-teacher": "Selecciona un profesor",
+      "day": "Día de la Semana",
+      "select-day": "Selecciona un día",
+      "startTime": "Hora Inicio",
+      "endTime": "Hora Fin",
+      "add-session": "Agregar Sesión",
+      "update-session": "Actualizar Sesión"
+    },
+    "list": {
+      "search": "Buscar horarios...",
+      "loading": "Cargando horarios...",
+      "empty": "No hay horarios semanales aún",
+      "sessions": "sesiones",
+      "no-sessions": "No hay sesiones agregadas aún",
+      "edit": "Editar",
+      "delete": "Eliminar",
+      "edit-session": "Editar sesión",
+      "delete-session": "Eliminar sesión",
+      "day": "Día",
+      "time": "Horario",
+      "course": "Curso",
+      "teacher": "Profesor",
+      "actions": "Acciones"
+    },
+    "days": {
+      "MONDAY": "Lunes",
+      "TUESDAY": "Martes",
+      "WEDNESDAY": "Miércoles",
+      "THURSDAY": "Jueves",
+      "FRIDAY": "Viernes",
+      "SATURDAY": "Sábado",
+      "SUNDAY": "Domingo"
+    }
+  },
   "classrooms": {
     "page": {
       "title": "Salones",
@@ -207,6 +262,31 @@
       "actions": "Acciones",
       "edit": "Editar",
       "delete": "Eliminar"
+    }
+  },
+  "scheduling": {
+    "page": {
+      "title": "Buscar Horarios",
+      "subtitle": "Visualiza los horarios semanales de tu academia"
+    },
+    "dropdown": {
+      "placeholder": "Selecciona un horario...",
+      "sessions": "sesiones"
+    },
+    "timetable": {
+      "empty": "Este horario no tiene sesiones de clase",
+      "course": "Curso",
+      "classroom": "Salón",
+      "teacher": "Profesor"
+    },
+    "days": {
+      "MONDAY": "Lunes",
+      "TUESDAY": "Martes",
+      "WEDNESDAY": "Miércoles",
+      "THURSDAY": "Jueves",
+      "FRIDAY": "Viernes",
+      "SATURDAY": "Sábado",
+      "SUNDAY": "Domingo"
     }
   },
   "courses": {

@@ -8,4 +8,5 @@ export const environment = {
   platformProviderResetPasswordEndpointPath: '/reset-password',
   platformProviderCoursesEndpointPath: '/api/v1/courses',
   platformProviderClassroomsEndpointPath: '/api/v1/classrooms',
+  platformProviderSchedulesEndpointPath: '/api/v1/schedules',
 };
