@@ -24,7 +24,8 @@ export const routes: Routes = [
       { path: 'courses', loadChildren: () => import('./courses/presentation/courses.routes').then(m => m.coursesRoutes) },
       { path: 'classrooms', loadChildren: () => import('./classrooms/presentation/classrooms.routes').then(m => m.classroomsRoutes) },
       { path: 'schedules', loadChildren: () => import('./schedules/presentation/schedules.routes').then(m => m.schedulesRoutes) },
-      { path: 'search-schedules', loadChildren: () => import('./scheduling/presentation/scheduling.routes').then(m => m.schedulingRoutes) }
+      { path: 'search-schedules', loadChildren: () => import('./scheduling/presentation/scheduling.routes').then(m => m.schedulingRoutes) },
+      { path: 'academic-periods', loadChildren: () => import('./academic-periods/presentation/academic-periods.routes').then(m => m.academicPeriodsRoutes) }
     ]
   }
 ];

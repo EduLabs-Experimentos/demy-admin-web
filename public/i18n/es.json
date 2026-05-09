@@ -164,7 +164,7 @@
     "dashboard": "Panel de Control",
     "teachers": "Profesores",
     "students": "Estudiantes",
-    "academic-periods": "Períodos Académicos",
+    "academic-periods": "Períodos",
     "courses": "Cursos",
     "classrooms": "Salones",
     "schedules": "Horarios",
@@ -262,6 +262,20 @@
       "actions": "Acciones",
       "edit": "Editar",
       "delete": "Eliminar"
+    }
+  },
+  "academic-periods": {
+    "page": { "title": "Periodos", "subtitle": "Gestiona los periodos academicos de tu academia" },
+    "form": {
+      "title-create": "Crear Periodo", "title-edit": "Editar Periodo",
+      "name": "Nombre", "name-placeholder": "Ingresa el nombre del periodo",
+      "startDate": "Fecha Inicio", "endDate": "Fecha Fin",
+      "active": "Activo", "create": "Crear Periodo", "update": "Actualizar Periodo", "cancel": "Cancelar"
+    },
+    "list": {
+      "search": "Buscar periodos...", "loading": "Cargando periodos...", "empty": "No hay periodos aun",
+      "name": "Nombre", "startDate": "Inicio", "endDate": "Fin", "status": "Estado",
+      "active": "Activo", "inactive": "Inactivo", "actions": "Acciones", "edit": "Editar", "delete": "Eliminar"
     }
   },
   "scheduling": {
