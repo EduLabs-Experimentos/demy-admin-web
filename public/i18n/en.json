@@ -164,7 +164,7 @@
     "dashboard": "Dashboard",
     "teachers": "Teachers",
     "students": "Students",
-    "academic-periods": "Academic Periods",
+    "academic-periods": "Periods",
     "courses": "Courses",
     "classrooms": "Classrooms",
     "schedules": "Schedules",
@@ -262,6 +262,20 @@
       "actions": "Actions",
       "edit": "Edit",
       "delete": "Delete"
+    }
+  },
+  "academic-periods": {
+    "page": { "title": "Academic Periods", "subtitle": "Manage your academy's academic periods" },
+    "form": {
+      "title-create": "Create Period", "title-edit": "Edit Period",
+      "name": "Name", "name-placeholder": "Enter period name",
+      "startDate": "Start Date", "endDate": "End Date",
+      "active": "Active", "create": "Create Period", "update": "Update Period", "cancel": "Cancel"
+    },
+    "list": {
+      "search": "Search periods...", "loading": "Loading periods...", "empty": "No academic periods yet",
+      "name": "Name", "startDate": "Start", "endDate": "End", "status": "Status",
+      "active": "Active", "inactive": "Inactive", "actions": "Actions", "edit": "Edit", "delete": "Delete"
     }
   },
   "scheduling": {
