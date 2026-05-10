@@ -5,16 +5,20 @@ export interface StudentResource extends BaseResource {
   firstName: string;
   lastName: string;
   dni: string;
-  emailAddress: string;
+  email?: string;
+  emailAddress?: string;
   sex: string;
-  birthDate: string; // ISO string format is usually best for REST
-  street?: string;
-  district?: string;
-  province?: string;
-  department?: string;
-  countryCode?: string;
+  birthDate: string;
+  street: string;
+  district: string;
+  province: string;
+  department: string;
+  countryCode: string;
   phone: string;
+  phoneNumber?: string; // <--- NUEVO: Lo que pide el backend para el PUT
   studentCode?: string;
+  academyId?: number;
+  userId?: number;
 }
 
 export interface CreateStudentResource {
@@ -25,22 +29,16 @@ export interface CreateStudentResource {
   sex: string;
   birthDate: string;
   phone: string;
-  // Agregamos los faltantes
+  studentCode?: string;
   street: string;
   district: string;
   province: string;
   department: string;
   countryCode: string;
-  // Agrega los campos de dirección si el backend los requiere en la creación
 }
 
-export interface UpdateStudentResource extends CreateStudentResource {
-  // Aquí puedes extender si la actualización requiere campos distintos
-}
+export interface UpdateStudentResource extends CreateStudentResource {}
 
-// Opcional: Si tu endpoint getAll() devuelve un objeto con un array dentro, usa esto.
-// Si devuelve un array directamente (como veo en tu controlador: ResponseEntity<List<StudentResource>>),
-// el BaseApiEndpoint de tu ejemplo ya lo maneja.
 export interface StudentsResponse extends BaseResponse {
   students: StudentResource[];
 }

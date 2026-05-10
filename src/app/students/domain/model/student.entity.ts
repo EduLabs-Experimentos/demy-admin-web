@@ -5,12 +5,11 @@ export class Student implements BaseEntity {
   private _firstName: string;
   private _lastName: string;
   private _dni: string;
-  private _emailAddress: string;
+  private _emailAddress: string; // <--- Fíjate que diga emailAddress
   private _sex: string;
   private _birthDate: Date;
   private _phone: string;
   private _studentCode?: string;
-  // Nuevos campos obligatorios para el backend
   private _street: string;
   private _district: string;
   private _province: string;
@@ -22,7 +21,7 @@ export class Student implements BaseEntity {
     firstName: string;
     lastName: string;
     dni: string;
-    emailAddress: string;
+    emailAddress: string; // <--- AQUÍ DEBE DECIR emailAddress, NO email
     sex: string;
     birthDate: string | Date;
     phone: string;
@@ -37,20 +36,19 @@ export class Student implements BaseEntity {
     this._firstName = student.firstName;
     this._lastName = student.lastName;
     this._dni = student.dni;
-    this._emailAddress = student.emailAddress;
+    this._emailAddress = student.emailAddress; // <--- Mapeo correcto
     this._sex = student.sex;
     this._birthDate = new Date(student.birthDate);
     this._phone = student.phone;
     this._studentCode = student.studentCode;
-    // Valores por defecto en caso vengan vacíos
     this._street = student.street || '';
     this._district = student.district || '';
     this._province = student.province || '';
     this._department = student.department || '';
-    this._countryCode = student.countryCode || 'PE'; // PE por defecto (Perú)
+    this._countryCode = student.countryCode || '+51';
   }
 
-  // Getters y Setters previos...
+  // Getters y Setters...
   get id(): number { return this._id; }
   set id(value: number) { this._id = value; }
   get firstName(): string { return this._firstName; }
@@ -59,7 +57,7 @@ export class Student implements BaseEntity {
   set lastName(value: string) { this._lastName = value; }
   get dni(): string { return this._dni; }
   set dni(value: string) { this._dni = value; }
-  get emailAddress(): string { return this._emailAddress; }
+  get emailAddress(): string { return this._emailAddress; } // <--- Debe llamarse emailAddress
   set emailAddress(value: string) { this._emailAddress = value; }
   get sex(): string { return this._sex; }
   set sex(value: string) { this._sex = value; }
@@ -69,8 +67,6 @@ export class Student implements BaseEntity {
   set phone(value: string) { this._phone = value; }
   get studentCode(): string | undefined { return this._studentCode; }
   set studentCode(value: string | undefined) { this._studentCode = value; }
-
-  // Nuevos Getters y Setters
   get street(): string { return this._street; }
   set street(value: string) { this._street = value; }
   get district(): string { return this._district; }

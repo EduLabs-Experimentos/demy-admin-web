@@ -14,12 +14,17 @@ export class StudentAssembler implements BaseAssembler<Student, StudentResource,
       firstName: resource.firstName,
       lastName: resource.lastName,
       dni: resource.dni,
-      emailAddress: resource.emailAddress,
+      emailAddress: resource.email || resource.emailAddress || 'Sin correo',
       sex: resource.sex,
-      // Parseamos el string que viene del backend a un objeto Date
       birthDate: new Date(resource.birthDate),
-      phone: resource.phone,
-      studentCode: resource.studentCode
+      // Tomamos el que venga, priorizando 'phone'
+      phone: resource.phone || resource.phoneNumber || '',
+      studentCode: resource.studentCode,
+      street: resource.street,
+      district: resource.district,
+      province: resource.province,
+      department: resource.department,
+      countryCode: resource.countryCode
     });
   }
 
@@ -33,8 +38,8 @@ export class StudentAssembler implements BaseAssembler<Student, StudentResource,
       sex: entity.sex,
       birthDate: entity.birthDate.toISOString().split('T')[0],
       phone: entity.phone,
+      phoneNumber: entity.phone,
       studentCode: entity.studentCode,
-      // Mapeamos los nuevos campos hacia el backend
       street: entity.street,
       district: entity.district,
       province: entity.province,

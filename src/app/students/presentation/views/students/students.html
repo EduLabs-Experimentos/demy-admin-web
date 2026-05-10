@@ -1,135 +1,16 @@
 <div class="page-header">
   <div>
-    <h1>Students</h1>
-    <p>Manage enrolled students and personal information.</p>
+    <h1>{{ 'students.page.title' | translate }}</h1>
+    <p>{{ 'students.page.subtitle' | translate }}</p>
   </div>
-  <p-button label="+ Add Student" (onClick)="resetForm()"></p-button>
 </div>
 
-<p-card header="Quick Entry Form" styleClass="mb-4">
-  <form [formGroup]="form" (ngSubmit)="submit()" class="form-grid">
+<div class="students-layout">
+  <div class="students-layout__form">
+    <app-student-form #studentForm></app-student-form>
+  </div>
 
-    <div class="field">
-      <label for="firstName">First Name</label>
-      <input pInputText id="firstName" formControlName="firstName" placeholder="Jane" />
-    </div>
-
-    <div class="field">
-      <label for="lastName">Last Name</label>
-      <input pInputText id="lastName" formControlName="lastName" placeholder="Doe" />
-    </div>
-
-    <div class="field">
-      <label for="dni">DNI</label>
-      <input pInputText id="dni" formControlName="dni" placeholder="12345678" />
-    </div>
-
-    <div class="field">
-      <label for="emailAddress">Email</label>
-      <input pInputText id="emailAddress" formControlName="emailAddress" placeholder="jane.doe@example.com" />
-    </div>
-
-    <div class="field">
-      <label for="studentCode">Student Code</label>
-      <input pInputText id="studentCode" formControlName="studentCode" placeholder="STU-001" />
-    </div>
-
-    <div class="field">
-      <label for="phone">Phone</label>
-      <input pInputText id="phone" formControlName="phone" placeholder="+1 (555) 000-0000" />
-    </div>
-
-    <div class="field">
-      <label for="sex">Sex</label>
-      <p-select [options]="sexOptions" formControlName="sex" placeholder="Select..." optionLabel="label" optionValue="value" styleClass="w-full"></p-select>
-    </div>
-
-    <div class="field">
-      <label for="birthDate">Birthday</label>
-      <p-datepicker formControlName="birthDate" placeholder="mm/dd/yyyy" dateFormat="mm/dd/yy" styleClass="w-full" [showIcon]="true"></p-datepicker>
-    </div>
-
-    <!-- NUEVOS CAMPOS DE DIRECCIÓN PARA EL BACKEND -->
-    <div class="field">
-      <label for="street">Street Address</label>
-      <input pInputText id="street" formControlName="street" placeholder="Av. Los Pinos 123" />
-    </div>
-
-    <div class="field">
-      <label for="district">District</label>
-      <input pInputText id="district" formControlName="district" placeholder="Villa El Salvador" />
-    </div>
-
-    <div class="field">
-      <label for="province">Province</label>
-      <input pInputText id="province" formControlName="province" placeholder="Lima" />
-    </div>
-
-    <div class="field">
-      <label for="department">Department</label>
-      <input pInputText id="department" formControlName="department" placeholder="Lima" />
-    </div>
-
-    <div class="field">
-      <label for="countryCode">Country Code</label>
-      <input pInputText id="countryCode" formControlName="countryCode" placeholder="PE" />
-    </div>
-    <!-- FIN DE NUEVOS CAMPOS -->
-
-    <div class="form-actions">
-      <p-button type="submit" [label]="isEdit ? 'Update Student' : 'Save Student'" [disabled]="form.invalid" severity="primary"></p-button>
-      @if(isEdit) {
-        <p-button type="button" label="Cancel" severity="secondary" (onClick)="resetForm()"></p-button>
-      }
-    </div>
-  </form>
-</p-card>
-
-<p-card header="Student Directory">
-  <p-table [value]="store.students()" [paginator]="true" [rows]="10" [loading]="store.loading()"
-           dataKey="id" [globalFilterFields]="['firstName', 'lastName', 'studentCode', 'emailAddress']" #dt>
-
-    <ng-template pTemplate="caption">
-      <div class="table-header">
-        <p-iconfield iconPosition="left">
-          <p-inputicon styleClass="pi pi-search"></p-inputicon>
-          <input type="text" pInputText placeholder="Filter students..." (input)="dt.filterGlobal($any($event.target).value, 'contains')" />
-        </p-iconfield>
-      </div>
-    </ng-template>
-
-    <ng-template pTemplate="header">
-      <tr>
-        <th>Code</th>
-        <th>Name</th>
-        <th>Email</th>
-        <th>Phone</th>
-        <th style="width: 8rem; text-align: center;">Actions</th>
-      </tr>
-    </ng-template>
-
-    <ng-template pTemplate="body" let-student>
-      <tr>
-        <td style="color: #3b82f6; font-weight: 500;">{{ student.studentCode }}</td>
-        <td>
-          <div class="name-cell">
-            <div class="avatar">{{ student.firstName.charAt(0) }}{{ student.lastName.charAt(0) }}</div>
-            <span>{{ student.firstName }} {{ student.lastName }}</span>
-          </div>
-        </td>
-        <td>{{ student.emailAddress }}</td>
-        <td>{{ student.phone }}</td>
-        <td style="text-align: center;">
-          <p-button icon="pi pi-pencil" [rounded]="true" [text]="true" severity="info" (onClick)="editStudent(student)"></p-button>
-          <p-button icon="pi pi-trash" [rounded]="true" [text]="true" severity="danger" (onClick)="deleteStudent(student.id)"></p-button>
-        </td>
-      </tr>
-    </ng-template>
-
-    <ng-template pTemplate="emptymessage">
-      <tr>
-        <td colspan="5">No students found.</td>
-      </tr>
-    </ng-template>
-  </p-table>
-</p-card>
+  <div class="students-layout__list">
+    <app-student-list (editRequest)="onEditRequested($event)"></app-student-list>
+  </div>
+</div>

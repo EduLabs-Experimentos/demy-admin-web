@@ -357,5 +357,50 @@
       "empty": "No teachers registered yet",
       "profile": "Teacher"
     }
+  },
+  "students": {
+    "page": {
+      "title": "Students",
+      "subtitle": "Manage enrolled students and personal information"
+    },
+    "form": {
+      "title": "Register Student",
+      "editTitle": "Edit Student",
+      "firstName": "First Name",
+      "firstName-placeholder": "Enter first name",
+      "lastName": "Last Name",
+      "lastName-placeholder": "Enter last name",
+      "dni": "DNI",
+      "dni-placeholder": "Enter DNI",
+      "studentCode": "Student Code",
+      "studentCode-placeholder": "Ex. STU-001",
+      "email": "Email Address",
+      "email-placeholder": "Enter email",
+      "countryCode": "Code",
+      "phone": "Phone",
+      "phone-placeholder": "Enter phone number",
+      "sex": "Sex",
+      "sex-placeholder": "Select...",
+      "birthDate": "Birthday",
+      "birthDate-placeholder": "dd/mm/yyyy",
+      "street": "Street Address",
+      "street-placeholder": "Ex. Av. Los Pinos 123",
+      "district": "District",
+      "district-placeholder": "Ex. Villa El Salvador",
+      "province": "Province / Dept",
+      "province-placeholder": "Ex. Lima",
+      "register": "Register Student",
+      "update": "Update Student",
+      "cancel": "Cancel",
+      "error-form": "Please correct the highlighted fields.",
+      "department": "Department",
+      "department-placeholder": "Ex. Lima"
+    },
+    "list": {
+      "search": "Search students...",
+      "loading": "Loading students...",
+      "empty": "No students registered yet",
+      "profile": "Profile"
+    }
   }
 }

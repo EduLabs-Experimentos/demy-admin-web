@@ -4,48 +4,42 @@ import { StudentsApi } from '../infrastructure/students-api';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { retry } from 'rxjs';
 
-/**
- * State management store for students using Angular signals.
- */
 @Injectable({
   providedIn: 'root'
 })
 export class StudentsStore {
-  // --- Estado Global (Signals Privados) ---
   private readonly studentsSignal = signal<Student[]>([]);
   private readonly loadingSignal = signal<boolean>(false);
   private readonly errorSignal = signal<string | null>(null);
 
-  // --- Estado de Solo Lectura (Expuesto a los componentes) ---
   readonly students = this.studentsSignal.asReadonly();
   readonly loading = this.loadingSignal.asReadonly();
   readonly error = this.errorSignal.asReadonly();
 
-  // --- Propiedades Computadas ---
   readonly studentCount = computed(() => this.students().length);
 
   constructor(private studentsApi: StudentsApi) {
-    // Al inyectar el store, cargamos los estudiantes iniciales
     this.loadStudents();
   }
 
-  /**
-   * Obtiene un estudiante específico por su ID.
-   */
   getStudentById(id: number | null | undefined): Signal<Student | undefined> {
     return computed(() => id ? this.students().find(s => s.id === id) : undefined);
   }
 
-  /**
-   * Agrega un nuevo estudiante al backend y actualiza el estado local.
-   */
-  addStudent(student: Student): void {
+  // NUEVO: Metodo para limpiar errores manualmente
+  clearError() {
+    this.errorSignal.set(null);
+  }
+
+  // MODIFICADO: Agregamos onSuccess para que el formulario sepa cuándo borrarse
+  addStudent(student: Student, onSuccess?: () => void): void {
     this.loadingSignal.set(true);
     this.errorSignal.set(null);
     this.studentsApi.createStudent(student).pipe(retry(2)).subscribe({
       next: createdStudent => {
         this.studentsSignal.update(students => [...students, createdStudent]);
         this.loadingSignal.set(false);
+        if (onSuccess) onSuccess(); // Solo limpiamos si hay éxito
       },
       error: err => {
         this.errorSignal.set(this.formatError(err, 'Failed to create student'));
@@ -54,10 +48,8 @@ export class StudentsStore {
     });
   }
 
-  /**
-   * Actualiza los datos de un estudiante en el backend y en el estado local.
-   */
-  updateStudent(updatedStudent: Student): void {
+  // MODIFICADO: Agregamos onSuccess
+  updateStudent(updatedStudent: Student, onSuccess?: () => void): void {
     this.loadingSignal.set(true);
     this.errorSignal.set(null);
     this.studentsApi.updateStudent(updatedStudent).pipe(retry(2)).subscribe({
@@ -66,6 +58,7 @@ export class StudentsStore {
           students.map(s => s.id === student.id ? student : s)
         );
         this.loadingSignal.set(false);
+        if (onSuccess) onSuccess(); // Solo limpiamos si hay éxito
       },
       error: err => {
         this.errorSignal.set(this.formatError(err, 'Failed to update student'));
@@ -74,9 +67,6 @@ export class StudentsStore {
     });
   }
 
-  /**
-   * Elimina un estudiante por ID en el backend y actualiza el estado local.
-   */
   deleteStudent(id: number): void {
     this.loadingSignal.set(true);
     this.errorSignal.set(null);
@@ -92,10 +82,6 @@ export class StudentsStore {
     });
   }
 
-  /**
-   * Carga la lista inicial de estudiantes.
-   * Usa takeUntilDestroyed para evitar memory leaks si el servicio se destruye.
-   */
   private loadStudents(): void {
     this.loadingSignal.set(true);
     this.errorSignal.set(null);
@@ -111,9 +97,6 @@ export class StudentsStore {
     });
   }
 
-  /**
-   * Formatea el mensaje de error para la vista.
-   */
   private formatError(error: any, fallback: string): string {
     if (error instanceof Error) {
       return error.message.includes('Resource not found') ? `${fallback}: Not found` : error.message;
