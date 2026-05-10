@@ -1,0 +1,50 @@
+<header class="enrollment-roster__toolbar">
+  <span class="p-input-icon-left enrollment-roster__search">
+    <i class="pi pi-search"></i>
+    <input pInputText type="text" [value]="store.searchQuery()"
+           (input)="store.onSearchQueryChange($any($event.target).value)"
+           [placeholder]="'enrollments.list.search' | translate" />
+  </span>
+</header>
+
+<div class="enrollment-roster__scroll">
+  <table class="enrollment-roster">
+    <thead>
+      <tr>
+        <th>{{ 'enrollments.list.studentId' | translate }}</th>
+        <th>{{ 'enrollments.list.period' | translate }}</th>
+        <th>{{ 'enrollments.list.schedule' | translate }}</th>
+        <th>{{ 'enrollments.list.amount' | translate }}</th>
+        <th>{{ 'enrollments.list.payment' | translate }}</th>
+        <th>{{ 'enrollments.list.status' | translate }}</th>
+        <th class="enrollment-roster__actions-col">{{ 'enrollments.list.actions' | translate }}</th>
+      </tr>
+    </thead>
+    <tbody>
+      @if (store.isLoadingEnrollments()) {
+        <tr><td colspan="7" class="enrollment-roster__empty"><i class="pi pi-spin pi-spinner"></i><span>{{ 'enrollments.list.loading' | translate }}</span></td></tr>
+      } @else if (store.filteredEnrollments().length === 0) {
+        <tr><td colspan="7" class="enrollment-roster__empty"><i class="pi pi-user-plus"></i><span>{{ 'enrollments.list.empty' | translate }}</span></td></tr>
+      } @else {
+        @for (enr of store.filteredEnrollments(); track enr.id) {
+          <tr class="enrollment-roster__row" [class.enrollment-roster__row--editing]="store.selectedEnrollmentId() === enr.id">
+            <td><span class="enrollment-roster__code">{{ store.getStudentName(enr.studentId) }}</span></td>
+            <td><span class="enrollment-roster__ref">{{ store.getPeriodName(enr.periodId) }}</span></td>
+            <td><span class="enrollment-roster__ref">{{ store.getScheduleName(enr.scheduleId) }}</span></td>
+            <td><span class="enrollment-roster__amount">{{ enr.amount | number:'1.2-2' }} {{ enr.currency }}</span></td>
+            <td><span class="enrollment-roster__badge" [class.enrollment-roster__badge--paid]="enr.paymentStatus === 'PAID'">{{ 'enrollments.status.' + enr.paymentStatus | translate }}</span></td>
+            <td><span class="enrollment-roster__status">{{ 'enrollments.status.' + enr.enrollmentStatus | translate }}</span></td>
+            <td class="enrollment-roster__actions-col">
+              <div class="enrollment-roster__actions">
+                <button class="enrollment-roster__action-btn" [disabled]="store.isLoading() || store.isDeleting()"
+                        (click)="editEnrollment(enr.id)" [attr.aria-label]="'enrollments.list.edit' | translate"><i class="pi pi-pencil"></i></button>
+                <button class="enrollment-roster__action-btn enrollment-roster__action-btn--danger" [disabled]="store.isLoading() || store.isDeleting()"
+                        (click)="deleteEnrollment(enr.id)" [attr.aria-label]="'enrollments.list.delete' | translate"><i class="pi pi-trash"></i></button>
+              </div>
+            </td>
+          </tr>
+        }
+      }
+    </tbody>
+  </table>
+</div>
