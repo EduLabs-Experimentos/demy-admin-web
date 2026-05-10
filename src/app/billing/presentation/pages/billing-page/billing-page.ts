@@ -1,29 +1,34 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject, signal, computed } from '@angular/core';
 import { BillingStore } from '../../../application/billing.store';
 import { BillingAccount } from '../../../domain/model/billing-account.entity';
 import { TranslatePipe } from '@ngx-translate/core';
 import { ButtonModule } from 'primeng/button';
-import { TableModule } from 'primeng/table';
-import { DatePipe } from '@angular/common';
 import { BillingAccountForm } from '../../components/billing-account-form/billing-account-form';
 import { InvoiceForm } from '../../components/invoice-form/invoice-form';
+import { InvoiceList } from '../../components/invoice-list/invoice-list';
 
 @Component({
   selector: 'app-billing-page',
   standalone: true,
-  imports: [TranslatePipe, ButtonModule, TableModule, DatePipe, BillingAccountForm, InvoiceForm],
+  imports: [TranslatePipe, ButtonModule, BillingAccountForm, InvoiceForm, InvoiceList],
   templateUrl: './billing-page.html',
-  styleUrl: './billing-page.scss' // Usaremos este archivo para el CSS principal
+  styleUrl: './billing-page.scss'
 })
 export class BillingPage {
   store = inject(BillingStore);
 
-  // Variables que el HTML necesita
-  selectedAccount = signal<BillingAccount | null>(null);
+  // Guardamos SOLO el ID
+  selectedAccountId = signal<number | null>(null);
   showInvoiceForm = false;
 
+  // Computed: ¡Siempre tiene los datos más recientes del Store!
+  selectedAccount = computed(() => {
+    const id = this.selectedAccountId();
+    return id ? this.store.accounts().find(acc => acc.id === id) || null : null;
+  });
+
   selectAccount(account: BillingAccount) {
-    this.selectedAccount.set(account);
-    this.showInvoiceForm = false; // Cerramos el form si cambiamos de cuenta
+    this.selectedAccountId.set(account.id);
+    this.showInvoiceForm = false;
   }
 }

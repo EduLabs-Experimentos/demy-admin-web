@@ -31,8 +31,9 @@ export class InvoiceForm {
   });
 
   typeOptions = [
-    { label: 'Matrícula', value: 'ENROLLMENT' },
-    { label: 'Pensión', value: 'TUITION' },
+    { label: 'Matrícula', value: 'STUDENT_ENROLLMENT' },
+    { label: 'Pensión', value: 'STUDENT_MONTHLY_FEE' },
+    { label:' Pago único', value:'STUDENT_ONE_TIME_PAYMENT'},
     { label: 'Otros', value: 'OTHER' }
   ];
 

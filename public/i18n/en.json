@@ -402,5 +402,38 @@
       "empty": "No students registered yet",
       "profile": "Profile"
     }
+  },
+  "billing": {
+    "page": { "title": "Billing", "subtitle": "Manage student billing accounts and invoices." },
+    "account": {
+      "title": "Billing Accounts",
+      "form-title": "New Account",
+      "studentId": "Student ID",
+      "dni": "DNI",
+      "create": "Create Account",
+      "empty": "No accounts registered"
+    },
+    "invoice": {
+      "title": "Invoices",
+      "assign-title": "Assign Invoice",
+      "edit-title": "Edit Invoice",
+      "type": "Type",
+      "amount": "Amount",
+      "currency": "Currency",
+      "description": "Description",
+      "issueDate": "Issue Date",
+      "dueDate": "Due Date",
+      "status": "Status",
+      "actions": "Actions",
+      "mark-paid": "Mark Paid",
+      "delete": "Delete",
+      "save": "Save Invoice",
+      "statuses": {
+        "PENDING": "Pending",
+        "PAID": "Paid",
+        "OVERDUE": "Overdue",
+        "CANCELED": "Canceled"
+      }
+    }
   }
 }

@@ -1,0 +1,40 @@
+<p-table [value]="invoices" styleClass="teacher-roster">
+  <ng-template pTemplate="header">
+    <tr>
+      <th>{{ 'billing.invoice.type' | translate }}</th>
+      <th>{{ 'billing.invoice.amount' | translate }}</th>
+      <th>{{ 'billing.invoice.dueDate' | translate }}</th>
+      <th>{{ 'billing.invoice.status' | translate }}</th>
+      <th style="text-align: right;">{{ 'billing.invoice.actions' | translate }}</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-inv>
+    <tr>
+      <td style="font-weight: 600;">{{ inv.invoiceType }}</td>
+      <td>{{ inv.currency }} {{ inv.amount }}</td>
+      <td>{{ inv.dueDate | date:'shortDate' }}</td>
+      <td>
+        <span class="status-tag" [class]="'status-tag--' + inv.status.toLowerCase()">
+          {{ 'billing.invoice.statuses.' + inv.status | translate }}
+        </span>
+      </td>
+      <td style="text-align: right;">
+        @if (inv.status === 'PENDING' || inv.status === 'OVERDUE') {
+          <button class="action-btn" (click)="markPaid.emit(inv.id)" [title]="'billing.invoice.mark-paid' | translate">
+            <i class="pi pi-check"></i>
+          </button>
+          <button class="action-btn action-btn--danger" (click)="delete.emit(inv.id)" [title]="'billing.invoice.delete' | translate">
+            <i class="pi pi-trash"></i>
+          </button>
+        }
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="emptymessage">
+    <tr>
+      <td colspan="5" style="text-align: center; padding: 20px;">
+        No hay facturas registradas.
+      </td>
+    </tr>
+  </ng-template>
+</p-table>
