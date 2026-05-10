@@ -3,9 +3,9 @@
     "title": "Create Account",
     "subtitle": "Enter your email and password to get started",
     "email": "Email",
-    "email-placeholder": "Enter your email",
+    "email-placeholder": "yourname@gmail.com",
     "password": "Password",
-    "password-placeholder": "Enter your password",
+    "password-placeholder": "Your secure password",
     "terms": "I accept the terms and conditions",
     "register": "Create Account",
     "login": "Log In",
@@ -24,16 +24,16 @@
     "subtitle": "Enter the 6-digit code sent to your email",
     "code-sent-to": "Code sent to:",
     "code": "Verification Code",
-    "code-placeholder": "Enter 6-digit code",
+    "code-placeholder": "• • • • • •",
     "didnt-receive": "Didn't receive the code?",
     "verify": "Verify Account",
     "resend-code": "Resend Code",
     "errors": {
       "required": "Verification code is required",
-      "invalid-code": "Invalid verification code"
+      "invalid-code": "The code entered is incorrect. Please verify and try again."
     },
     "success": "Account verified successfully!",
-    "error": "Verification failed. Please try again."
+    "error": "Error verifying account. Please try again."
   },
   "complete-account": {
     "title": "Complete Your Profile",

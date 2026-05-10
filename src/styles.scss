@@ -59,3 +59,20 @@ a {
 .container-with-spacing {
   padding: 1.5rem; /* 24px spacing around the container */
 }
+
+/* Override PrimeNG password input to match regular input styling */
+.p-password-input,
+.p-inputtext.p-password-input {
+  font-family: 'Inter', sans-serif !important;
+  font-size: 0.875rem !important;
+  line-height: normal !important;
+  letter-spacing: normal !important;
+  text-transform: none !important;
+  font-variant-numeric: normal !important;
+}
+
+/* Ensure all text inputs have consistent font */
+input.p-inputtext,
+.p-password-input {
+  font-family: 'Inter', sans-serif;
+}

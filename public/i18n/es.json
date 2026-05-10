@@ -3,9 +3,9 @@
     "title": "Crear Cuenta",
     "subtitle": "Ingresa tu correo y contraseña para comenzar",
     "email": "Correo Electrónico",
-    "email-placeholder": "Ingresa tu correo",
+    "email-placeholder": "tucorreo@gmail.com",
     "password": "Contraseña",
-    "password-placeholder": "Ingresa tu contraseña",
+    "password-placeholder": "Tu contraseña segura",
     "terms": "Acepto los términos y condiciones",
     "register": "Crear Cuenta",
     "login": "Iniciar Sesión",
@@ -24,16 +24,16 @@
     "subtitle": "Ingresa el código de 6 dígitos enviado a tu correo",
     "code-sent-to": "Código enviado a:",
     "code": "Código de Verificación",
-    "code-placeholder": "Ingresa código de 6 dígitos",
+    "code-placeholder": "• • • • • •",
     "didnt-receive": "¿No recibiste el código?",
     "verify": "Verificar Cuenta",
     "resend-code": "Reenviar Código",
     "errors": {
       "required": "El código de verificación es requerido",
-      "invalid-code": "Código de verificación inválido"
+      "invalid-code": "El código ingresado es incorrecto. Verifica e intenta de nuevo."
     },
     "success": "¡Cuenta verificada exitosamente!",
-    "error": "Verificación fallida. Por favor intenta de nuevo."
+    "error": "Error al verificar la cuenta. Por favor intenta de nuevo."
   },
   "complete-account": {
     "title": "Completa Tu Perfil",

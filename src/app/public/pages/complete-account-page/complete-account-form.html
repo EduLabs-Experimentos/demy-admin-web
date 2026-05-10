@@ -1,4 +1,11 @@
 <form [formGroup]="form" (ngSubmit)="completeAccount()" class="complete-form">
+  @if (store.completeAccountError(); as error) {
+    <div class="form-error-banner">
+      <i class="pi pi-exclamation-triangle"></i>
+      <span>{{ error }}</span>
+    </div>
+  }
+
   <div class="form-row">
     <div class="form-field">
       <label for="firstName">{{ 'complete-account.firstName' | translate }}</label>
@@ -39,7 +46,11 @@
              type="text"
              formControlName="phone"
              placeholder="{{ 'complete-account.phone-placeholder' | translate }}"
-             class="form-input" />
+             class="form-input"
+             [class.ng-invalid]="form.controls['phone'].invalid && form.controls['phone'].touched" />
+      @if (form.controls['phone'].invalid && form.controls['phone'].touched) {
+        <small class="p-error">{{ getPhoneError() }}</small>
+      }
     </div>
   </div>
 
@@ -50,7 +61,11 @@
            type="text"
            formControlName="dniNumber"
            placeholder="{{ 'complete-account.dni-placeholder' | translate }}"
-           class="form-input" />
+           class="form-input"
+           [class.ng-invalid]="form.controls['dniNumber'].invalid && form.controls['dniNumber'].touched" />
+    @if (form.controls['dniNumber'].invalid && form.controls['dniNumber'].touched) {
+      <small class="p-error">{{ getDniError() }}</small>
+    }
   </div>
 
   <p-button type="submit"
