@@ -1,0 +1,36 @@
+<article class="billing-form" style="margin-bottom: 20px;">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+    <div class="billing-form__row" style="display: flex; gap: 12px;">
+      <div class="billing-form__field" style="flex: 1;">
+        <label class="billing-form__label">{{ 'billing.invoice.type' | translate }}</label>
+        <p-select [options]="typeOptions" formControlName="invoiceType" optionLabel="label" optionValue="value" styleClass="billing-form__input p-0" [class.ng-invalid]="isInvalid('invoiceType')"></p-select>
+      </div>
+      <div class="billing-form__field" style="flex: 1;">
+        <label class="billing-form__label">{{ 'billing.invoice.amount' | translate }}</label>
+        <input pInputText type="number" formControlName="amount" class="billing-form__input" [class.ng-invalid]="isInvalid('amount')" />
+      </div>
+    </div>
+
+    <div class="billing-form__field">
+      <label class="billing-form__label">{{ 'billing.invoice.description' | translate }}</label>
+      <input pInputText formControlName="description" class="billing-form__input" [class.ng-invalid]="isInvalid('description')" />
+    </div>
+
+    <div class="billing-form__row" style="display: flex; gap: 12px;">
+      <div class="billing-form__field" style="flex: 1;">
+        <label class="billing-form__label">{{ 'billing.invoice.issueDate' | translate }}</label>
+        <p-datepicker formControlName="issueDate" dateFormat="mm/dd/yy" styleClass="billing-form__input p-0" [class.ng-invalid]="isInvalid('issueDate')"></p-datepicker>
+      </div>
+      <div class="billing-form__field" style="flex: 1;">
+        <label class="billing-form__label">{{ 'billing.invoice.dueDate' | translate }}</label>
+        <p-datepicker formControlName="dueDate" dateFormat="mm/dd/yy" styleClass="billing-form__input p-0" [class.ng-invalid]="isInvalid('dueDate')"></p-datepicker>
+      </div>
+    </div>
+
+    <div style="display: flex; gap: 10px; margin-top: 10px;">
+      <p-button [label]="'billing.invoice.save' | translate" styleClass="billing-form__submit" [loading]="store.loading()" [rounded]="true" type="submit" />
+      <p-button label="Cancelar" severity="secondary" [rounded]="true" (onClick)="cancel.emit()" type="button" />
+    </div>
+  </form>
+</article>

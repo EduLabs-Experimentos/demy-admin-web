@@ -1,0 +1,77 @@
+<div class="page-header">
+  <div>
+    <h1>{{ 'billing.page.title' | translate }}</h1>
+    <p>{{ 'billing.page.subtitle' | translate }}</p>
+  </div>
+</div>
+
+<div class="billing-layout">
+  <div class="billing-layout__sidebar">
+    <app-billing-account-form></app-billing-account-form>
+
+    <div class="account-list mt-4">
+      @for (acc of store.accounts(); track acc.id) {
+        <div class="account-card" [class.account-card--active]="selectedAccount()?.id === acc.id" (click)="selectAccount(acc)">
+          <div class="account-card__info">
+            <span class="account-card__id">ID: {{ acc.studentId }}</span>
+            <span class="account-card__dni">{{ acc.dniNumber }}</span>
+          </div>
+          <i class="pi pi-chevron-right"></i>
+        </div>
+      } @empty {
+        <p class="text-center p-4">{{ 'billing.account.empty' | translate }}</p>
+      }
+    </div>
+  </div>
+
+  <div class="billing-layout__content">
+    @if (selectedAccount(); as acc) {
+      <div class="content-card">
+        <div class="content-card__header">
+          <h3>{{ 'billing.invoice.title' | translate }} - Estudiante #{{ acc.studentId }}</h3>
+          <p-button icon="pi pi-plus" [label]="'billing.invoice.assign-title' | translate"
+                    [text]="true" (onClick)="showInvoiceForm = true" />
+        </div>
+
+        @if (showInvoiceForm) {
+          <app-invoice-form [accountId]="acc.id" (cancel)="showInvoiceForm = false" class="mb-4 d-block" />
+        }
+
+        <p-table [value]="acc.invoices" styleClass="teacher-roster">
+          <ng-template pTemplate="header">
+            <tr>
+              <th>{{ 'billing.invoice.type' | translate }}</th>
+              <th>{{ 'billing.invoice.amount' | translate }}</th>
+              <th>{{ 'billing.invoice.dueDate' | translate }}</th>
+              <th>{{ 'billing.invoice.status' | translate }}</th>
+              <th style="text-align: right;">{{ 'billing.invoice.actions' | translate }}</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-inv>
+            <tr>
+              <td><span class="invoice-badge">{{ inv.invoiceType }}</span></td>
+              <td>{{ inv.currency }} {{ inv.amount }}</td>
+              <td>{{ inv.dueDate | date:'shortDate' }}</td>
+              <td>
+                <span class="status-tag" [class]="'status-tag--' + inv.status.toLowerCase()">
+                  {{ inv.status }}
+                </span>
+              </td>
+              <td style="text-align: right;">
+                @if (inv.status !== 'PAID') {
+                  <button class="action-btn" (click)="store.markInvoiceAsPaid(acc.id, inv.id)"><i class="pi pi-check"></i></button>
+                  <button class="action-btn action-btn--danger" (click)="store.deleteInvoice(acc.id, inv.id)"><i class="pi pi-trash"></i></button>
+                }
+              </td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </div>
+    } @else {
+      <div class="empty-state">
+        <i class="pi pi-wallet"></i>
+        <p>Selecciona una cuenta para ver sus facturas</p>
+      </div>
+    }
+  </div>
+</div>
