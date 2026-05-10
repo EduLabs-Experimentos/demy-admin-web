@@ -357,5 +357,50 @@
       "empty": "No hay profesores registrados aún",
       "profile": "Profesor"
     }
+  },
+  "students": {
+    "page": {
+      "title": "Estudiantes",
+      "subtitle": "Gestiona los estudiantes matriculados y su información personal"
+    },
+    "form": {
+      "title": "Registrar Estudiante",
+      "editTitle": "Editar Estudiante",
+      "firstName": "Nombre",
+      "firstName-placeholder": "Ingresa el nombre",
+      "lastName": "Apellido",
+      "lastName-placeholder": "Ingresa el apellido",
+      "dni": "DNI",
+      "dni-placeholder": "Ingresa el DNI",
+      "studentCode": "Código",
+      "studentCode-placeholder": "Ej. STU-001",
+      "email": "Correo Electrónico",
+      "email-placeholder": "Ingresa el correo",
+      "countryCode": "Código",
+      "phone": "Teléfono",
+      "phone-placeholder": "Ingresa el teléfono",
+      "sex": "Sexo",
+      "sex-placeholder": "Seleccionar...",
+      "birthDate": "Cumpleaños",
+      "birthDate-placeholder": "dd/mm/aaaa",
+      "street": "Dirección",
+      "street-placeholder": "Ej. Av. Los Pinos 123",
+      "district": "Distrito",
+      "district-placeholder": "Ej. Villa El Salvador",
+      "province": "Provincia / Depto",
+      "province-placeholder": "Ej. Lima",
+      "register": "Registrar Estudiante",
+      "update": "Actualizar Estudiante",
+      "cancel": "Cancelar",
+      "error-form": "Por favor corrige los campos resaltados.",
+      "department": "Departamento",
+      "department-placeholder": "Ej. Lima"
+    },
+    "list": {
+      "search": "Buscar estudiantes...",
+      "loading": "Cargando estudiantes...",
+      "empty": "No hay estudiantes registrados aún",
+      "profile": "Perfil"
+    }
   }
 }

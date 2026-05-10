@@ -9,4 +9,6 @@ export const environment = {
   platformProviderCoursesEndpointPath: '/api/v1/courses',
   platformProviderClassroomsEndpointPath: '/api/v1/classrooms',
   platformProviderSchedulesEndpointPath: '/api/v1/schedules',
+  platformProviderStudentsEndpointPath: '/api/v1/students',
+
 };

@@ -1,0 +1,16 @@
+<div class="page-header">
+  <div>
+    <h1>{{ 'students.page.title' | translate }}</h1>
+    <p>{{ 'students.page.subtitle' | translate }}</p>
+  </div>
+</div>
+
+<div class="students-layout">
+  <div class="students-layout__form">
+    <app-student-form #studentForm></app-student-form>
+  </div>
+
+  <div class="students-layout__list">
+    <app-student-list (editRequest)="onEditRequested($event)"></app-student-list>
+  </div>
+</div>

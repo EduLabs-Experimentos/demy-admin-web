@@ -1,0 +1,136 @@
+<article class="student-form">
+  <div style="display: flex; justify-content: space-between; align-items: center;">
+    <h3 class="student-form__title">
+      {{ isEdit ? ('students.form.editTitle' | translate) : ('students.form.title' | translate) }}
+    </h3>
+    @if(isEdit) {
+      <button class="student-form__cancel-btn" type="button" (click)="resetForm()">
+        <i class="pi pi-times"></i> {{ 'students.form.cancel' | translate }}
+      </button>
+    }
+  </div>
+
+  <form [formGroup]="form" (ngSubmit)="submit()">
+
+    <div class="student-form__row">
+      <div class="student-form__field student-form__field--grow">
+        <label class="student-form__label" for="firstName">{{ 'students.form.firstName' | translate }}</label>
+        <input pInputText id="firstName" formControlName="firstName" class="student-form__input"
+               [placeholder]="'students.form.firstName-placeholder' | translate"
+               [class.ng-invalid]="isInvalid('firstName')" />
+      </div>
+      <div class="student-form__field student-form__field--grow">
+        <label class="student-form__label" for="lastName">{{ 'students.form.lastName' | translate }}</label>
+        <input pInputText id="lastName" formControlName="lastName" class="student-form__input"
+               [placeholder]="'students.form.lastName-placeholder' | translate"
+               [class.ng-invalid]="isInvalid('lastName')" />
+      </div>
+    </div>
+
+    <div class="student-form__row">
+      <div class="student-form__field student-form__field--grow">
+        <label class="student-form__label" for="dni">{{ 'students.form.dni' | translate }}</label>
+        <input pInputText id="dni" formControlName="dni" class="student-form__input"
+               [placeholder]="'students.form.dni-placeholder' | translate"
+               [class.ng-invalid]="isInvalid('dni')" />
+      </div>
+      <div class="student-form__field student-form__field--grow">
+        <label class="student-form__label" for="studentCode">{{ 'students.form.studentCode' | translate }}</label>
+        <input pInputText id="studentCode" formControlName="studentCode" class="student-form__input"
+               [placeholder]="'students.form.studentCode-placeholder' | translate"
+               [class.ng-invalid]="isInvalid('studentCode')" />
+      </div>
+    </div>
+
+    <div class="student-form__field">
+      <label class="student-form__label" for="emailAddress">{{ 'students.form.email' | translate }}</label>
+      <input pInputText id="emailAddress" type="email" formControlName="emailAddress" class="student-form__input"
+             [placeholder]="'students.form.email-placeholder' | translate"
+             [class.ng-invalid]="isInvalid('emailAddress')" />
+    </div>
+
+    <div class="student-form__row">
+      <div class="student-form__field student-form__field--small">
+        <label class="student-form__label" for="countryCode">{{ 'students.form.countryCode' | translate }}</label>
+        <input pInputText id="countryCode" formControlName="countryCode" class="student-form__input"
+               [class.ng-invalid]="isInvalid('countryCode')" />
+      </div>
+      <div class="student-form__field student-form__field--grow">
+        <label class="student-form__label" for="phone">{{ 'students.form.phone' | translate }}</label>
+        <input pInputText id="phone" type="tel" formControlName="phone" class="student-form__input"
+               [placeholder]="'students.form.phone-placeholder' | translate"
+               [class.ng-invalid]="isInvalid('phone')" />
+      </div>
+    </div>
+
+    <div class="student-form__row">
+      <div class="student-form__field student-form__field--grow">
+        <label class="student-form__label" for="sex">{{ 'students.form.sex' | translate }}</label>
+        <p-select [options]="sexOptions" formControlName="sex" optionLabel="label" optionValue="value"
+                  [placeholder]="'students.form.sex-placeholder' | translate"
+                  [style]="{'width':'100%'}"
+                  [class.ng-invalid]="isInvalid('sex')"></p-select>
+      </div>
+      <div class="student-form__field student-form__field--grow">
+        <label class="student-form__label" for="birthDate">{{ 'students.form.birthDate' | translate }}</label>
+        <p-datepicker formControlName="birthDate" dateFormat="dd/mm/yy" [showIcon]="true"
+                      [placeholder]="'students.form.birthDate-placeholder' | translate"
+                      [style]="{'width':'100%'}"
+                      inputStyleClass="student-form__input"
+                      [class.ng-invalid]="isInvalid('birthDate')"></p-datepicker>
+      </div>
+    </div>
+
+    <div class="student-form__field">
+      <label class="student-form__label" for="street">{{ 'students.form.street' | translate }}</label>
+      <input pInputText id="street" formControlName="street" class="student-form__input"
+             [placeholder]="'students.form.street-placeholder' | translate"
+             [class.ng-invalid]="isInvalid('street')" />
+    </div>
+
+    <div class="student-form__field">
+      <label class="student-form__label" for="district">{{ 'students.form.district' | translate }}</label>
+      <input pInputText id="district" formControlName="district" class="student-form__input"
+             [placeholder]="'students.form.district-placeholder' | translate"
+             [class.ng-invalid]="isInvalid('district')" />
+    </div>
+
+    <div class="student-form__row">
+      <div class="student-form__field student-form__field--grow">
+        <label class="student-form__label" for="province">{{ 'students.form.province' | translate }}</label>
+        <input pInputText id="province" formControlName="province" class="student-form__input"
+               [placeholder]="'students.form.province-placeholder' | translate"
+               [class.ng-invalid]="isInvalid('province')" />
+      </div>
+      <div class="student-form__field student-form__field--grow">
+        <label class="student-form__label" for="department">{{ 'students.form.department' | translate }}</label>
+        <input pInputText id="department" formControlName="department" class="student-form__input"
+               [placeholder]="'students.form.department-placeholder' | translate"
+               [class.ng-invalid]="isInvalid('department')" />
+      </div>
+    </div>
+
+    <p-button [label]="isEdit ? ('students.form.update' | translate) : ('students.form.register' | translate)"
+              styleClass="student-form__submit"
+              [loading]="store.loading()"
+              [rounded]="true"
+              type="submit" />
+
+    @if (form.invalid && form.touched) {
+      <div class="student-form__error" style="margin-top: 8px;">
+        <i class="pi pi-info-circle"></i>
+        <span>{{ 'students.form.error-form' | translate }}</span>
+      </div>
+    }
+
+    @if (store.error(); as error) {
+      <div class="student-form__error">
+        <i class="pi pi-exclamation-triangle" aria-hidden="true"></i>
+        <span>{{ error }}</span>
+        <button type="button" class="student-form__error-dismiss" (click)="store.clearError?.()" aria-label="Dismiss">
+          <i class="pi pi-times"></i>
+        </button>
+      </div>
+    }
+  </form>
+</article>
