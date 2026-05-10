@@ -402,5 +402,38 @@
       "empty": "No hay estudiantes registrados aún",
       "profile": "Perfil"
     }
+  },
+  "billing": {
+    "page": { "title": "Facturación", "subtitle": "Gestiona cuentas de cobro y comprobantes de estudiantes." },
+    "account": {
+      "title": "Cuentas de Cobro",
+      "form-title": "Nueva Cuenta",
+      "studentId": "ID Estudiante",
+      "dni": "DNI",
+      "create": "Crear Cuenta",
+      "empty": "No hay cuentas registradas"
+    },
+    "invoice": {
+      "title": "Facturas",
+      "assign-title": "Asignar Factura",
+      "edit-title": "Editar Factura",
+      "type": "Tipo",
+      "amount": "Monto",
+      "currency": "Moneda",
+      "description": "Descripción",
+      "issueDate": "F. Emisión",
+      "dueDate": "F. Vencimiento",
+      "status": "Estado",
+      "actions": "Acciones",
+      "mark-paid": "Pagar",
+      "delete": "Eliminar",
+      "save": "Guardar Factura",
+      "statuses": {
+        "PENDING": "Pendiente",
+        "PAID": "Pagado",
+        "OVERDUE": "Vencido",
+        "CANCELED": "Cancelado"
+      }
+    }
   }
 }

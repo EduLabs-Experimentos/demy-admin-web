@@ -56,7 +56,7 @@ export class SideNavigationBar {
       items: [
         { icon: 'pi pi-user-plus', label: 'sidebar.enrollment', route: '/enrollment', roles: ['ADMIN'] },
         { icon: 'pi pi-clock', label: 'sidebar.scheduling', route: '/search-schedules', roles: ['ADMIN'] },
-        { icon: 'pi pi-credit-card', label: 'sidebar.billing', route: '/payments', roles: ['ADMIN'] },
+        { icon: 'pi pi-credit-card', label: 'sidebar.billing', route: '/billing', roles: ['ADMIN'] },
         { icon: 'pi pi-wallet', label: 'sidebar.accounting', route: '/finance', roles: ['ADMIN'] }
       ]
     },
