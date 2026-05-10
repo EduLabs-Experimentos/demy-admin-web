@@ -1,4 +1,11 @@
 <form [formGroup]="form" (ngSubmit)="verify()" class="verify-form">
+  @if (store.verifyError(); as error) {
+    <div class="form-error-banner">
+      <i class="pi pi-exclamation-triangle"></i>
+      <span>{{ error }}</span>
+    </div>
+  }
+
   <div class="email-display">
     <span>{{ 'verify-account.code-sent-to' | translate }}</span>
     <strong>{{ emailValue }}</strong>

@@ -1,4 +1,11 @@
 <form [formGroup]="form" (ngSubmit)="performSignUp()" class="signup-form" animate.enter="enter-animation">
+  @if (store.signUpError(); as error) {
+    <div class="form-error-banner">
+      <i class="pi pi-exclamation-triangle"></i>
+      <span>{{ error }}</span>
+    </div>
+  }
+
   <div class="form-field">
     <label for="email">{{ 'sign-up.email' | translate }}</label>
     <input pInputText
@@ -7,7 +14,7 @@
            formControlName="email"
            [class.ng-invalid]="isInvalidControl(form, 'email')"
            placeholder="{{ 'sign-up.email-placeholder' | translate }}"
-           class="form-input" />
+           class="form-input" autocomplete="email" />
     @if (isInvalidControl(form, 'email')) {
       <small class="p-error">{{ errorMessagesForControl(form, 'email') }}</small>
     }
@@ -18,6 +25,7 @@
     <p-password inputId="password"
               formControlName="password"
               [toggleMask]="true"
+              [feedback]="false"
               [class.ng-invalid]="isInvalidControl(form, 'password')"
               placeholder="{{ 'sign-up.password-placeholder' | translate }}"
               styleClass="w-full"

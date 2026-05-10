@@ -83,10 +83,22 @@ export class IamStore {
         }).then();
       },
       error: (err) => {
-        this.signUpError.set(err?.error?.message || err?.message || 'An unexpected error occurred');
+        const errorMessage = this.extractSignUpError(err);
+        this.signUpError.set(errorMessage);
         this.loadingUsers.set(false);
       }
     });
+  }
+
+  private extractSignUpError(err: any): string {
+    const message = err?.error?.message || err?.message || '';
+    if (message.toLowerCase().includes('username') || message.toLowerCase().includes('already exists') || message.toLowerCase().includes('email')) {
+      return 'Este correo ya está registrado. Intenta iniciar sesión.';
+    }
+    if (err?.status === 409) {
+      return 'Este correo ya está registrado. Intenta iniciar sesión.';
+    }
+    return 'No se pudo crear la cuenta. Por favor intenta de nuevo.';
   }
 
   verify(request: VerifyRequest, router: Router) {
@@ -102,10 +114,25 @@ export class IamStore {
         router.navigate(['/complete-account']).then();
       },
       error: (err) => {
-        this.verifyError.set(err?.error?.message || err?.message || 'An unexpected error occurred');
+        const errorMessage = this.extractVerifyError(err);
+        this.verifyError.set(errorMessage);
         this.loadingUsers.set(false);
       }
     });
+  }
+
+  private extractVerifyError(err: any): string {
+    const message = err?.message || '';
+    if (message.toLowerCase().includes('400') || message.toLowerCase().includes('incorrect') || message.toLowerCase().includes('invalid code')) {
+      return 'El código ingresado es incorrecto. Verifica e intenta de nuevo.';
+    }
+    if (err?.status === 400) {
+      return 'El código ingresado es incorrecto. Verifica e intenta de nuevo.';
+    }
+    if (err?.error?.message) {
+      return err.error.message;
+    }
+    return 'Error al verificar la cuenta. Por favor intenta de nuevo.';
   }
 
   resendCode(email: string): Observable<{message: string}> {
@@ -127,10 +154,28 @@ export class IamStore {
         router.navigate(['/setup-academy']).then();
       },
       error: (err) => {
-        this.completeAccountError.set(err?.error?.message || err?.message || 'An unexpected error occurred');
+        const errorMessage = this.extractCompleteAccountError(err);
+        this.completeAccountError.set(errorMessage);
         this.loadingUsers.set(false);
       }
     });
+  }
+
+  private extractCompleteAccountError(err: any): string {
+    const message = err?.error?.message || err?.message || '';
+    if (err?.status === 400) {
+      if (message.toLowerCase().includes('phone')) {
+        return 'El teléfono ingresado es inválido. Debe tener 9 dígitos.';
+      }
+      if (message.toLowerCase().includes('dni')) {
+        return 'El DNI ingresado es inválido. Debe tener 8 dígitos.';
+      }
+      return 'Los datos ingresados son inválidos. Por favor verifica la información.';
+    }
+    if (message && !message.includes('Server returned code')) {
+      return message;
+    }
+    return 'Error al completar el perfil. Por favor intenta de nuevo.';
   }
 
   setupAcademy(request: AcademyRegisterRequest, router: Router) {
@@ -148,10 +193,31 @@ export class IamStore {
         router.navigate(['/home']).then();
       },
       error: (err) => {
-        this.setupAcademyError.set(err?.error?.message || err?.message || 'An unexpected error occurred');
+        const errorMessage = this.extractSetupAcademyError(err);
+        this.setupAcademyError.set(errorMessage);
         this.loadingUsers.set(false);
       }
     });
+  }
+
+  private extractSetupAcademyError(err: any): string {
+    const message = err?.error?.message || err?.message || '';
+    if (err?.status === 400) {
+      if (message.toLowerCase().includes('phone')) {
+        return 'El teléfono ingresado es inválido. Debe tener 9 dígitos.';
+      }
+      if (message.toLowerCase().includes('ruc')) {
+        return 'El RUC ingresado es inválido. Debe tener 11 dígitos.';
+      }
+      if (message.toLowerCase().includes('email')) {
+        return 'El email ingresado es inválido.';
+      }
+      return 'Los datos ingresados son inválidos. Por favor verifica la información.';
+    }
+    if (message && !message.includes('Server returned code')) {
+      return message;
+    }
+    return 'Error al configurar la academia. Por favor intenta de nuevo.';
   }
 
   requestResetPassword(request: RequestResetPasswordRequest) {

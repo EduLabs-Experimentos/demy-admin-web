@@ -35,8 +35,8 @@
   bottom: 0;
   z-index: 1000;
   width: 260px;
-  background: var(--p-surface-50, #fafafa);
-  border-right: 1px solid var(--p-surface-200, #e0e0e0);
+  background: var(--p-surface-0);
+  border-right: 1px solid var(--p-surface-200);
   display: flex;
   flex-direction: column;
   transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1), transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -44,6 +44,8 @@
 
   @media (max-width: 1023px) {
     transform: translateX(-100%);
+    border-radius: 0 16px 16px 0;
+    box-shadow: 8px 0 32px rgba(0, 0, 0, 0.12);
 
     &.open {
       transform: translateX(0);

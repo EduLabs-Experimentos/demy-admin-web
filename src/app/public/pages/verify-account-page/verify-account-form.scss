@@ -12,6 +12,32 @@
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
 }
 
+.form-error-banner {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  background: rgba(220, 53, 69, 0.08);
+  border: 1px solid rgba(220, 53, 69, 0.25);
+  border-radius: 8px;
+  color: #dc3545;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  animation: shake 0.4s ease;
+
+  i {
+    font-size: 0.9375rem;
+  }
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-4px); }
+  40% { transform: translateX(4px); }
+  60% { transform: translateX(-4px); }
+  80% { transform: translateX(2px); }
+}
+
 .email-display {
   display: flex;
   flex-direction: column;
@@ -40,9 +66,9 @@
   .form-input {
     width: 100%;
     padding: 0.6875rem 0.875rem;
-    font-size: 1.25rem;
+    font-size: 1rem;
     text-align: center;
-    letter-spacing: 0.5rem;
+    letter-spacing: 0.25rem;
     border: 1.5px solid #b0b0b0;
     border-radius: 8px;
     background: #ffffff;
@@ -51,6 +77,7 @@
 
     &::placeholder {
       color: #888888;
+      opacity: 0.7;
     }
 
     &:hover {
@@ -66,7 +93,7 @@
 }
 
 .code-input {
-  font-family: monospace;
+  font-family: 'Inter', sans-serif;
 }
 
 :host ::ng-deep .submit-button {

@@ -1,4 +1,11 @@
 <form [formGroup]="form" (ngSubmit)="setupAcademy()" class="academy-form">
+  @if (store.setupAcademyError(); as error) {
+    <div class="form-error-banner">
+      <i class="pi pi-exclamation-triangle"></i>
+      <span>{{ error }}</span>
+    </div>
+  }
+
   <div class="form-field">
     <label for="academyName">{{ 'setup-academy.academyName' | translate }}</label>
     <input pInputText
@@ -6,7 +13,11 @@
            type="text"
            formControlName="academyName"
            placeholder="{{ 'setup-academy.academyName-placeholder' | translate }}"
-           class="form-input" />
+           class="form-input"
+           [class.ng-invalid]="form.controls['academyName'].invalid && form.controls['academyName'].touched" />
+    @if (form.controls['academyName'].invalid && form.controls['academyName'].touched) {
+      <small class="p-error">El nombre de la academia es requerido.</small>
+    }
   </div>
 
   <div class="form-field">
@@ -26,7 +37,12 @@
            type="text"
            formControlName="ruc"
            placeholder="{{ 'setup-academy.ruc-placeholder' | translate }}"
-           class="form-input" />
+           class="form-input"
+           [class.ng-invalid]="form.controls['ruc'].invalid && form.controls['ruc'].touched"
+           maxlength="11" />
+    @if (form.controls['ruc'].invalid && form.controls['ruc'].touched) {
+      <small class="p-error">{{ getRucError() }}</small>
+    }
   </div>
 
   <div class="form-field">
@@ -36,7 +52,11 @@
            type="text"
            formControlName="street"
            placeholder="{{ 'setup-academy.street-placeholder' | translate }}"
-           class="form-input" />
+           class="form-input"
+           [class.ng-invalid]="form.controls['street'].invalid && form.controls['street'].touched" />
+    @if (form.controls['street'].invalid && form.controls['street'].touched) {
+      <small class="p-error">La dirección es requerida.</small>
+    }
   </div>
 
   <div class="form-row">
@@ -47,7 +67,11 @@
              type="text"
              formControlName="district"
              placeholder="{{ 'setup-academy.district-placeholder' | translate }}"
-             class="form-input" />
+             class="form-input"
+             [class.ng-invalid]="form.controls['district'].invalid && form.controls['district'].touched" />
+      @if (form.controls['district'].invalid && form.controls['district'].touched) {
+        <small class="p-error">El distrito es requerido.</small>
+      }
     </div>
 
     <div class="form-field">
@@ -57,7 +81,11 @@
              type="text"
              formControlName="province"
              placeholder="{{ 'setup-academy.province-placeholder' | translate }}"
-             class="form-input" />
+             class="form-input"
+             [class.ng-invalid]="form.controls['province'].invalid && form.controls['province'].touched" />
+      @if (form.controls['province'].invalid && form.controls['province'].touched) {
+        <small class="p-error">La provincia es requerida.</small>
+      }
     </div>
   </div>
 
@@ -68,7 +96,11 @@
            type="text"
            formControlName="department"
            placeholder="{{ 'setup-academy.department-placeholder' | translate }}"
-           class="form-input" />
+           class="form-input"
+           [class.ng-invalid]="form.controls['department'].invalid && form.controls['department'].touched" />
+    @if (form.controls['department'].invalid && form.controls['department'].touched) {
+      <small class="p-error">El departamento es requerido.</small>
+    }
   </div>
 
   <div class="form-field">
@@ -78,7 +110,11 @@
            type="email"
            formControlName="emailAddress"
            placeholder="{{ 'setup-academy.email-placeholder' | translate }}"
-           class="form-input" />
+           class="form-input"
+           [class.ng-invalid]="form.controls['emailAddress'].invalid && form.controls['emailAddress'].touched" />
+    @if (form.controls['emailAddress'].invalid && form.controls['emailAddress'].touched) {
+      <small class="p-error">{{ getEmailError() }}</small>
+    }
   </div>
 
   <div class="form-row">
@@ -99,7 +135,12 @@
              type="text"
              formControlName="phone"
              placeholder="{{ 'setup-academy.phone-placeholder' | translate }}"
-             class="form-input" />
+             class="form-input"
+             [class.ng-invalid]="form.controls['phone'].invalid && form.controls['phone'].touched"
+             maxlength="9" />
+      @if (form.controls['phone'].invalid && form.controls['phone'].touched) {
+        <small class="p-error">{{ getPhoneError() }}</small>
+      }
     </div>
   </div>
 

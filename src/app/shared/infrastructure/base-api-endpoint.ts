@@ -102,8 +102,12 @@ export abstract class BaseApiEndpoint<
       let errorMessage = operation;
       if (error.error instanceof ErrorEvent) {
         errorMessage = `${operation}: ${error.error.message}`;
+      } else if (error.status === 0) {
+        errorMessage = `${operation}: Network error or server unavailable`;
       } else if (error.status === 404) {
         errorMessage = `${operation}: Resource not found`;
+      } else if (error.error?.message) {
+        errorMessage = `${operation}: ${error.error.message}`;
       } else {
         errorMessage = `${operation}: Server returned code ${error.status}`;
       }

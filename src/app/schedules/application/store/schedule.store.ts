@@ -208,6 +208,17 @@ export class ScheduleStore {
       return;
     }
 
+    if (!this.isValidTimeRange(formData.startTime, formData.endTime)) {
+      this.errorSignal.set('End time must be after start time');
+      return;
+    }
+
+    const schedule = this.schedulesSignal().find(s => s.id === scheduleId);
+    if (schedule && this.hasTimeConflict(schedule, formData.dayOfWeek, formData.startTime, formData.endTime, formData.classroomId)) {
+      this.errorSignal.set('Time slot conflicts with an existing session in this schedule');
+      return;
+    }
+
     const teacher = this.teachersSignal().find(t => t.id === formData.teacherId);
     if (!teacher) {
       this.errorSignal.set('Teacher not found');
@@ -276,6 +287,18 @@ export class ScheduleStore {
     if (!sessionId) return;
     if (!formData.classroomId || !formData.startTime || !formData.endTime || !formData.dayOfWeek) {
       this.errorSignal.set('Classroom, start time, end time and day are required');
+      return;
+    }
+
+    if (!this.isValidTimeRange(formData.startTime, formData.endTime)) {
+      this.errorSignal.set('End time must be after start time');
+      return;
+    }
+
+    const scheduleId = this.selectedScheduleIdSignal();
+    const schedule = scheduleId ? this.schedulesSignal().find(s => s.id === scheduleId) : null;
+    if (schedule && this.hasTimeConflict(schedule, formData.dayOfWeek, formData.startTime, formData.endTime, formData.classroomId)) {
+      this.errorSignal.set('Time slot conflicts with an existing session in this schedule');
       return;
     }
 
@@ -373,5 +396,48 @@ export class ScheduleStore {
           s.name.toLowerCase().includes(query.toLowerCase()))
       : schedules;
     this.filteredSchedulesSignal.set(filtered);
+  }
+
+  private isValidTimeRange(startTime: string, endTime: string): boolean {
+    if (!startTime || !endTime) return false;
+    const start = this.timeToMinutes(startTime);
+    const end = this.timeToMinutes(endTime);
+    return end > start;
+  }
+
+  private timeToMinutes(time: string): number {
+    const [hours, minutes] = time.split(':').map(Number);
+    return hours * 60 + minutes;
+  }
+
+  private hasTimeConflict(schedule: Schedule, dayOfWeek: string, startTime: string, endTime: string, classroomId: number | null): boolean {
+    const newStart = this.timeToMinutes(startTime);
+    const newEnd = this.timeToMinutes(endTime);
+
+    return schedule.classSessions.some(session => {
+      if (session.dayOfWeek !== dayOfWeek) return false;
+      if (session.classroom.id !== classroomId) return false;
+
+      const existingStart = this.timeToMinutes(session.startTime);
+      const existingEnd = this.timeToMinutes(session.endTime);
+
+      return newStart < existingEnd && newEnd > existingStart;
+    });
+  }
+
+  private hasTeacherConflict(schedule: Schedule, dayOfWeek: string, startTime: string, endTime: string, teacherId: number | null, excludeSessionId: number | null = null): boolean {
+    const newStart = this.timeToMinutes(startTime);
+    const newEnd = this.timeToMinutes(endTime);
+
+    return schedule.classSessions.some(session => {
+      if (session.id === excludeSessionId) return false;
+      if (session.dayOfWeek !== dayOfWeek) return false;
+      if (session.teacher.id !== teacherId) return false;
+
+      const existingStart = this.timeToMinutes(session.startTime);
+      const existingEnd = this.timeToMinutes(session.endTime);
+
+      return newStart < existingEnd && newEnd > existingStart;
+    });
   }
 }

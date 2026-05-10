@@ -59,8 +59,33 @@ export class ClassroomStore {
   createClassroom(): void {
     const formData = this.formDataSignal();
 
-    if (!formData.code || !formData.capacity) {
+    if (!formData.code && !formData.capacity) {
       this.errorSignal.set('Code and capacity are required');
+      return;
+    }
+
+    if (!formData.code) {
+      this.errorSignal.set('Code is required');
+      return;
+    }
+
+    if (!formData.capacity) {
+      this.errorSignal.set('Capacity is required');
+      return;
+    }
+
+    if (!formData.campus?.trim()) {
+      this.errorSignal.set('Campus is required');
+      return;
+    }
+
+    if (!this.isValidCode(formData.code)) {
+      this.errorSignal.set('Please enter a valid classroom code (2-10 uppercase letters and numbers only)');
+      return;
+    }
+
+    if (!this.isValidCapacity(formData.capacity)) {
+      this.errorSignal.set('Capacity must be a number between 1 and 999');
       return;
     }
 
@@ -94,8 +119,33 @@ export class ClassroomStore {
       return;
     }
 
-    if (!formData.code || !formData.capacity) {
+    if (!formData.code && !formData.capacity) {
       this.errorSignal.set('Code and capacity are required');
+      return;
+    }
+
+    if (!formData.code) {
+      this.errorSignal.set('Code is required');
+      return;
+    }
+
+    if (!formData.capacity) {
+      this.errorSignal.set('Capacity is required');
+      return;
+    }
+
+    if (!formData.campus?.trim()) {
+      this.errorSignal.set('Campus is required');
+      return;
+    }
+
+    if (!this.isValidCode(formData.code)) {
+      this.errorSignal.set('Please enter a valid classroom code (2-10 uppercase letters and numbers only)');
+      return;
+    }
+
+    if (!this.isValidCapacity(formData.capacity)) {
+      this.errorSignal.set('Capacity must be a number between 1 and 999');
       return;
     }
 
@@ -182,5 +232,15 @@ export class ClassroomStore {
           c.campus.toLowerCase().includes(query.toLowerCase()))
       : classrooms;
     this.filteredClassroomsSignal.set(filtered);
+  }
+
+  private isValidCode(code: string): boolean {
+    if (!code) return false;
+    return /^[A-Z0-9]{2,10}$/.test(code.trim());
+  }
+
+  private isValidCapacity(capacity: string): boolean {
+    const num = Number(capacity);
+    return !isNaN(num) && num >= 1 && num <= 999 && Number.isInteger(num);
   }
 }

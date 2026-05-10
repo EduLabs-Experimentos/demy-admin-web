@@ -28,8 +28,8 @@ export class CompleteAccountForm {
     firstName: new FormControl('', {nonNullable: true, validators: [Validators.required, Validators.minLength(2)]}),
     lastName: new FormControl('', {nonNullable: true, validators: [Validators.required, Validators.minLength(2)]}),
     countryCode: new FormControl('+51', {nonNullable: true, validators: [Validators.required]}),
-    phone: new FormControl('', {nonNullable: true, validators: [Validators.required, Validators.minLength(9)]}),
-    dniNumber: new FormControl('', {nonNullable: true, validators: [Validators.required, Validators.minLength(8)]})
+    phone: new FormControl('', {nonNullable: true, validators: [Validators.required, Validators.pattern(/^\d{9}$/)]}),
+    dniNumber: new FormControl('', {nonNullable: true, validators: [Validators.required, Validators.pattern(/^\d{8}$/)]})
   });
 
   completeAccount() {
@@ -51,5 +51,19 @@ export class CompleteAccountForm {
       userId: parseInt(userId, 10)
     };
     this.store.completeAccount(request, this.router);
+  }
+
+  getPhoneError(): string {
+    const control = this.form.controls['phone'];
+    if (control.hasError('required')) return 'El teléfono es requerido.';
+    if (control.hasError('pattern')) return 'El teléfono debe tener 9 dígitos.';
+    return 'Teléfono inválido.';
+  }
+
+  getDniError(): string {
+    const control = this.form.controls['dniNumber'];
+    if (control.hasError('required')) return 'El DNI es requerido.';
+    if (control.hasError('pattern')) return 'El DNI debe tener 8 dígitos.';
+    return 'DNI inválido.';
   }
 }

@@ -98,9 +98,45 @@ export class StudentsStore {
   }
 
   private formatError(error: any, fallback: string): string {
-    if (error instanceof Error) {
-      return error.message.includes('Resource not found') ? `${fallback}: Not found` : error.message;
+    const status = error?.status;
+    const errorMessage = error?.message || '';
+    const backendMessage = error?.error?.message || '';
+
+    const fullMessage = errorMessage + ' ' + backendMessage;
+    const msgLower = fullMessage.toLowerCase();
+
+    if (status === 400 || msgLower.includes('400')) {
+      if (msgLower.includes('email') || msgLower.includes('correo') || msgLower.includes('mail')) {
+        return 'El email ingresado es inválido. Verifica el formato (ej: correo@ejemplo.com).';
+      }
+      if (msgLower.includes('phone') || msgLower.includes('telefono') || msgLower.includes('teléfono') || msgLower.includes('telefon') || msgLower.includes('móvil') || msgLower.includes('mobile')) {
+        return 'El teléfono debe tener 9 dígitos.';
+      }
+      if (msgLower.includes('dni')) {
+        return 'El DNI debe tener 8 dígitos.';
+      }
+      if (msgLower.includes('name') || msgLower.includes('nombre') || msgLower.includes('lastname') || msgLower.includes('last')) {
+        return 'El nombre o apellido contiene caracteres inválidos.';
+      }
+      if (backendMessage && backendMessage.trim() && !backendMessage.includes('Server returned')) {
+        return backendMessage;
+      }
+      if (errorMessage && errorMessage.trim() && !errorMessage.includes('Server returned')) {
+        return errorMessage;
+      }
+      return 'Los datos ingresados son inválidos. Por favor verifica la información.';
     }
+
+    if (error instanceof Error) {
+      if (error.message.includes('Resource not found')) return `${fallback}: Not found`;
+      if (error.message.includes('Server returned code') && !backendMessage) return fallback;
+      return error.message;
+    }
+
+    if (backendMessage && !backendMessage.includes('Server returned code')) {
+      return backendMessage;
+    }
+
     return fallback;
   }
 }
