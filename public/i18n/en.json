@@ -264,6 +264,30 @@
       "delete": "Delete"
     }
   },
+  "enrollments": {
+    "page": { "title": "Enrollments", "subtitle": "Manage student enrollments and payments" },
+    "form": {
+      "title-create": "Create Enrollment", "title-edit": "Edit Enrollment",
+      "student": "Student", "select-student": "Select a student",
+      "period": "Academic Period", "select-period": "Select period",
+      "schedule": "Schedule", "select-schedule": "Select schedule",
+      "amount": "Amount", "amount-placeholder": "Enter amount",
+      "currency": "Currency",
+      "paymentStatus": "Payment Status",
+      "enrollmentStatus": "Enrollment Status",
+      "create": "Create Enrollment", "update": "Update Enrollment", "cancel": "Cancel"
+    },
+    "list": {
+      "search": "Search by student...", "loading": "Loading enrollments...", "empty": "No enrollments yet",
+      "studentId": "Student", "period": "Period", "schedule": "Schedule",
+      "amount": "Amount", "payment": "Payment", "status": "Status",
+      "actions": "Actions", "edit": "Edit", "delete": "Delete"
+    },
+    "status": {
+      "PENDING": "Pending", "PAID": "Paid", "PARTIAL": "Partial", "CANCELLED": "Cancelled",
+      "ACTIVE": "Active", "INACTIVE": "Inactive", "COMPLETED": "Completed"
+    }
+  },
   "academic-periods": {
     "page": { "title": "Academic Periods", "subtitle": "Manage your academy's academic periods" },
     "form": {

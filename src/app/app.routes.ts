@@ -26,6 +26,8 @@ export const routes: Routes = [
       { path: 'schedules', loadChildren: () => import('./schedules/presentation/schedules.routes').then(m => m.schedulesRoutes) },
       { path: 'search-schedules', loadChildren: () => import('./scheduling/presentation/scheduling.routes').then(m => m.schedulingRoutes) },
       { path: 'academic-periods', loadChildren: () => import('./academic-periods/presentation/academic-periods.routes').then(m => m.academicPeriodsRoutes) },
+      { path: 'enrollment', loadChildren: () => import('./enrollments/presentation/enrollments.routes').then(m => m.enrollmentsRoutes) },
+      { path: 'academic-periods', loadChildren: () => import('./academic-periods/presentation/academic-periods.routes').then(m => m.academicPeriodsRoutes) },
 
       // 👇 ¡AQUÍ ESTÁ TU RUTA DE ESTUDIANTES! 👇
       { path: 'students', loadChildren: () => import('./students/presentation/students.routes').then(m => m.studentsRoutes) },

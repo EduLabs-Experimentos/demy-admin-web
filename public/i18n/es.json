@@ -264,6 +264,30 @@
       "delete": "Eliminar"
     }
   },
+  "enrollments": {
+    "page": { "title": "Matrículas", "subtitle": "Gestiona las matrículas y pagos de estudiantes" },
+    "form": {
+      "title-create": "Crear Matrícula", "title-edit": "Editar Matrícula",
+      "student": "Estudiante", "select-student": "Selecciona un estudiante",
+      "period": "Período Académico", "select-period": "Selecciona período",
+      "schedule": "Horario", "select-schedule": "Selecciona horario",
+      "amount": "Monto", "amount-placeholder": "Ingresa el monto",
+      "currency": "Moneda",
+      "paymentStatus": "Estado de Pago",
+      "enrollmentStatus": "Estado de Matrícula",
+      "create": "Crear Matrícula", "update": "Actualizar Matrícula", "cancel": "Cancelar"
+    },
+    "list": {
+      "search": "Buscar por estudiante...", "loading": "Cargando matrículas...", "empty": "No hay matrículas aún",
+      "studentId": "Estudiante", "period": "Período", "schedule": "Horario",
+      "amount": "Monto", "payment": "Pago", "status": "Estado",
+      "actions": "Acciones", "edit": "Editar", "delete": "Eliminar"
+    },
+    "status": {
+      "PENDING": "Pendiente", "PAID": "Pagado", "PARTIAL": "Parcial", "CANCELLED": "Cancelado",
+      "ACTIVE": "Activo", "INACTIVE": "Inactivo", "COMPLETED": "Completado"
+    }
+  },
   "academic-periods": {
     "page": { "title": "Periodos", "subtitle": "Gestiona los periodos academicos de tu academia" },
     "form": {
