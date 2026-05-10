@@ -1,0 +1,87 @@
+<article class="enrollment-form">
+  <h3 class="enrollment-form__title">{{ (store.isEditing() ? 'enrollments.form.title-edit' : 'enrollments.form.title-create') | translate }}</h3>
+
+  <div class="enrollment-form__field">
+    <label class="enrollment-form__label" for="enr-studentId">{{ 'enrollments.form.student' | translate }}</label>
+    <select id="enr-studentId" class="enrollment-form__select"
+            [value]="store.formData().studentId ?? ''"
+            (change)="store.onFieldChange('studentId', $any($event.target).value)">
+      <option value="" disabled>{{ 'enrollments.form.select-student' | translate }}</option>
+      @for (s of store.students(); track s.id) { <option [value]="s.id">{{ s.firstName }} {{ s.lastName }}</option> }
+    </select>
+  </div>
+
+  <div class="enrollment-form__field">
+    <label class="enrollment-form__label" for="enr-periodId">{{ 'enrollments.form.period' | translate }}</label>
+    <select id="enr-periodId" class="enrollment-form__select"
+            [value]="store.formData().periodId ?? ''"
+            (change)="store.onFieldChangeNumber('periodId', $any($event.target).value)">
+      <option value="" disabled>{{ 'enrollments.form.select-period' | translate }}</option>
+      @for (p of store.periods(); track p.id) { <option [value]="p.id">{{ p.periodName }}</option> }
+    </select>
+  </div>
+
+  <div class="enrollment-form__field">
+    <label class="enrollment-form__label" for="enr-scheduleId">{{ 'enrollments.form.schedule' | translate }}</label>
+    <select id="enr-scheduleId" class="enrollment-form__select"
+            [value]="store.formData().scheduleId ?? ''"
+            (change)="store.onFieldChangeNumber('scheduleId', $any($event.target).value)">
+      <option value="" disabled>{{ 'enrollments.form.select-schedule' | translate }}</option>
+      @for (s of store.schedules(); track s.id) { <option [value]="s.id">{{ s.name }}</option> }
+    </select>
+  </div>
+
+  <div class="enrollment-form__row">
+    <div class="enrollment-form__field">
+      <label class="enrollment-form__label" for="enr-amount">{{ 'enrollments.form.amount' | translate }}</label>
+      <input pInputText id="enr-amount" type="number" step="0.01" class="enrollment-form__input"
+             [value]="store.formData().amount"
+             (input)="store.onFieldChange('amount', $any($event.target).value)"
+             [placeholder]="'enrollments.form.amount-placeholder' | translate" />
+    </div>
+    <div class="enrollment-form__field enrollment-form__field--small">
+      <label class="enrollment-form__label" for="enr-currency">{{ 'enrollments.form.currency' | translate }}</label>
+      <select id="enr-currency" class="enrollment-form__select"
+              [value]="store.formData().currency"
+              (change)="store.onFieldChange('currency', $any($event.target).value)">
+        @for (c of store.currencies; track c) { <option [value]="c">{{ c }}</option> }
+      </select>
+    </div>
+  </div>
+
+  <div class="enrollment-form__field">
+    <label class="enrollment-form__label" for="enr-paymentStatus">{{ 'enrollments.form.paymentStatus' | translate }}</label>
+    <select id="enr-paymentStatus" class="enrollment-form__select"
+            [value]="store.formData().paymentStatus"
+            (change)="store.onFieldChange('paymentStatus', $any($event.target).value)">
+      @for (s of store.paymentStatuses; track s) { <option [value]="s">{{ 'enrollments.status.' + s | translate }}</option> }
+    </select>
+  </div>
+
+  @if (store.isEditing()) {
+    <div class="enrollment-form__field">
+      <label class="enrollment-form__label" for="enr-enrollmentStatus">{{ 'enrollments.form.enrollmentStatus' | translate }}</label>
+      <select id="enr-enrollmentStatus" class="enrollment-form__select"
+              [value]="store.formData().enrollmentStatus"
+              (change)="store.onFieldChange('enrollmentStatus', $any($event.target).value)">
+        @for (s of store.enrollmentStatuses; track s) { <option [value]="s">{{ 'enrollments.status.' + s | translate }}</option> }
+      </select>
+    </div>
+  }
+
+  <div class="enrollment-form__actions">
+    <p-button [label]="(store.isEditing() ? 'enrollments.form.update' : 'enrollments.form.create') | translate"
+              styleClass="enrollment-form__submit" [loading]="store.isLoading()" [rounded]="true" (onClick)="submit()" />
+    @if (store.isEditing()) {
+      <p-button [label]="'enrollments.form.cancel' | translate" styleClass="enrollment-form__cancel" [rounded]="true" severity="secondary" (onClick)="store.cancelEdit()" />
+    }
+  </div>
+
+  @if (store.error(); as error) {
+    <div class="enrollment-form__error">
+      <i class="pi pi-exclamation-triangle" aria-hidden="true"></i>
+      <span>{{ error }}</span>
+      <button class="enrollment-form__error-dismiss" (click)="store.clearError()" aria-label="Dismiss"><i class="pi pi-times"></i></button>
+    </div>
+  }
+</article>
