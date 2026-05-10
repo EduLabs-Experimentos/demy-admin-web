@@ -27,14 +27,14 @@ export class SetupAcademyForm {
   form = new FormGroup({
     academyName: new FormControl('', {nonNullable: true, validators: [Validators.required]}),
     academyDescription: new FormControl('', {nonNullable: true}),
-    ruc: new FormControl('', {nonNullable: true, validators: [Validators.required, Validators.minLength(11), Validators.maxLength(11)]}),
+    ruc: new FormControl('', {nonNullable: true, validators: [Validators.required, Validators.pattern(/^\d{11}$/)]}),
     street: new FormControl('', {nonNullable: true, validators: [Validators.required]}),
     district: new FormControl('', {nonNullable: true, validators: [Validators.required]}),
     province: new FormControl('', {nonNullable: true, validators: [Validators.required]}),
     department: new FormControl('', {nonNullable: true, validators: [Validators.required]}),
     emailAddress: new FormControl('', {nonNullable: true, validators: [Validators.required, Validators.email]}),
     countryCode: new FormControl('+51', {nonNullable: true}),
-    phone: new FormControl('', {nonNullable: true, validators: [Validators.required]})
+    phone: new FormControl('', {nonNullable: true, validators: [Validators.required, Validators.pattern(/^\d{9}$/)]})
   });
 
   setupAcademy() {
@@ -61,5 +61,26 @@ export class SetupAcademyForm {
       administratorId: parseInt(adminId, 10)
     };
     this.store.setupAcademy(request, this.router);
+  }
+
+  getRucError(): string {
+    const control = this.form.controls['ruc'];
+    if (control.hasError('required')) return 'El RUC es requerido.';
+    if (control.hasError('pattern')) return 'El RUC debe tener 11 dígitos.';
+    return 'RUC inválido.';
+  }
+
+  getPhoneError(): string {
+    const control = this.form.controls['phone'];
+    if (control.hasError('required')) return 'El teléfono es requerido.';
+    if (control.hasError('pattern')) return 'El teléfono debe tener 9 dígitos.';
+    return 'Teléfono inválido.';
+  }
+
+  getEmailError(): string {
+    const control = this.form.controls['emailAddress'];
+    if (control.hasError('required')) return 'El email es requerido.';
+    if (control.hasError('email')) return 'Ingresa un email válido.';
+    return 'Email inválido.';
   }
 }

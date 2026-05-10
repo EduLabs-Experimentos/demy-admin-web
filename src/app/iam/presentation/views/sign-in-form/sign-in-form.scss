@@ -69,15 +69,59 @@
 
   :host ::ng-deep .p-input-icon-left {
     width: 100%;
+    position: relative;
+    display: flex;
 
     .pi {
+      position: absolute;
       left: 0.875rem;
+      top: 50%;
+      transform: translateY(-50%);
       color: #888888;
       font-size: 0.9375rem;
+      z-index: 1;
+      pointer-events: none;
     }
 
     .form-input {
-      padding-left: 2.5rem;
+      width: 100%;
+      padding: 0.6875rem 0.875rem 0.6875rem 2.5rem !important;
+      font-size: 0.875rem !important;
+      border: 1.5px solid #b0b0b0 !important;
+      border-radius: 8px !important;
+      transition: border-color 0.25s ease, box-shadow 0.25s ease;
+      background: #ffffff !important;
+      color: #1a1a2e !important;
+      font-family: 'Inter', sans-serif !important;
+      -webkit-box-shadow: none !important;
+      box-shadow: none !important;
+
+      &::placeholder {
+        color: #888888 !important;
+      }
+
+      &:-webkit-autofill,
+      &:-webkit-autofill:hover,
+      &:-webkit-autofill:focus,
+      &:-webkit-autofill:active {
+        -webkit-box-shadow: 0 0 0 30px #ffffff inset !important;
+        -webkit-text-fill-color: #1a1a2e !important;
+        background-color: #ffffff !important;
+      }
+
+      &:hover {
+        border-color: #3F51B5 !important;
+      }
+
+      &:focus {
+        border-color: #3F51B5 !important;
+        box-shadow: 0 0 0 3px rgba(63, 81, 181, 0.15) !important;
+        outline: none !important;
+      }
+
+      &.ng-invalid {
+        border-color: #dc3545 !important;
+      }
     }
   }
 

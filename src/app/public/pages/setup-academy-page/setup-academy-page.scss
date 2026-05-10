@@ -9,11 +9,12 @@
   flex: 1;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   background: linear-gradient(135deg, #D0E3EE 0%, #E8EEF4 50%, #F0F4F8 100%);
   padding: 2rem;
   position: relative;
   z-index: 1;
+  overflow-y: auto;
 }
 
 .language-bar {
@@ -28,7 +29,8 @@
   flex-direction: column;
   align-items: center;
   width: 100%;
-  max-width: 380px;
+  max-width: 480px;
+  padding-bottom: 2rem;
 }
 
 .logo {

@@ -1,6 +1,5 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-// Asegúrate de que esta ruta apunte a tu store correcto:
 import { StudentsStore } from '../../../../../application/students';
 import { Student } from '../../../../../domain/model/student.entity';
 import { TranslatePipe } from '@ngx-translate/core';
@@ -35,12 +34,12 @@ export class StudentForm implements OnInit {
 
   initForm() {
     this.form = this.fb.group({
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
-      dni: ['', [Validators.required, Validators.minLength(8)]],
+      firstName: ['', [Validators.required, Validators.pattern(/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/)]],
+      lastName: ['', [Validators.required, Validators.pattern(/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/)]],
+      dni: ['', [Validators.required, Validators.pattern(/^\d{8}$/)]],
       emailAddress: ['', [Validators.required, Validators.email]],
       studentCode: ['', Validators.required],
-      phone: ['', Validators.required],
+      phone: ['', [Validators.required, Validators.pattern(/^\d{9}$/)]],
       sex: [null, Validators.required],
       birthDate: [null, Validators.required],
       street: ['', Validators.required],
@@ -54,6 +53,23 @@ export class StudentForm implements OnInit {
   isInvalid(field: string): boolean {
     const control = this.form.get(field);
     return !!(control && control.invalid && (control.dirty || control.touched));
+  }
+
+  getErrorMessage(field: string): string {
+    const control = this.form.get(field);
+    if (!control || !control.errors) return '';
+
+    if (control.errors['required']) return 'Este campo es requerido';
+    if (control.errors['email']) return 'Email inválido (ej: correo@ejemplo.com)';
+    if (control.errors['pattern']) {
+      if (field === 'firstName' || field === 'lastName') return 'Solo letras y espacios';
+      if (field === 'dni') return 'Debe tener 8 dígitos';
+      if (field === 'phone') return 'Debe tener 9 dígitos';
+    }
+    if (control.errors['minlength']) {
+      if (field === 'dni') return 'Debe tener al menos 8 dígitos';
+    }
+    return 'Valor inválido';
   }
 
   submit() {
@@ -80,8 +96,6 @@ export class StudentForm implements OnInit {
       countryCode: formValues.countryCode
     });
 
-    // Ahora pasamos () => this.resetForm() como segundo parámetro
-    // Así los campos NO se borran si el backend lanza un error.
     if (this.isEdit) {
       this.store.updateStudent(studentData, () => this.resetForm());
     } else {
@@ -113,6 +127,6 @@ export class StudentForm implements OnInit {
     this.form.reset({ countryCode: '+51' });
     this.isEdit = false;
     this.currentEditingId = null;
-    this.store.clearError(); // Limpiamos el error si el usuario cancela
+    this.store.clearError();
   }
 }

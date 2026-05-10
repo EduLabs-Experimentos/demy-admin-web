@@ -18,4 +18,22 @@ export class TeacherForm {
   register(): void {
     this.store.registerTeacher();
   }
+
+  isValidEmail(email: string): boolean {
+    if (!email) return true;
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  }
+
+  isValidPhone(phone: string): boolean {
+    if (!phone) return true;
+    const phoneRegex = /^\d{9}$/;
+    return phoneRegex.test(phone);
+  }
+
+  isValidName(name: string): boolean {
+    if (!name) return true;
+    const nameRegex = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/;
+    return nameRegex.test(name);
+  }
 }

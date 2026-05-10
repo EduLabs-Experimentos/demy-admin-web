@@ -59,8 +59,33 @@ export class CourseStore {
   createCourse(): void {
     const formData = this.formDataSignal();
 
-    if (!formData.name || !formData.code) {
+    if (!formData.name && !formData.code) {
       this.errorSignal.set('Name and code are required');
+      return;
+    }
+
+    if (!formData.name) {
+      this.errorSignal.set('Name is required');
+      return;
+    }
+
+    if (!formData.code) {
+      this.errorSignal.set('Code is required');
+      return;
+    }
+
+    if (!formData.description?.trim()) {
+      this.errorSignal.set('Description is required');
+      return;
+    }
+
+    if (!this.isValidName(formData.name)) {
+      this.errorSignal.set('Please enter a valid course name (2-50 letters and spaces only)');
+      return;
+    }
+
+    if (!this.isValidCode(formData.code)) {
+      this.errorSignal.set('Please enter a valid course code (2-10 uppercase letters and numbers only)');
       return;
     }
 
@@ -94,8 +119,33 @@ export class CourseStore {
       return;
     }
 
-    if (!formData.name || !formData.code) {
+    if (!formData.name && !formData.code) {
       this.errorSignal.set('Name and code are required');
+      return;
+    }
+
+    if (!formData.name) {
+      this.errorSignal.set('Name is required');
+      return;
+    }
+
+    if (!formData.code) {
+      this.errorSignal.set('Code is required');
+      return;
+    }
+
+    if (!formData.description?.trim()) {
+      this.errorSignal.set('Description is required');
+      return;
+    }
+
+    if (!this.isValidName(formData.name)) {
+      this.errorSignal.set('Please enter a valid course name (2-50 letters and spaces only)');
+      return;
+    }
+
+    if (!this.isValidCode(formData.code)) {
+      this.errorSignal.set('Please enter a valid course code (2-10 uppercase letters and numbers only)');
       return;
     }
 
@@ -183,5 +233,15 @@ export class CourseStore {
           c.description.toLowerCase().includes(query.toLowerCase()))
       : courses;
     this.filteredCoursesSignal.set(filtered);
+  }
+
+  private isValidName(name: string): boolean {
+    if (!name) return false;
+    return /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]{2,50}$/.test(name.trim());
+  }
+
+  private isValidCode(code: string): boolean {
+    if (!code) return false;
+    return /^[A-Z0-9]{2,10}$/.test(code.trim());
   }
 }

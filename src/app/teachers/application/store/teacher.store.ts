@@ -53,7 +53,7 @@ export class TeacherStore {
     const formData = this.formDataSignal();
 
     if (!formData.firstName || !formData.lastName || !formData.emailAddress) {
-      this.errorSignal.set('First name, last name and email are required');
+      this.errorSignal.set('El nombre, apellido y email son requeridos');
       return;
     }
 
@@ -74,10 +74,54 @@ export class TeacherStore {
         this.loadTeachers();
       },
       error: (err) => {
-        this.errorSignal.set(err?.error?.message || err?.message || 'Failed to register teacher');
+        this.errorSignal.set(this.extractError(err));
         this.isLoadingSignal.set(false);
       }
     });
+  }
+
+  private extractError(err: any): string {
+    const status = err?.status;
+    const errorMessage = err?.message || '';
+    const backendMessage = err?.error?.message || '';
+
+    const fullMessage = errorMessage + ' ' + backendMessage;
+    const msgLower = fullMessage.toLowerCase();
+
+    if (status === 400 || msgLower.includes('400')) {
+      if (msgLower.includes('email') || msgLower.includes('correo') || msgLower.includes('mail')) {
+        return 'El email ingresado es inválido. Verifica el formato (ej: correo@ejemplo.com).';
+      }
+      if (msgLower.includes('phone') || msgLower.includes('telefono') || msgLower.includes('teléfono') || msgLower.includes('telefon') || msgLower.includes('móvil') || msgLower.includes('mobile')) {
+        return 'El teléfono debe tener 9 dígitos.';
+      }
+      if (msgLower.includes('dni')) {
+        return 'El DNI es inválido.';
+      }
+      if (msgLower.includes('ruc')) {
+        return 'El RUC es inválido.';
+      }
+      if (msgLower.includes('name') || msgLower.includes('nombre') || msgLower.includes('lastname') || msgLower.includes('last')) {
+        return 'El nombre o apellido contiene caracteres inválidos.';
+      }
+      if (backendMessage && backendMessage.trim() && !backendMessage.includes('Server returned')) {
+        return backendMessage;
+      }
+      if (errorMessage && errorMessage.trim() && !errorMessage.includes('Server returned')) {
+        return errorMessage;
+      }
+      return 'Los datos ingresados son inválidos. Por favor verifica la información.';
+    }
+
+    if (backendMessage && !backendMessage.includes('Server returned code')) {
+      return backendMessage;
+    }
+
+    if (errorMessage && !errorMessage.includes('Server returned code')) {
+      return errorMessage;
+    }
+
+    return 'Error al registrar el profesor. Por favor intenta de nuevo.';
   }
 
   onFieldChange(field: keyof TeacherFormData, value: string): void {

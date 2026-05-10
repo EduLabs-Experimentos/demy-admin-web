@@ -193,10 +193,31 @@ export class IamStore {
         router.navigate(['/home']).then();
       },
       error: (err) => {
-        this.setupAcademyError.set(err?.error?.message || err?.message || 'An unexpected error occurred');
+        const errorMessage = this.extractSetupAcademyError(err);
+        this.setupAcademyError.set(errorMessage);
         this.loadingUsers.set(false);
       }
     });
+  }
+
+  private extractSetupAcademyError(err: any): string {
+    const message = err?.error?.message || err?.message || '';
+    if (err?.status === 400) {
+      if (message.toLowerCase().includes('phone')) {
+        return 'El teléfono ingresado es inválido. Debe tener 9 dígitos.';
+      }
+      if (message.toLowerCase().includes('ruc')) {
+        return 'El RUC ingresado es inválido. Debe tener 11 dígitos.';
+      }
+      if (message.toLowerCase().includes('email')) {
+        return 'El email ingresado es inválido.';
+      }
+      return 'Los datos ingresados son inválidos. Por favor verifica la información.';
+    }
+    if (message && !message.includes('Server returned code')) {
+      return message;
+    }
+    return 'Error al configurar la academia. Por favor intenta de nuevo.';
   }
 
   requestResetPassword(request: RequestResetPasswordRequest) {

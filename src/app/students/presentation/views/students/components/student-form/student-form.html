@@ -17,13 +17,21 @@
         <label class="student-form__label" for="firstName">{{ 'students.form.firstName' | translate }}</label>
         <input pInputText id="firstName" formControlName="firstName" class="student-form__input"
                [placeholder]="'students.form.firstName-placeholder' | translate"
-               [class.ng-invalid]="isInvalid('firstName')" />
+               [class.ng-invalid]="isInvalid('firstName')"
+               [class.student-form__input--invalid]="isInvalid('firstName')" />
+        @if (isInvalid('firstName')) {
+          <small class="student-form__error-text">{{ getErrorMessage('firstName') }}</small>
+        }
       </div>
       <div class="student-form__field student-form__field--grow">
         <label class="student-form__label" for="lastName">{{ 'students.form.lastName' | translate }}</label>
         <input pInputText id="lastName" formControlName="lastName" class="student-form__input"
                [placeholder]="'students.form.lastName-placeholder' | translate"
-               [class.ng-invalid]="isInvalid('lastName')" />
+               [class.ng-invalid]="isInvalid('lastName')"
+               [class.student-form__input--invalid]="isInvalid('lastName')" />
+        @if (isInvalid('lastName')) {
+          <small class="student-form__error-text">{{ getErrorMessage('lastName') }}</small>
+        }
       </div>
     </div>
 
@@ -32,13 +40,21 @@
         <label class="student-form__label" for="dni">{{ 'students.form.dni' | translate }}</label>
         <input pInputText id="dni" formControlName="dni" class="student-form__input"
                [placeholder]="'students.form.dni-placeholder' | translate"
-               [class.ng-invalid]="isInvalid('dni')" />
+               [class.ng-invalid]="isInvalid('dni')"
+               [class.student-form__input--invalid]="isInvalid('dni')" />
+        @if (isInvalid('dni')) {
+          <small class="student-form__error-text">{{ getErrorMessage('dni') }}</small>
+        }
       </div>
       <div class="student-form__field student-form__field--grow">
         <label class="student-form__label" for="studentCode">{{ 'students.form.studentCode' | translate }}</label>
         <input pInputText id="studentCode" formControlName="studentCode" class="student-form__input"
                [placeholder]="'students.form.studentCode-placeholder' | translate"
-               [class.ng-invalid]="isInvalid('studentCode')" />
+               [class.ng-invalid]="isInvalid('studentCode')"
+               [class.student-form__input--invalid]="isInvalid('studentCode')" />
+        @if (isInvalid('studentCode')) {
+          <small class="student-form__error-text">{{ getErrorMessage('studentCode') }}</small>
+        }
       </div>
     </div>
 
@@ -46,20 +62,29 @@
       <label class="student-form__label" for="emailAddress">{{ 'students.form.email' | translate }}</label>
       <input pInputText id="emailAddress" type="email" formControlName="emailAddress" class="student-form__input"
              [placeholder]="'students.form.email-placeholder' | translate"
-             [class.ng-invalid]="isInvalid('emailAddress')" />
+             [class.ng-invalid]="isInvalid('emailAddress')"
+             [class.student-form__input--invalid]="isInvalid('emailAddress')" />
+      @if (isInvalid('emailAddress')) {
+        <small class="student-form__error-text">{{ getErrorMessage('emailAddress') }}</small>
+      }
     </div>
 
     <div class="student-form__row">
       <div class="student-form__field student-form__field--small">
         <label class="student-form__label" for="countryCode">{{ 'students.form.countryCode' | translate }}</label>
         <input pInputText id="countryCode" formControlName="countryCode" class="student-form__input"
-               [class.ng-invalid]="isInvalid('countryCode')" />
+               [class.ng-invalid]="isInvalid('countryCode')"
+               [class.student-form__input--invalid]="isInvalid('countryCode')" />
       </div>
       <div class="student-form__field student-form__field--grow">
         <label class="student-form__label" for="phone">{{ 'students.form.phone' | translate }}</label>
         <input pInputText id="phone" type="tel" formControlName="phone" class="student-form__input"
                [placeholder]="'students.form.phone-placeholder' | translate"
-               [class.ng-invalid]="isInvalid('phone')" />
+               [class.ng-invalid]="isInvalid('phone')"
+               [class.student-form__input--invalid]="isInvalid('phone')" />
+        @if (isInvalid('phone')) {
+          <small class="student-form__error-text">{{ getErrorMessage('phone') }}</small>
+        }
       </div>
     </div>
 
@@ -70,6 +95,9 @@
                   [placeholder]="'students.form.sex-placeholder' | translate"
                   [style]="{'width':'100%'}"
                   [class.ng-invalid]="isInvalid('sex')"></p-select>
+        @if (isInvalid('sex')) {
+          <small class="student-form__error-text">{{ getErrorMessage('sex') }}</small>
+        }
       </div>
       <div class="student-form__field student-form__field--grow">
         <label class="student-form__label" for="birthDate">{{ 'students.form.birthDate' | translate }}</label>
@@ -78,6 +106,9 @@
                       [style]="{'width':'100%'}"
                       inputStyleClass="student-form__input"
                       [class.ng-invalid]="isInvalid('birthDate')"></p-datepicker>
+        @if (isInvalid('birthDate')) {
+          <small class="student-form__error-text">{{ getErrorMessage('birthDate') }}</small>
+        }
       </div>
     </div>
 
@@ -85,14 +116,22 @@
       <label class="student-form__label" for="street">{{ 'students.form.street' | translate }}</label>
       <input pInputText id="street" formControlName="street" class="student-form__input"
              [placeholder]="'students.form.street-placeholder' | translate"
-             [class.ng-invalid]="isInvalid('street')" />
+             [class.ng-invalid]="isInvalid('street')"
+             [class.student-form__input--invalid]="isInvalid('street')" />
+      @if (isInvalid('street')) {
+        <small class="student-form__error-text">{{ getErrorMessage('street') }}</small>
+      }
     </div>
 
     <div class="student-form__field">
       <label class="student-form__label" for="district">{{ 'students.form.district' | translate }}</label>
       <input pInputText id="district" formControlName="district" class="student-form__input"
              [placeholder]="'students.form.district-placeholder' | translate"
-             [class.ng-invalid]="isInvalid('district')" />
+             [class.ng-invalid]="isInvalid('district')"
+             [class.student-form__input--invalid]="isInvalid('district')" />
+      @if (isInvalid('district')) {
+        <small class="student-form__error-text">{{ getErrorMessage('district') }}</small>
+      }
     </div>
 
     <div class="student-form__row">
@@ -100,13 +139,21 @@
         <label class="student-form__label" for="province">{{ 'students.form.province' | translate }}</label>
         <input pInputText id="province" formControlName="province" class="student-form__input"
                [placeholder]="'students.form.province-placeholder' | translate"
-               [class.ng-invalid]="isInvalid('province')" />
+               [class.ng-invalid]="isInvalid('province')"
+               [class.student-form__input--invalid]="isInvalid('province')" />
+        @if (isInvalid('province')) {
+          <small class="student-form__error-text">{{ getErrorMessage('province') }}</small>
+        }
       </div>
       <div class="student-form__field student-form__field--grow">
         <label class="student-form__label" for="department">{{ 'students.form.department' | translate }}</label>
         <input pInputText id="department" formControlName="department" class="student-form__input"
                [placeholder]="'students.form.department-placeholder' | translate"
-               [class.ng-invalid]="isInvalid('department')" />
+               [class.ng-invalid]="isInvalid('department')"
+               [class.student-form__input--invalid]="isInvalid('department')" />
+        @if (isInvalid('department')) {
+          <small class="student-form__error-text">{{ getErrorMessage('department') }}</small>
+        }
       </div>
     </div>
 
@@ -115,13 +162,6 @@
               [loading]="store.loading()"
               [rounded]="true"
               type="submit" />
-
-    @if (form.invalid && form.touched) {
-      <div class="student-form__error" style="margin-top: 8px;">
-        <i class="pi pi-info-circle"></i>
-        <span>{{ 'students.form.error-form' | translate }}</span>
-      </div>
-    }
 
     @if (store.error(); as error) {
       <div class="student-form__error">
