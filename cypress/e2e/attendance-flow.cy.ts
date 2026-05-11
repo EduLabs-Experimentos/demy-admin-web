@@ -14,7 +14,7 @@ describe('Attendance Flow - Desktop', () => {
       attendance: [{ dni: '12345678', status: 'ABSENT' }]
     }
   ];
-
+  // g
   const mockUpdated = {
     id: 1,
     classSessionId: 1,
