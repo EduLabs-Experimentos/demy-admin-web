@@ -3,7 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {catchError, map, Observable} from 'rxjs';
 import {CreateEnrollmentRequest, UpdateEnrollmentRequest} from './enrollment-request';
 import {EnrollmentResource, EnrollmentResponse} from './enrollment-response';
-import {environment} from '../../../environments/environment.development';
+import {environment} from '../../../environments/environment';
 
 export class EnrollmentEndpoint extends ErrorHandlingEnabledBaseType {
   private readonly baseUrl: string;

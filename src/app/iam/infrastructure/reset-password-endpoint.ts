@@ -6,7 +6,7 @@ import {VerifyResetCodeRequest} from './verify-reset-code-request';
 import {ResetPasswordRequest} from './reset-password-request';
 import {ResetPasswordResource, ResetPasswordResponse} from './reset-password-response';
 import {MessageResource} from './message-resource';
-import {environment} from '../../../environments/environment.development';
+import {environment} from '../../../environments/environment';
 
 const authBaseUrl = environment.platformProviderApiBaseUrl;
 

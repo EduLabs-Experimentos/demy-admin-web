@@ -1,0 +1,80 @@
+name: Frontend CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+# Permisos necesarios para publicar en GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  # CONTINUOUS INTEGRATION (CI)
+  build-and-test:
+    name: 🧪 Build & E2E Tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      #  Configuramos la versión exacta de Node que pide el proyecto
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+
+      # 2. Instalamos pnpm (Obligatorio por tu preinstall script)
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v3
+        with:
+          version: 10
+          run_install: false
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Install Cypress Binary
+        run: pnpm exec cypress install
+
+      #  Ejecutamos pruebas E2E con Cypress
+      # Esta action levanta Angular, espera a que cargue y corre los tests
+      - name: Run Cypress E2E Tests
+        uses: cypress-io/github-action@v6
+        with:
+          install: false # Ya instalamos con pnpm arriba
+          start: pnpm start
+          wait-on: 'http://localhost:4200'
+
+      # Compilamos Angular
+      - name: Build Angular App
+        run: pnpm run build --base-href /demy-admin-web/
+
+      # Truco para que Angular (SPA) funcione en GitHub Pages sin dar error 404
+      - name: Add SPA fallback
+        run: cp dist/demy-web-app/browser/index.html dist/demy-web-app/browser/404.html
+
+      # Preparamos el paquete para el despliegue
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist/demy-web-app/browser
+
+  # Continuos delivery /Continuous deployment
+  deploy:
+    name: 🚀 Deploy to GitHub Pages
+    needs: build-and-test
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

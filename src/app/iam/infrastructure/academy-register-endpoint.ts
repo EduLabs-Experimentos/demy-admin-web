@@ -3,7 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {catchError, map, Observable} from 'rxjs';
 import {AcademyRegisterRequest} from './academy-register-request';
 import {AcademyRegisterResource, AcademyRegisterResponse} from './academy-register-response';
-import {environment} from '../../../environments/environment.development';
+import {environment} from '../../../environments/environment';
 
 const academyApiBaseUrl = environment.platformProviderApiBaseUrl + environment.platformProviderAcademyRegisterEndpointPath;
 
