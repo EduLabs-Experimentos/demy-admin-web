@@ -3,7 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {catchError, map, Observable} from 'rxjs';
 import {CreateCourseRequest, UpdateCourseRequest} from './course-request';
 import {CourseResource, CourseResponse} from './course-response';
-import {environment} from '../../../environments/environment.development';
+import {environment} from '../../../environments/environment';
 
 export class CourseEndpoint extends ErrorHandlingEnabledBaseType {
   private readonly baseUrl: string;

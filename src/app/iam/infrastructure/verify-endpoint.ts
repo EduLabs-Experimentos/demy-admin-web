@@ -3,7 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {catchError, map, Observable} from 'rxjs';
 import {VerifyRequest} from './verify-request';
 import {VerifyResponse, VerifyResource} from './verify-response';
-import {environment} from '../../../environments/environment.development';
+import {environment} from '../../../environments/environment';
 
 const authApiBaseUrl = environment.platformProviderApiBaseUrl + environment.platformProviderVerifyEndpointPath;
 

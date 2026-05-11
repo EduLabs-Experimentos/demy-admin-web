@@ -3,7 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {catchError, map, Observable} from 'rxjs';
 import {CreateWeeklyScheduleRequest, UpdateWeeklyScheduleNameRequest, AddScheduleToWeeklyRequest, UpdateScheduleRequest} from './schedule-request';
 import {WeeklyScheduleResource, WeeklyScheduleResponse, ScheduleResource, ScheduleResponse} from './schedule-response';
-import {environment} from '../../../environments/environment.development';
+import {environment} from '../../../environments/environment';
 
 export class ScheduleEndpoint extends ErrorHandlingEnabledBaseType {
   private readonly baseUrl: string;
