@@ -47,7 +47,7 @@ jobs:
         uses: cypress-io/github-action@v6
         with:
           install: false # Ya instalamos con pnpm arriba
-          start: pnpm start
+          start: pnpm exec ng serve --configuration production
           wait-on: 'http://localhost:4200'
 
       # Compilamos Angular
