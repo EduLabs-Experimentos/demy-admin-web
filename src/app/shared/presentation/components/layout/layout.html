@@ -6,7 +6,7 @@
   </button>
 
   <div class="sidenav-header">
-    <img class="sidenav-logo" src="../public/images/solo-logo-demy.png" alt="Demy Logo" />
+    <img class="sidenav-logo" src="./images/solo-logo-demy.png" alt="Demy Logo" />
     <span class="sidenav-brand">Demy</span>
   </div>
 
@@ -14,7 +14,6 @@
     [collapsed]="!isSidenavExpanded()"
     (navigated)="closeSidenav()"
     (logout)="onLogout()" />
-
 </aside>
 
 <div class="layout-shell" [class.sidenav-expanded]="isSidenavExpanded()" [class.sidenav-collapsed]="!isSidenavExpanded()">
