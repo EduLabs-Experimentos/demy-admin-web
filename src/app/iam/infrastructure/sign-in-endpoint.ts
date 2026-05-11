@@ -5,7 +5,7 @@ import {SignInCommand} from '../domain/model/sign-in.command';
 import {catchError, map, Observable} from 'rxjs';
 import {SignInResource, SignInResponse} from './sign-in-response';
 import {ErrorHandlingEnabledBaseType} from '../../shared/infrastructure/error-handling-enabled-base-type';
-import {environment} from '../../../environments/environment.development';
+import {environment} from '../../../environments/environment';
 
 const signInApiEndpointUrl = `${environment.platformProviderApiBaseUrl}${environment.platformProviderSignInEndpointPath}`;
 

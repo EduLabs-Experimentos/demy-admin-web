@@ -1,7 +1,7 @@
 import {ErrorHandlingEnabledBaseType} from '../../shared/infrastructure/error-handling-enabled-base-type';
 import {HttpClient} from '@angular/common/http';
 import {catchError, Observable} from 'rxjs';
-import {environment} from '../../../environments/environment.development';
+import {environment} from '../../../environments/environment';
 import {ScheduleCourseResource, ScheduleClassroomResource, ScheduleTeacherResource} from './schedule-response';
 
 export class ReferenceEndpoint extends ErrorHandlingEnabledBaseType {

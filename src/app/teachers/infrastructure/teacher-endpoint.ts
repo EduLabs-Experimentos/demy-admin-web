@@ -3,7 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {catchError, map, Observable} from 'rxjs';
 import {CreateTeacherRequest} from './teacher-request';
 import {TeacherResource, TeacherResponse} from './teacher-response';
-import {environment} from '../../../environments/environment.development';
+import {environment} from '../../../environments/environment';
 
 export class TeacherEndpoint extends ErrorHandlingEnabledBaseType {
   private readonly baseUrl: string;
