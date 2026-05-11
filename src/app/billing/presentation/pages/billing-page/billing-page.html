@@ -1,109 +1,183 @@
-<div class="page-header">
-  <div>
-    <h1>Billing Management</h1>
-    <p>Search and manage student billing accounts</p>
+<header class="billing-page__header">
+  <div class="billing-page__header-text">
+    <span class="billing-page__eyebrow">Administration</span>
+    <h1 class="billing-page__title">Billing Management</h1>
+    <p class="billing-page__subtitle">Search and manage student billing accounts</p>
   </div>
-</div>
+</header>
 
 @if (successMessage()) {
-  <div class="success-message">{{ successMessage() }}</div>
+  <div class="success-message billing-page__toast billing-page__toast--success">
+    <i class="pi pi-check-circle"></i>
+    {{ successMessage() }}
+  </div>
 }
 
 @if (store.error()) {
-  <div class="error-message">{{ store.error() }}</div>
+  <div class="error-message billing-page__toast billing-page__toast--error">
+    <i class="pi pi-exclamation-triangle"></i>
+    {{ store.error() }}
+  </div>
 }
 
-<div class="billing-card">
-  <div class="search-section">
-    <label for="studentDni">Student DNI</label>
-    <input
-      id="studentDni"
-      type="text"
-      [ngModel]="searchDni()"
-      (ngModelChange)="searchDni.set($event)"
-      placeholder="Enter student DNI" />
-    <button class="search-student-button" (click)="onSearch()">Search</button>
-
-    @if (searchError()) {
-      <small class="error-message">{{ searchError() }}</small>
-    }
+<div class="billing-page__search-card">
+  <label class="billing-page__label" for="studentDni">Student DNI</label>
+  <div class="billing-page__search-row">
+    <div class="billing-page__input-wrap">
+      <i class="pi pi-id-card billing-page__input-icon"></i>
+      <input
+        id="studentDni"
+        class="billing-page__input"
+        type="text"
+        [ngModel]="searchDni()"
+        (ngModelChange)="searchDni.set($event)"
+        placeholder="Enter student DNI" />
+    </div>
+    <button class="search-student-button billing-page__btn billing-page__btn--primary" (click)="onSearch()">
+      <i class="pi pi-search"></i>
+      Search
+    </button>
   </div>
+
+  @if (searchError()) {
+    <small class="error-message billing-page__inline-error">
+      <i class="pi pi-exclamation-circle"></i>
+      {{ searchError() }}
+    </small>
+  }
 </div>
 
 @if (foundAccount(); as account) {
-  <div class="billing-account-card">
-    <h3>Account #{{ account.id }} &mdash; DNI: {{ account.dniNumber }}</h3>
+  <div class="billing-account-card billing-page__content">
 
-    <div class="invoice-form">
-      <h4>Assign Invoice</h4>
-      <select
-        id="invoiceType"
-        [ngModel]="invoiceType()"
-        (ngModelChange)="invoiceType.set($event)">
-        <option value="">-- Select type --</option>
-        @for (opt of typeOptions; track opt.value) {
-          <option [value]="opt.value">{{ opt.label }}</option>
-        }
-      </select>
+    <aside class="billing-page__form-col">
+      <div class="invoice-form billing-page__form-card">
+        <h4 class="billing-page__form-title">
+          <i class="pi pi-plus-circle"></i>
+          Assign Invoice
+        </h4>
 
-      <input
-        id="invoiceAmount"
-        type="number"
-        [ngModel]="invoiceAmount()"
-        (ngModelChange)="invoiceAmount.set($event)"
-        placeholder="Amount" />
-
-      <input
-        id="invoiceDescription"
-        type="text"
-        [ngModel]="invoiceDescription()"
-        (ngModelChange)="invoiceDescription.set($event)"
-        placeholder="Description" />
-
-      <input
-        id="invoiceDueDate"
-        type="date"
-        [ngModel]="invoiceDueDate()"
-        (ngModelChange)="invoiceDueDate.set($event)" />
-
-      <button class="assign-invoice-button" (click)="assignInvoice()">
-        Assign Invoice
-      </button>
-    </div>
-
-    <div class="invoice-list">
-      @for (inv of account.invoices; track inv.id) {
-        <div class="invoice-row">
-          <span class="invoice-description">{{ inv.description }}</span>
-          <span class="status-badge status-badge--{{ inv.status.toLowerCase() }}">
-            {{ inv.status }}
-          </span>
-          <button
-            class="mark-paid-button"
-            [disabled]="inv.status === 'PAID'"
-            (click)="requestMarkPaid(inv.id)">
-            Mark Paid
-          </button>
-          <button
-            class="delete-invoice-button"
-            (click)="requestDelete(inv.id)">
-            Delete
-          </button>
+        <div class="billing-page__field">
+          <label class="billing-page__label" for="invoiceType">Type</label>
+          <select
+            id="invoiceType"
+            class="billing-page__select"
+            [ngModel]="invoiceType()"
+            (ngModelChange)="invoiceType.set($event)">
+            <option value="">-- Select type --</option>
+            @for (opt of typeOptions; track opt.value) {
+              <option [value]="opt.value">{{ opt.label }}</option>
+            }
+          </select>
         </div>
-      } @empty {
-        <p class="invoice-empty">No invoices assigned yet.</p>
-      }
-    </div>
+
+        <div class="billing-page__field">
+          <label class="billing-page__label" for="invoiceAmount">Amount (PEN)</label>
+          <input
+            id="invoiceAmount"
+            class="billing-page__input billing-page__input--no-icon"
+            type="number"
+            [ngModel]="invoiceAmount()"
+            (ngModelChange)="invoiceAmount.set($event)"
+            placeholder="0.00" />
+        </div>
+
+        <div class="billing-page__field">
+          <label class="billing-page__label" for="invoiceDescription">Description</label>
+          <input
+            id="invoiceDescription"
+            class="billing-page__input billing-page__input--no-icon"
+            type="text"
+            [ngModel]="invoiceDescription()"
+            (ngModelChange)="invoiceDescription.set($event)"
+            placeholder="Description" />
+        </div>
+
+        <div class="billing-page__field">
+          <label class="billing-page__label" for="invoiceDueDate">Due Date</label>
+          <input
+            id="invoiceDueDate"
+            class="billing-page__input billing-page__input--no-icon"
+            type="date"
+            [ngModel]="invoiceDueDate()"
+            (ngModelChange)="invoiceDueDate.set($event)" />
+        </div>
+
+        <button
+          class="assign-invoice-button billing-page__btn billing-page__btn--primary billing-page__btn--full"
+          (click)="assignInvoice()">
+          <i class="pi pi-send"></i>
+          Assign Invoice
+        </button>
+      </div>
+    </aside>
+
+    <section class="billing-page__list-col">
+      <div class="billing-page__account-header">
+        <div class="billing-page__account-badge">
+          <i class="pi pi-wallet"></i>
+        </div>
+        <div>
+          <span class="billing-page__account-id">Account #{{ account.id }}</span>
+          <span class="billing-page__account-dni">DNI: {{ account.dniNumber }}</span>
+        </div>
+      </div>
+
+      <div class="billing-page__invoice-scroll">
+        @for (inv of account.invoices; track inv.id) {
+          <div class="invoice-row billing-page__invoice-row">
+            <div class="billing-page__invoice-info">
+              <i class="pi pi-file-invoice billing-page__invoice-icon"></i>
+              <span class="invoice-description billing-page__invoice-desc">{{ inv.description }}</span>
+            </div>
+            <div class="billing-page__invoice-meta">
+              <span class="status-badge status-badge--{{ inv.status.toLowerCase() }}">
+                {{ inv.status }}
+              </span>
+              <button
+                class="mark-paid-button billing-page__action-btn"
+                [disabled]="inv.status === 'PAID'"
+                (click)="requestMarkPaid(inv.id)"
+                title="Mark as paid">
+                <i class="pi pi-check"></i>
+                Mark Paid
+              </button>
+              <button
+                class="delete-invoice-button billing-page__action-btn billing-page__action-btn--danger"
+                (click)="requestDelete(inv.id)"
+                title="Delete invoice">
+                <i class="pi pi-trash"></i>
+                Delete
+              </button>
+            </div>
+          </div>
+        } @empty {
+          <div class="billing-page__invoice-empty">
+            <i class="pi pi-inbox"></i>
+            <p class="invoice-empty">No invoices assigned yet.</p>
+          </div>
+        }
+      </div>
+    </section>
+
   </div>
 }
 
 @if (showConfirmDialog()) {
-  <div class="confirm-dialog">
-    <div class="confirm-dialog__content">
-      <p>Are you sure you want to perform this action?</p>
-      <div class="confirm-dialog__actions">
-        <button class="confirm-button" (click)="confirmAction()">Confirm</button>
-        <button class="cancel-button" (click)="cancelDialog()">Cancel</button>
+  <div class="confirm-dialog billing-page__overlay">
+    <div class="billing-page__dialog">
+      <div class="billing-page__dialog-icon">
+        <i class="pi pi-exclamation-triangle"></i>
+      </div>
+      <h3 class="billing-page__dialog-title">Confirm Action</h3>
+      <p class="billing-page__dialog-text">Are you sure you want to perform this action?</p>
+      <div class="billing-page__dialog-actions">
+        <button class="cancel-button billing-page__btn billing-page__btn--secondary" (click)="cancelDialog()">
+          Cancel
+        </button>
+        <button class="confirm-button billing-page__btn billing-page__btn--primary" (click)="confirmAction()">
+          Confirm
+        </button>
       </div>
     </div>
   </div>
