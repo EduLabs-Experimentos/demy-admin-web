@@ -1,55 +1,110 @@
 <div class="page-header">
   <div>
-    <h1 style="color: var(--p-surface-900);">{{ 'billing.page.title' | translate }}</h1>
-    <p style="color: var(--p-surface-500);">{{ 'billing.page.subtitle' | translate }}</p>
+    <h1>Billing Management</h1>
+    <p>Search and manage student billing accounts</p>
   </div>
 </div>
 
-<div class="billing-layout">
-  <div class="billing-layout__sidebar">
-    <app-billing-account-form></app-billing-account-form>
+@if (successMessage()) {
+  <div class="success-message">{{ successMessage() }}</div>
+}
 
-    <div class="account-list" style="margin-top: 24px;">
-      <h4 style="color: var(--p-surface-900); margin-bottom: 12px;">Cuentas Registradas</h4>
-      @for (acc of store.accounts(); track acc.id) {
-        <div class="account-card" [class.account-card--active]="selectedAccount()?.id === acc.id" (click)="selectAccount(acc)">
-          <div class="account-card__info">
-            <span class="account-card__id">Estudiante ID: {{ acc.studentId }}</span>
-            <span class="account-card__dni">DNI: {{ acc.dniNumber }}</span>
-          </div>
-          <i class="pi pi-chevron-right" style="color: var(--p-surface-500);"></i>
-        </div>
-      } @empty {
-        <p style="text-align: center; color: var(--p-surface-500); padding: 16px;">{{ 'billing.account.empty' | translate }}</p>
-      }
-    </div>
-  </div>
+@if (store.error()) {
+  <div class="error-message">{{ store.error() }}</div>
+}
 
-  <div class="billing-layout__content">
-    @if (selectedAccount(); as acc) {
-      <div class="content-card">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-          <h3 style="color: var(--p-surface-900); margin: 0;">{{ 'billing.invoice.title' | translate }} - Estudiante #{{ acc.studentId }}</h3>
-          <p-button icon="pi pi-plus" [label]="'billing.invoice.assign-title' | translate"
-                    [text]="true" (onClick)="showInvoiceForm = true" />
-        </div>
+<div class="billing-card">
+  <div class="search-section">
+    <label for="studentDni">Student DNI</label>
+    <input
+      id="studentDni"
+      type="text"
+      [ngModel]="searchDni()"
+      (ngModelChange)="searchDni.set($event)"
+      placeholder="Enter student DNI" />
+    <button class="search-student-button" (click)="onSearch()">Search</button>
 
-        @if (showInvoiceForm) {
-          <app-invoice-form [accountId]="acc.id" (cancel)="showInvoiceForm = false" style="margin-bottom: 24px; display: block;" />
-        }
-
-        <app-invoice-list
-          [invoices]="acc.invoices"
-          (markPaid)="store.markInvoiceAsPaid(acc.id, $event)"
-          (delete)="store.deleteInvoice(acc.id, $event)">
-        </app-invoice-list>
-
-      </div>
-    } @else {
-      <div style="text-align: center; padding: 60px; color: var(--p-surface-500); background: var(--p-surface-50); border-radius: 14px;">
-        <i class="pi pi-wallet" style="font-size: 3rem; margin-bottom: 16px;"></i>
-        <p>Selecciona una cuenta a la izquierda para ver sus facturas</p>
-      </div>
+    @if (searchError()) {
+      <small class="error-message">{{ searchError() }}</small>
     }
   </div>
 </div>
+
+@if (foundAccount(); as account) {
+  <div class="billing-account-card">
+    <h3>Account #{{ account.id }} &mdash; DNI: {{ account.dniNumber }}</h3>
+
+    <div class="invoice-form">
+      <h4>Assign Invoice</h4>
+      <select
+        id="invoiceType"
+        [ngModel]="invoiceType()"
+        (ngModelChange)="invoiceType.set($event)">
+        <option value="">-- Select type --</option>
+        @for (opt of typeOptions; track opt.value) {
+          <option [value]="opt.value">{{ opt.label }}</option>
+        }
+      </select>
+
+      <input
+        id="invoiceAmount"
+        type="number"
+        [ngModel]="invoiceAmount()"
+        (ngModelChange)="invoiceAmount.set($event)"
+        placeholder="Amount" />
+
+      <input
+        id="invoiceDescription"
+        type="text"
+        [ngModel]="invoiceDescription()"
+        (ngModelChange)="invoiceDescription.set($event)"
+        placeholder="Description" />
+
+      <input
+        id="invoiceDueDate"
+        type="date"
+        [ngModel]="invoiceDueDate()"
+        (ngModelChange)="invoiceDueDate.set($event)" />
+
+      <button class="assign-invoice-button" (click)="assignInvoice()">
+        Assign Invoice
+      </button>
+    </div>
+
+    <div class="invoice-list">
+      @for (inv of account.invoices; track inv.id) {
+        <div class="invoice-row">
+          <span class="invoice-description">{{ inv.description }}</span>
+          <span class="status-badge status-badge--{{ inv.status.toLowerCase() }}">
+            {{ inv.status }}
+          </span>
+          <button
+            class="mark-paid-button"
+            [disabled]="inv.status === 'PAID'"
+            (click)="requestMarkPaid(inv.id)">
+            Mark Paid
+          </button>
+          <button
+            class="delete-invoice-button"
+            (click)="requestDelete(inv.id)">
+            Delete
+          </button>
+        </div>
+      } @empty {
+        <p class="invoice-empty">No invoices assigned yet.</p>
+      }
+    </div>
+  </div>
+}
+
+@if (showConfirmDialog()) {
+  <div class="confirm-dialog">
+    <div class="confirm-dialog__content">
+      <p>Are you sure you want to perform this action?</p>
+      <div class="confirm-dialog__actions">
+        <button class="confirm-button" (click)="confirmAction()">Confirm</button>
+        <button class="cancel-button" (click)="cancelDialog()">Cancel</button>
+      </div>
+    </div>
+  </div>
+}
