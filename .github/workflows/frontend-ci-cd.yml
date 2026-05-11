@@ -38,6 +38,9 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
+      - name: Install Cypress Binary
+        run: pnpm exec cypress install
+
       #  Ejecutamos pruebas E2E con Cypress
       # Esta action levanta Angular, espera a que cargue y corre los tests
       - name: Run Cypress E2E Tests
