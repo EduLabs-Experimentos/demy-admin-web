@@ -32,6 +32,7 @@ export const routes: Routes = [
       // 👇 ¡AQUÍ ESTÁ TU RUTA DE ESTUDIANTES! 👇
       { path: 'students', loadChildren: () => import('./students/presentation/students.routes').then(m => m.studentsRoutes) },
       { path: 'billing', loadChildren:() => import('./billing/presentation/billing.routes').then(m => m.billingRoutes) },
+      { path: 'attendance', loadChildren: () => import('./attendance/presentation/attendance.routes').then(m => m.attendanceRoutes) },
 
       { path: 'organization/courses', loadChildren: () => import('./courses/presentation/courses.routes').then(m => m.coursesRoutes) },
       { path: 'organization/classrooms', loadChildren: () => import('./classrooms/presentation/classrooms.routes').then(m => m.classroomsRoutes) }
