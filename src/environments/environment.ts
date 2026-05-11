@@ -1,6 +1,6 @@
 export const environment = {
   production: true,
-  platformProviderApiBaseUrl: '',
+  platformProviderApiBaseUrl: 'https://demy-experimentos-backend-production.up.railway.app',
   platformProviderSignInEndpointPath: '/sign-in',
   platformProviderSignUpEndpointPath: '/sign-up',
   platformProviderRequestResetPasswordEndpointPath: '/request-reset-password',
