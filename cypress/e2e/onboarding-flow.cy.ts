@@ -12,7 +12,7 @@ describe('E2E Puro: Flujo de Onboarding Real', () => {
     // Esto asegura que el usuario sea nuevo en cada prueba, evitando el error de "ya tiene academia", asegurando que sea una prueba E2E
     cy.request({
       method: 'POST',
-      url: 'http://localhost:8080/api/v1/authentication/sign-up',
+      url: 'https://demy-experimentos-backend-production.up.railway.app/api/v1/authentication/sign-up',
       body: {
         emailAddress: uniqueEmail,
         password: 'Password123!',
@@ -26,7 +26,7 @@ describe('E2E Puro: Flujo de Onboarding Real', () => {
       // Iniciamos sesión con el usuario recién creado
       cy.request({
         method: 'POST',
-        url: 'http://localhost:8080/api/v1/authentication/sign-in',
+        url: 'https://demy-experimentos-backend-production.up.railway.app/api/v1/authentication/sign-in',
         body: {
           emailAddress: uniqueEmail,
           password: 'Password123!'
