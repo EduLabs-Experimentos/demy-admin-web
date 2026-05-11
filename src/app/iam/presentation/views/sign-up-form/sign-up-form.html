@@ -1,0 +1,53 @@
+<form [formGroup]="form" (ngSubmit)="performSignUp()" class="signup-form" animate.enter="enter-animation">
+  @if (store.signUpError(); as error) {
+    <div class="form-error-banner">
+      <i class="pi pi-exclamation-triangle"></i>
+      <span>{{ error }}</span>
+    </div>
+  }
+
+  <div class="form-field">
+    <label for="email">{{ 'sign-up.email' | translate }}</label>
+    <input pInputText
+           id="email"
+           type="email"
+           formControlName="email"
+           [class.ng-invalid]="isInvalidControl(form, 'email')"
+           placeholder="{{ 'sign-up.email-placeholder' | translate }}"
+           class="form-input" autocomplete="email" />
+    @if (isInvalidControl(form, 'email')) {
+      <small class="p-error">{{ errorMessagesForControl(form, 'email') }}</small>
+    }
+  </div>
+
+  <div class="form-field">
+    <label for="password">{{ 'sign-up.password' | translate }}</label>
+    <p-password inputId="password"
+              formControlName="password"
+              [toggleMask]="true"
+              [feedback]="false"
+              [class.ng-invalid]="isInvalidControl(form, 'password')"
+              placeholder="{{ 'sign-up.password-placeholder' | translate }}"
+              styleClass="w-full"
+              inputStyleClass="form-input" />
+    @if (isInvalidControl(form, 'password')) {
+      <small class="p-error">{{ errorMessagesForControl(form, 'password') }}</small>
+    }
+  </div>
+
+  <div class="form-field-checkbox">
+    <p-checkbox inputId="terms"
+               formControlName="terms"
+               [binary]="true" />
+    <label for="terms" class="terms-label">{{ 'sign-up.terms' | translate }}</label>
+  </div>
+  @if (isInvalidControl(form, 'terms')) {
+    <small class="p-error checkbox-error">{{ 'sign-up.errors.accept-terms' | translate }}</small>
+  }
+
+  <p-button type="submit"
+            label="{{ 'sign-up.register' | translate }}"
+            styleClass="submit-button"
+            [loading]="store.isLoadingUsers()"
+            [rounded]="true" />
+</form>

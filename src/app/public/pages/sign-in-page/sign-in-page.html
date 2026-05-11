@@ -1,0 +1,20 @@
+<div class="signin-container">
+  <div class="signin-left">
+    <div class="language-bar">
+      <app-language-switcher />
+    </div>
+    <div class="signin-content" animate.enter="enter-page">
+      <img class="logo" src="/demy-blue-logo.png" alt="Demy Logo" />
+      <h1 class="signin-title">{{ 'sign-in.title' | translate }}</h1>
+      <p class="signin-subtitle">{{ 'sign-in.subtitle' | translate }}</p>
+      <app-sign-in-form />
+      <div class="signup-link">
+        <span>{{ 'sign-in.no-account' | translate }}</span>
+        <a routerLink="/sign-up">{{ 'sign-in.sign-up' | translate }}</a>
+      </div>
+    </div>
+  </div>
+  <div class="signin-right">
+    <img src="/images/auth_image.png" alt="Welcome" class="auth-image" />
+  </div>
+</div>

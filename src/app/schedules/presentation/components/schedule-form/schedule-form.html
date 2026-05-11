@@ -1,0 +1,40 @@
+<article class="schedule-form">
+  <h3 class="schedule-form__title">
+    {{ (store.isEditingSchedule() ? 'schedules.form.title-edit-weekly' : 'schedules.form.title-create-weekly') | translate }}
+  </h3>
+
+  <div class="schedule-form__field">
+    <label class="schedule-form__label" for="schedule-name">{{ 'schedules.form.name' | translate }}</label>
+    <input pInputText id="schedule-name" type="text"
+           class="schedule-form__input"
+           [value]="store.scheduleFormData().name"
+           (input)="store.onScheduleNameChange($any($event.target).value)"
+           [placeholder]="'schedules.form.name-placeholder' | translate"
+           autocomplete="off" />
+  </div>
+
+  <div class="schedule-form__actions">
+    <p-button [label]="(store.isEditingSchedule() ? 'schedules.form.update-weekly' : 'schedules.form.create-weekly') | translate"
+              styleClass="schedule-form__submit"
+              [loading]="store.isLoading()"
+              [rounded]="true"
+              (onClick)="submit()" />
+    @if (store.isEditingSchedule()) {
+      <p-button [label]="'schedules.form.cancel' | translate"
+                styleClass="schedule-form__cancel"
+                [rounded]="true"
+                severity="secondary"
+                (onClick)="store.cancelEditSchedule()" />
+    }
+  </div>
+
+  @if (store.error(); as error) {
+    <div class="schedule-form__error">
+      <i class="pi pi-exclamation-triangle" aria-hidden="true"></i>
+      <span>{{ error }}</span>
+      <button class="schedule-form__error-dismiss" (click)="store.clearError()" aria-label="Dismiss">
+        <i class="pi pi-times"></i>
+      </button>
+    </div>
+  }
+</article>

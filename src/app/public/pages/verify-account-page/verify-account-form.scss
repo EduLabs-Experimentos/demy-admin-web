@@ -1,0 +1,137 @@
+.verify-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  width: 100%;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+}
+
+.form-error-banner {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  background: rgba(220, 53, 69, 0.08);
+  border: 1px solid rgba(220, 53, 69, 0.25);
+  border-radius: 8px;
+  color: #dc3545;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  animation: shake 0.4s ease;
+
+  i {
+    font-size: 0.9375rem;
+  }
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-4px); }
+  40% { transform: translateX(4px); }
+  60% { transform: translateX(-4px); }
+  80% { transform: translateX(2px); }
+}
+
+.email-display {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.875rem;
+  color: #1a1a2e;
+
+  strong {
+    color: #3F51B5;
+    font-weight: 600;
+  }
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+
+  label {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: #1a1a2e;
+  }
+
+  .form-input {
+    width: 100%;
+    padding: 0.6875rem 0.875rem;
+    font-size: 1rem;
+    text-align: center;
+    letter-spacing: 0.25rem;
+    border: 1.5px solid #b0b0b0;
+    border-radius: 8px;
+    background: #ffffff;
+    color: #1a1a2e;
+    transition: border-color 0.25s ease, box-shadow 0.25s ease;
+
+    &::placeholder {
+      color: #888888;
+      opacity: 0.7;
+    }
+
+    &:hover {
+      border-color: #3F51B5;
+    }
+
+    &:focus {
+      border-color: #3F51B5;
+      box-shadow: 0 0 0 3px rgba(63, 81, 181, 0.15);
+      outline: none;
+    }
+  }
+}
+
+.code-input {
+  font-family: 'Inter', sans-serif;
+}
+
+:host ::ng-deep .submit-button {
+  width: 100%;
+  padding: 0.75rem 1.5rem;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  background: linear-gradient(135deg, #3F51B5 0%, #303F9F 100%);
+  border: none;
+  border-radius: 8px;
+  color: #ffffff;
+}
+
+.resend-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8125rem;
+  color: #1a1a2e;
+
+  .resend-btn {
+    background: none;
+    border: none;
+    color: #3F51B5;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 0;
+    transition: color 0.2s ease;
+
+    &:hover {
+      color: #303F9F;
+      text-decoration: underline;
+    }
+
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  }
+}

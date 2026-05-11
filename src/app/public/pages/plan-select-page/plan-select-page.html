@@ -1,0 +1,40 @@
+<div class="plan-select-container">
+  <div class="language-bar">
+    <app-language-switcher />
+  </div>
+  <div class="plan-select-content">
+    <h1 class="plan-title">{{ 'plan-select.title' | translate }}</h1>
+    <p class="plan-subtitle">{{ 'plan-select.subtitle' | translate }}</p>
+
+    <div class="plans-grid">
+      @for (plan of ['basic', 'extra', 'deluxe']; track plan) {
+        <div class="plan-card" [class.selected]="selectedPlan === plan" (click)="selectPlan(plan)">
+          <div class="plan-badge" [class]="plan">
+            {{ ('plan-select.plans.' + plan + '.badge') | translate }}
+          </div>
+          <h2 class="plan-name">{{ ('plan-select.plans.' + plan + '.name') | translate }}</h2>
+          <div class="plan-price">
+            <span class="currency">$</span>
+            <span class="amount">{{ ('plan-select.plans.' + plan + '.price') | translate }}</span>
+            <span class="period">/mo</span>
+          </div>
+          <ul class="plan-features">
+            @for (feature of ('plan-select.plans.' + plan + '.features' | translate); track feature) {
+              <li>
+                <i class="pi pi-check"></i>
+                <span>{{ feature }}</span>
+              </li>
+            }
+          </ul>
+        </div>
+      }
+    </div>
+
+    <p-button
+      label="{{ 'plan-select.continue' | translate }}"
+      styleClass="continue-button"
+      [disabled]="!selectedPlan"
+      [rounded]="true"
+      (onClick)="continue()" />
+  </div>
+</div>

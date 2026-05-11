@@ -1,0 +1,67 @@
+<header class="student-roster__toolbar">
+  <div class="student-roster__search">
+    <i class="pi pi-search"></i>
+    <input pInputText type="text"
+           (input)="dt.filterGlobal($any($event.target).value, 'contains')"
+           [placeholder]="'students.list.search' | translate" />
+  </div>
+</header>
+
+<div class="student-roster__scroll">
+  <p-table #dt [value]="store.students()" [paginator]="true" [rows]="10" [loading]="store.loading()"
+           dataKey="id" [globalFilterFields]="['firstName', 'lastName', 'studentCode', 'emailAddress']"
+           styleClass="student-roster">
+
+    <ng-template pTemplate="header">
+      <tr>
+        <th>{{ 'students.list.profile' | translate }}</th>
+        <th>{{ 'students.form.email' | translate }}</th>
+        <th>{{ 'students.form.phone' | translate }}</th>
+        <th style="text-align: right; width: 80px;">Actions</th>
+      </tr>
+    </ng-template>
+
+    <ng-template pTemplate="body" let-student>
+      <tr class="student-roster__row">
+        <td>
+          <div class="student-roster__profile">
+            <span class="student-roster__avatar">{{ student.firstName.charAt(0) }}{{ student.lastName.charAt(0) }}</span>
+            <div class="student-roster__profile-text">
+              <span class="student-roster__name">{{ student.firstName }} {{ student.lastName }}</span>
+              <span style="font-size: 11px; color: var(--p-surface-500);">{{ student.studentCode }}</span>
+            </div>
+          </div>
+        </td>
+        <td>
+          <div class="student-roster__cell">
+            <i class="pi pi-envelope student-roster__cell-icon" aria-hidden="true"></i>
+            <span>{{ student.emailAddress }}</span>
+          </div>
+        </td>
+        <td>
+          <div class="student-roster__cell">
+            <i class="pi pi-phone student-roster__cell-icon" aria-hidden="true"></i>
+            <span>{{ student.phone }}</span>
+          </div>
+        </td>
+        <td style="text-align: right;">
+          <button class="student-roster__action-btn" (click)="onEdit(student)" aria-label="Edit">
+            <i class="pi pi-pencil"></i>
+          </button>
+          <button class="student-roster__action-btn student-roster__action-btn--danger" (click)="onDelete(student.id)" aria-label="Delete">
+            <i class="pi pi-trash"></i>
+          </button>
+        </td>
+      </tr>
+    </ng-template>
+
+    <ng-template pTemplate="emptymessage">
+      <tr>
+        <td colspan="4" class="student-roster__empty">
+          <i class="pi pi-users"></i>
+          <span>No students found.</span>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>

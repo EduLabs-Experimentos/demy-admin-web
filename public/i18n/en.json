@@ -1,0 +1,463 @@
+{
+  "sign-up": {
+    "title": "Create Account",
+    "subtitle": "Enter your email and password to get started",
+    "email": "Email",
+    "email-placeholder": "yourname@gmail.com",
+    "password": "Password",
+    "password-placeholder": "Your secure password",
+    "terms": "I accept the terms and conditions",
+    "register": "Create Account",
+    "login": "Log In",
+    "already-account": "Already have an account?",
+    "errors": {
+      "required": "This field is required",
+      "invalid-email": "Please enter a valid email",
+      "min-length": "Minimum 8 characters required",
+      "accept-terms": "You must accept the terms and conditions"
+    },
+    "success": "Account created! Please verify your email.",
+    "error": "An error occurred during registration"
+  },
+  "verify-account": {
+    "title": "Verify Your Account",
+    "subtitle": "Enter the 6-digit code sent to your email",
+    "code-sent-to": "Code sent to:",
+    "code": "Verification Code",
+    "code-placeholder": "• • • • • •",
+    "didnt-receive": "Didn't receive the code?",
+    "verify": "Verify Account",
+    "resend-code": "Resend Code",
+    "errors": {
+      "required": "Verification code is required",
+      "invalid-code": "The code entered is incorrect. Please verify and try again."
+    },
+    "success": "Account verified successfully!",
+    "error": "Error verifying account. Please try again."
+  },
+  "complete-account": {
+    "title": "Complete Your Profile",
+    "subtitle": "Enter your personal information",
+    "firstName": "First Name",
+    "firstName-placeholder": "Enter your first name",
+    "lastName": "Last Name",
+    "lastName-placeholder": "Enter your last name",
+    "countryCode": "Country Code",
+    "countryCode-placeholder": "+51",
+    "phone": "Phone Number",
+    "phone-placeholder": "Enter your phone number",
+    "dni": "DNI",
+    "dni-placeholder": "Enter your DNI number",
+    "submit": "Continue",
+    "errors": {
+      "required": "This field is required",
+      "min-length": "Minimum 8 characters required"
+    },
+    "success": "Profile completed successfully!",
+    "error": "An error occurred"
+  },
+  "sign-in": {
+    "title": "Welcome Back",
+    "subtitle": "Enter your credentials to access your account",
+    "email": "Email",
+    "email-placeholder": "Enter your email",
+    "password": "Password",
+    "password-placeholder": "Enter your password",
+    "sign-in": "Sign In",
+    "forgot-password": "Forgot password?",
+    "no-account": "Don't have an account?",
+    "sign-up": "Sign Up",
+    "errors": {
+      "required": "This field is required",
+      "invalid-email": "Please enter a valid email"
+    },
+    "success": "Signed in successfully!",
+    "error": "Invalid credentials. Please try again."
+  },
+  "setup-academy": {
+    "title": "Set Up Your Academy",
+    "subtitle": "Enter your academy information",
+    "academyName": "Academy Name",
+    "academyName-placeholder": "Enter academy name",
+    "academyDescription": "Description",
+    "academyDescription-placeholder": "Enter academy description",
+    "ruc": "RUC",
+    "ruc-placeholder": "Enter RUC number",
+    "street": "Street Address",
+    "street-placeholder": "Enter street address",
+    "district": "District",
+    "district-placeholder": "Enter district",
+    "province": "Province",
+    "province-placeholder": "Enter province",
+    "department": "Department",
+    "department-placeholder": "Enter department",
+    "email": "Academy Email",
+    "email-placeholder": "Enter academy email",
+    "countryCode": "Country Code",
+    "countryCode-placeholder": "+51",
+    "phone": "Phone",
+    "phone-placeholder": "Enter phone number",
+    "submit": "Complete Setup",
+    "errors": {
+      "required": "This field is required"
+    },
+    "success": "Academy set up successfully!",
+    "error": "An error occurred"
+  },
+  "plan-select": {
+    "title": "Choose Your Plan",
+    "subtitle": "Select the plan that best fits your academy's needs",
+    "continue": "Continue",
+    "plans": {
+      "basic": {
+        "badge": "Basic",
+        "name": "Basic",
+        "price": "29",
+        "features": ["Up to 5 teachers", "Up to 50 students", "Basic attendance tracking", "Email support"]
+      },
+      "extra": {
+        "badge": "Popular",
+        "name": "Extra",
+        "price": "59",
+        "features": ["Up to 20 teachers", "Up to 200 students", "Advanced attendance & grades", "Finance module", "Priority support"]
+      },
+      "deluxe": {
+        "badge": "Deluxe",
+        "name": "Deluxe",
+        "price": "99",
+        "features": ["Unlimited teachers", "Unlimited students", "Full feature access", "Custom reports", "Dedicated support", "API access"]
+      }
+    }
+  },
+  "reset-password": {
+    "title": "Reset Password",
+    "email": "Email",
+    "email-placeholder": "Enter your email",
+    "code": "Verification Code",
+    "code-placeholder": "Enter 6-digit code",
+    "new-password": "New Password",
+    "new-password-placeholder": "Enter new password",
+    "confirm-password": "Confirm Password",
+    "confirm-password-placeholder": "Confirm new password",
+    "send-code": "Send Code",
+    "verify-code": "Verify Code",
+    "reset": "Reset Password",
+    "back": "Back",
+    "back-to-signin": "Back to Sign In",
+    "step-email-description": "Enter your email address and we'll send you a code to reset your password.",
+    "step-code-description": "Enter the 6-digit code sent to your email.",
+    "step-password-description": "Create a new password for your account.",
+    "errors": {
+      "required": "This field is required",
+      "valid-email": "Please enter a valid email",
+      "min-length": "Minimum 8 characters required"
+    }
+  },
+  "sidebar": {
+    "sections": {
+      "overview": "Overview",
+      "academy": "Academy",
+      "classes": "Classes",
+      "administration": "Administration",
+      "general": "General"
+    },
+    "dashboard": "Dashboard",
+    "teachers": "Teachers",
+    "students": "Students",
+    "academic-periods": "Periods",
+    "courses": "Courses",
+    "classrooms": "Classrooms",
+    "schedules": "Schedules",
+    "enrollment": "Enrollment",
+    "scheduling": "Scheduling",
+    "billing": "Billing",
+    "accounting": "Accounting",
+    "settings": "Settings",
+    "help": "Help",
+    "logout": "Sign Out"
+  },
+  "footer": {
+    "rights": "All rights reserved."
+  },
+  "schedules": {
+    "page": {
+      "title": "Weekly Schedules",
+      "subtitle": "Manage your academy's weekly class schedules"
+    },
+    "form": {
+      "title-create-weekly": "Create Schedule",
+      "title-edit-weekly": "Edit Schedule Name",
+      "name": "Name",
+      "name-placeholder": "Enter schedule name",
+      "create-weekly": "Create Schedule",
+      "update-weekly": "Update Name",
+      "cancel": "Cancel",
+      "title-add-session": "Add Class Session",
+      "title-edit-session": "Edit Class Session",
+      "course": "Course",
+      "select-course": "Select a course",
+      "classroom": "Classroom",
+      "select-classroom": "Select a classroom",
+      "capacity": "Capacity",
+      "teacher": "Teacher",
+      "select-teacher": "Select a teacher",
+      "day": "Day of Week",
+      "select-day": "Select a day",
+      "startTime": "Start Time",
+      "endTime": "End Time",
+      "add-session": "Add Session",
+      "update-session": "Update Session"
+    },
+    "list": {
+      "search": "Search schedules...",
+      "loading": "Loading schedules...",
+      "empty": "No weekly schedules yet",
+      "sessions": "sessions",
+      "no-sessions": "No class sessions added yet",
+      "edit": "Edit",
+      "delete": "Delete",
+      "edit-session": "Edit class session",
+      "delete-session": "Delete class session",
+      "day": "Day",
+      "time": "Time",
+      "course": "Course",
+      "teacher": "Teacher",
+      "actions": "Actions"
+    },
+    "days": {
+      "MONDAY": "Monday",
+      "TUESDAY": "Tuesday",
+      "WEDNESDAY": "Wednesday",
+      "THURSDAY": "Thursday",
+      "FRIDAY": "Friday",
+      "SATURDAY": "Saturday",
+      "SUNDAY": "Sunday"
+    }
+  },
+  "classrooms": {
+    "page": {
+      "title": "Classrooms",
+      "subtitle": "Manage your academy's classrooms and facilities"
+    },
+    "form": {
+      "title-create": "Create Classroom",
+      "title-edit": "Edit Classroom",
+      "code": "Code",
+      "code-placeholder": "Enter classroom code",
+      "capacity": "Capacity",
+      "capacity-placeholder": "Enter capacity",
+      "campus": "Campus",
+      "campus-placeholder": "Enter campus location",
+      "create": "Create Classroom",
+      "update": "Update Classroom",
+      "cancel": "Cancel"
+    },
+    "list": {
+      "search": "Search classrooms...",
+      "loading": "Loading classrooms...",
+      "empty": "No classrooms registered yet",
+      "code": "Code",
+      "capacity": "Capacity",
+      "campus": "Campus",
+      "actions": "Actions",
+      "edit": "Edit",
+      "delete": "Delete"
+    }
+  },
+  "enrollments": {
+    "page": { "title": "Enrollments", "subtitle": "Manage student enrollments and payments" },
+    "form": {
+      "title-create": "Create Enrollment", "title-edit": "Edit Enrollment",
+      "student": "Student", "select-student": "Select a student",
+      "period": "Academic Period", "select-period": "Select period",
+      "schedule": "Schedule", "select-schedule": "Select schedule",
+      "amount": "Amount", "amount-placeholder": "Enter amount",
+      "currency": "Currency",
+      "paymentStatus": "Payment Status",
+      "enrollmentStatus": "Enrollment Status",
+      "create": "Create Enrollment", "update": "Update Enrollment", "cancel": "Cancel"
+    },
+    "list": {
+      "search": "Search by student...", "loading": "Loading enrollments...", "empty": "No enrollments yet",
+      "studentId": "Student", "period": "Period", "schedule": "Schedule",
+      "amount": "Amount", "payment": "Payment", "status": "Status",
+      "actions": "Actions", "edit": "Edit", "delete": "Delete"
+    },
+    "status": {
+      "PENDING": "Pending", "PAID": "Paid", "PARTIAL": "Partial", "CANCELLED": "Cancelled",
+      "ACTIVE": "Active", "INACTIVE": "Inactive", "COMPLETED": "Completed"
+    }
+  },
+  "academic-periods": {
+    "page": { "title": "Academic Periods", "subtitle": "Manage your academy's academic periods" },
+    "form": {
+      "title-create": "Create Period", "title-edit": "Edit Period",
+      "name": "Name", "name-placeholder": "Enter period name",
+      "startDate": "Start Date", "endDate": "End Date",
+      "active": "Active", "create": "Create Period", "update": "Update Period", "cancel": "Cancel"
+    },
+    "list": {
+      "search": "Search periods...", "loading": "Loading periods...", "empty": "No academic periods yet",
+      "name": "Name", "startDate": "Start", "endDate": "End", "status": "Status",
+      "active": "Active", "inactive": "Inactive", "actions": "Actions", "edit": "Edit", "delete": "Delete"
+    }
+  },
+  "scheduling": {
+    "page": {
+      "title": "Search Schedules",
+      "subtitle": "View your academy's weekly class timetables"
+    },
+    "dropdown": {
+      "placeholder": "Select a schedule...",
+      "sessions": "sessions"
+    },
+    "timetable": {
+      "empty": "This schedule has no class sessions",
+      "course": "Course",
+      "classroom": "Classroom",
+      "teacher": "Teacher"
+    },
+    "days": {
+      "MONDAY": "Monday",
+      "TUESDAY": "Tuesday",
+      "WEDNESDAY": "Wednesday",
+      "THURSDAY": "Thursday",
+      "FRIDAY": "Friday",
+      "SATURDAY": "Saturday",
+      "SUNDAY": "Sunday"
+    }
+  },
+  "courses": {
+    "page": {
+      "title": "Courses",
+      "subtitle": "Manage your academy's course catalog"
+    },
+    "form": {
+      "title-create": "Create Course",
+      "title-edit": "Edit Course",
+      "name": "Name",
+      "name-placeholder": "Enter course name",
+      "code": "Code",
+      "code-placeholder": "Enter course code",
+      "description": "Description",
+      "description-placeholder": "Enter course description",
+      "create": "Create Course",
+      "update": "Update Course",
+      "cancel": "Cancel"
+    },
+    "list": {
+      "search": "Search courses...",
+      "loading": "Loading courses...",
+      "empty": "No courses registered yet",
+      "name": "Name",
+      "code": "Code",
+      "description": "Description",
+      "actions": "Actions",
+      "edit": "Edit",
+      "delete": "Delete"
+    }
+  },
+  "teachers": {
+    "page": {
+      "title": "Teachers",
+      "subtitle": "Manage your academy's teaching staff"
+    },
+    "form": {
+      "title": "Register Teacher",
+      "firstName": "First Name",
+      "firstName-placeholder": "Enter first name",
+      "lastName": "Last Name",
+      "lastName-placeholder": "Enter last name",
+      "email": "Email",
+      "email-placeholder": "Enter email address",
+      "countryCode": "Code",
+      "phone": "Phone",
+      "phone-placeholder": "Enter phone number",
+      "register": "Register Teacher"
+    },
+    "list": {
+      "search": "Search teachers...",
+      "loading": "Loading teachers...",
+      "empty": "No teachers registered yet",
+      "profile": "Teacher"
+    }
+  },
+  "students": {
+    "page": {
+      "title": "Students",
+      "subtitle": "Manage enrolled students and personal information"
+    },
+    "form": {
+      "title": "Register Student",
+      "editTitle": "Edit Student",
+      "firstName": "First Name",
+      "firstName-placeholder": "Enter first name",
+      "lastName": "Last Name",
+      "lastName-placeholder": "Enter last name",
+      "dni": "DNI",
+      "dni-placeholder": "Enter DNI",
+      "studentCode": "Student Code",
+      "studentCode-placeholder": "Ex. STU-001",
+      "email": "Email Address",
+      "email-placeholder": "Enter email",
+      "countryCode": "Code",
+      "phone": "Phone",
+      "phone-placeholder": "Enter phone number",
+      "sex": "Sex",
+      "sex-placeholder": "Select...",
+      "birthDate": "Birthday",
+      "birthDate-placeholder": "dd/mm/yyyy",
+      "street": "Street Address",
+      "street-placeholder": "Ex. Av. Los Pinos 123",
+      "district": "District",
+      "district-placeholder": "Ex. Villa El Salvador",
+      "province": "Province / Dept",
+      "province-placeholder": "Ex. Lima",
+      "register": "Register Student",
+      "update": "Update Student",
+      "cancel": "Cancel",
+      "error-form": "Please correct the highlighted fields.",
+      "department": "Department",
+      "department-placeholder": "Ex. Lima"
+    },
+    "list": {
+      "search": "Search students...",
+      "loading": "Loading students...",
+      "empty": "No students registered yet",
+      "profile": "Profile"
+    }
+  },
+  "billing": {
+    "page": { "title": "Billing", "subtitle": "Manage student billing accounts and invoices." },
+    "account": {
+      "title": "Billing Accounts",
+      "form-title": "New Account",
+      "studentId": "Student ID",
+      "dni": "DNI",
+      "create": "Create Account",
+      "empty": "No accounts registered"
+    },
+    "invoice": {
+      "title": "Invoices",
+      "assign-title": "Assign Invoice",
+      "edit-title": "Edit Invoice",
+      "type": "Type",
+      "amount": "Amount",
+      "currency": "Currency",
+      "description": "Description",
+      "issueDate": "Issue Date",
+      "dueDate": "Due Date",
+      "status": "Status",
+      "actions": "Actions",
+      "mark-paid": "Mark Paid",
+      "delete": "Delete",
+      "save": "Save Invoice",
+      "statuses": {
+        "PENDING": "Pending",
+        "PAID": "Paid",
+        "OVERDUE": "Overdue",
+        "CANCELED": "Canceled"
+      }
+    }
+  }
+}

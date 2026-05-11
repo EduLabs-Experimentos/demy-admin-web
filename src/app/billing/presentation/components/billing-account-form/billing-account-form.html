@@ -1,0 +1,15 @@
+<article class="billing-form">
+  <h3 class="billing-form__title">{{ 'billing.account.form-title' | translate }}</h3>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="billing-form__field">
+      <label class="billing-form__label">{{ 'billing.account.studentId' | translate }}</label>
+      <input pInputText type="number" formControlName="studentId" class="billing-form__input" [class.ng-invalid]="isInvalid('studentId')" />
+    </div>
+    <div class="billing-form__field">
+      <label class="billing-form__label">{{ 'billing.account.dni' | translate }}</label>
+      <input pInputText formControlName="dniNumber" class="billing-form__input" [class.ng-invalid]="isInvalid('dniNumber')" />
+    </div>
+    <p-button [label]="'billing.account.create' | translate" styleClass="billing-form__submit"
+              [loading]="store.loading()" [rounded]="true" type="submit" />
+  </form>
+</article>

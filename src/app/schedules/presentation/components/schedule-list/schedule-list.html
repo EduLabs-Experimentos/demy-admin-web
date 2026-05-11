@@ -1,0 +1,107 @@
+<header class="schedule-roster__toolbar">
+  <span class="p-input-icon-left schedule-roster__search">
+    <i class="pi pi-search"></i>
+    <input pInputText type="text"
+           [value]="store.searchQuery()"
+           (input)="store.onSearchQueryChange($any($event.target).value)"
+           [placeholder]="'schedules.list.search' | translate" />
+  </span>
+</header>
+
+<div class="schedule-roster__scroll">
+  @if (store.isLoadingSchedules()) {
+    <div class="schedule-roster__empty">
+      <i class="pi pi-spin pi-spinner"></i>
+      <span>{{ 'schedules.list.loading' | translate }}</span>
+    </div>
+  } @else if (store.filteredSchedules().length === 0) {
+    <div class="schedule-roster__empty">
+      <i class="pi pi-calendar"></i>
+      <span>{{ 'schedules.list.empty' | translate }}</span>
+    </div>
+  } @else {
+    @for (schedule of store.filteredSchedules(); track schedule.id) {
+      <div class="schedule-card" [class.schedule-card--selected]="store.selectedScheduleId() === schedule.id">
+        <div class="schedule-card__header" (click)="toggleSelect(schedule.id, $event)">
+          <div class="schedule-card__info">
+            <div class="schedule-card__profile">
+              <span class="schedule-card__avatar">{{ schedule.name.charAt(0) }}</span>
+              <span class="schedule-card__name">{{ schedule.name }}</span>
+            </div>
+            <span class="schedule-card__count">{{ schedule.classSessions.length }} {{ 'schedules.list.sessions' | translate }}</span>
+          </div>
+          <div class="schedule-card__actions">
+            <button class="schedule-card__action-btn"
+                    (click)="editSchedule(schedule.id); $event.stopPropagation()"
+                    [disabled]="store.isLoading() || store.isDeleting()"
+                    [attr.aria-label]="'schedules.list.edit' | translate">
+              <i class="pi pi-pencil"></i>
+            </button>
+            <button class="schedule-card__action-btn schedule-card__action-btn--danger"
+                    (click)="deleteSchedule(schedule.id); $event.stopPropagation()"
+                    [disabled]="store.isLoading() || store.isDeleting()"
+                    [attr.aria-label]="'schedules.list.delete' | translate">
+              <i class="pi pi-trash"></i>
+            </button>
+          </div>
+        </div>
+
+        @if (store.selectedScheduleId() === schedule.id) {
+          <div class="schedule-card__sessions">
+            @if (schedule.classSessions.length === 0) {
+              <div class="schedule-card__sessions-empty">
+                <span>{{ 'schedules.list.no-sessions' | translate }}</span>
+              </div>
+            } @else {
+              <table class="session-table">
+                <thead>
+                  <tr>
+                    <th>{{ 'schedules.list.day' | translate }}</th>
+                    <th>{{ 'schedules.list.time' | translate }}</th>
+                    <th>{{ 'schedules.list.course' | translate }}</th>
+                    <th>{{ 'schedules.list.teacher' | translate }}</th>
+                    <th class="session-table__actions-col">{{ 'schedules.list.actions' | translate }}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  @for (session of schedule.classSessions; track session.id) {
+                    <tr class="session-table__row" [class.session-table__row--editing]="store.editingSessionId() === session.id">
+                      <td>
+                        <span class="session-table__day">{{ 'schedules.days.' + session.dayOfWeek | translate }}</span>
+                      </td>
+                      <td>
+                        <span class="session-table__time">{{ session.startTime }} - {{ session.endTime }}</span>
+                      </td>
+                      <td>
+                        <span class="session-table__course">{{ session.course.name }}</span>
+                      </td>
+                      <td>
+                        <span class="session-table__teacher">{{ session.teacher.firstName }} {{ session.teacher.lastName }}</span>
+                      </td>
+                      <td class="session-table__actions-col">
+                        <div class="session-table__actions">
+                          <button class="session-table__action-btn"
+                                  [disabled]="store.isLoading() || store.isDeleting()"
+                                  (click)="editSession(schedule, session)"
+                                  [attr.aria-label]="'schedules.list.edit-session' | translate">
+                            <i class="pi pi-pencil"></i>
+                          </button>
+                          <button class="session-table__action-btn session-table__action-btn--danger"
+                                  [disabled]="store.isLoading() || store.isDeleting()"
+                                  (click)="deleteSession(schedule.id, session.id)"
+                                  [attr.aria-label]="'schedules.list.delete-session' | translate">
+                            <i class="pi pi-trash"></i>
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  }
+                </tbody>
+              </table>
+            }
+          </div>
+        }
+      </div>
+    }
+  }
+</div>

@@ -1,0 +1,463 @@
+{
+  "sign-up": {
+    "title": "Crear Cuenta",
+    "subtitle": "Ingresa tu correo y contraseña para comenzar",
+    "email": "Correo Electrónico",
+    "email-placeholder": "tucorreo@gmail.com",
+    "password": "Contraseña",
+    "password-placeholder": "Tu contraseña segura",
+    "terms": "Acepto los términos y condiciones",
+    "register": "Crear Cuenta",
+    "login": "Iniciar Sesión",
+    "already-account": "¿Ya tienes una cuenta?",
+    "errors": {
+      "required": "Este campo es requerido",
+      "invalid-email": "Por favor ingresa un correo válido",
+      "min-length": "Mínimo 8 caracteres requeridos",
+      "accept-terms": "Debes aceptar los términos y condiciones"
+    },
+    "success": "¡Cuenta creada! Por favor verifica tu correo.",
+    "error": "Ocurrió un error durante el registro"
+  },
+  "verify-account": {
+    "title": "Verifica Tu Cuenta",
+    "subtitle": "Ingresa el código de 6 dígitos enviado a tu correo",
+    "code-sent-to": "Código enviado a:",
+    "code": "Código de Verificación",
+    "code-placeholder": "• • • • • •",
+    "didnt-receive": "¿No recibiste el código?",
+    "verify": "Verificar Cuenta",
+    "resend-code": "Reenviar Código",
+    "errors": {
+      "required": "El código de verificación es requerido",
+      "invalid-code": "El código ingresado es incorrecto. Verifica e intenta de nuevo."
+    },
+    "success": "¡Cuenta verificada exitosamente!",
+    "error": "Error al verificar la cuenta. Por favor intenta de nuevo."
+  },
+  "complete-account": {
+    "title": "Completa Tu Perfil",
+    "subtitle": "Ingresa tu información personal",
+    "firstName": "Nombre",
+    "firstName-placeholder": "Ingresa tu nombre",
+    "lastName": "Apellido",
+    "lastName-placeholder": "Ingresa tu apellido",
+    "countryCode": "Código de País",
+    "countryCode-placeholder": "+51",
+    "phone": "Teléfono",
+    "phone-placeholder": "Ingresa tu número de teléfono",
+    "dni": "DNI",
+    "dni-placeholder": "Ingresa tu número de DNI",
+    "submit": "Continuar",
+    "errors": {
+      "required": "Este campo es requerido",
+      "min-length": "Mínimo 8 caracteres requeridos"
+    },
+    "success": "¡Perfil completado exitosamente!",
+    "error": "Ocurrió un error"
+  },
+  "sign-in": {
+    "title": "Bienvenido de Nuevo",
+    "subtitle": "Ingresa tus credenciales para acceder a tu cuenta",
+    "email": "Correo Electrónico",
+    "email-placeholder": "Ingresa tu correo",
+    "password": "Contraseña",
+    "password-placeholder": "Ingresa tu contraseña",
+    "sign-in": "Iniciar Sesión",
+    "forgot-password": "¿Olvidaste tu contraseña?",
+    "no-account": "¿No tienes una cuenta?",
+    "sign-up": "Crear Cuenta",
+    "errors": {
+      "required": "Este campo es requerido",
+      "invalid-email": "Por favor ingresa un correo válido"
+    },
+    "success": "¡Sesión iniciada exitosamente!",
+    "error": "Credenciales inválidas. Por favor intenta de nuevo."
+  },
+  "setup-academy": {
+    "title": "Configura Tu Academia",
+    "subtitle": "Ingresa la información de tu academia",
+    "academyName": "Nombre de Academia",
+    "academyName-placeholder": "Ingresa el nombre de la academia",
+    "academyDescription": "Descripción",
+    "academyDescription-placeholder": "Ingresa la descripción",
+    "ruc": "RUC",
+    "ruc-placeholder": "Ingresa el número de RUC",
+    "street": "Dirección",
+    "street-placeholder": "Ingresa la dirección",
+    "district": "Distrito",
+    "district-placeholder": "Ingresa el distrito",
+    "province": "Provincia",
+    "province-placeholder": "Ingresa la provincia",
+    "department": "Departamento",
+    "department-placeholder": "Ingresa el departamento",
+    "email": "Correo de Academia",
+    "email-placeholder": "Ingresa el correo de la academia",
+    "countryCode": "Código de País",
+    "countryCode-placeholder": "+51",
+    "phone": "Teléfono",
+    "phone-placeholder": "Ingresa el número de teléfono",
+    "submit": "Completar Configuración",
+    "errors": {
+      "required": "Este campo es requerido"
+    },
+    "success": "¡Academia configurada exitosamente!",
+    "error": "Ocurrió un error"
+  },
+  "plan-select": {
+    "title": "Elige Tu Plan",
+    "subtitle": "Selecciona el plan que mejor se adapte a las necesidades de tu academia",
+    "continue": "Continuar",
+    "plans": {
+      "basic": {
+        "badge": "Básico",
+        "name": "Básico",
+        "price": "29",
+        "features": ["Hasta 5 profesores", "Hasta 50 estudiantes", "Control de asistencia básico", "Soporte por email"]
+      },
+      "extra": {
+        "badge": "Popular",
+        "name": "Extra",
+        "price": "59",
+        "features": ["Hasta 20 profesores", "Hasta 200 estudiantes", "Asistencia y calificaciones avanzadas", "Módulo financiero", "Soporte prioritario"]
+      },
+      "deluxe": {
+        "badge": "Deluxe",
+        "name": "Deluxe",
+        "price": "99",
+        "features": ["Profesores ilimitados", "Estudiantes ilimitados", "Acceso completo a funciones", "Reportes personalizados", "Soporte dedicado", "Acceso API"]
+      }
+    }
+  },
+  "reset-password": {
+    "title": "Restablecer Contraseña",
+    "email": "Correo Electrónico",
+    "email-placeholder": "Ingresa tu correo",
+    "code": "Código de Verificación",
+    "code-placeholder": "Ingresa código de 6 dígitos",
+    "new-password": "Nueva Contraseña",
+    "new-password-placeholder": "Ingresa nueva contraseña",
+    "confirm-password": "Confirmar Contraseña",
+    "confirm-password-placeholder": "Confirma nueva contraseña",
+    "send-code": "Enviar Código",
+    "verify-code": "Verificar Código",
+    "reset": "Restablecer Contraseña",
+    "back": "Volver",
+    "back-to-signin": "Volver a Iniciar Sesión",
+    "step-email-description": "Ingresa tu correo electrónico y te enviaremos un código para restablecer tu contraseña.",
+    "step-code-description": "Ingresa el código de 6 dígitos enviado a tu correo.",
+    "step-password-description": "Crea una nueva contraseña para tu cuenta.",
+    "errors": {
+      "required": "Este campo es requerido",
+      "valid-email": "Por favor ingresa un correo válido",
+      "min-length": "Mínimo 8 caracteres requeridos"
+    }
+  },
+  "sidebar": {
+    "sections": {
+      "overview": "Resumen",
+      "academy": "Academia",
+      "classes": "Clases",
+      "administration": "Administración",
+      "general": "General"
+    },
+    "dashboard": "Panel de Control",
+    "teachers": "Profesores",
+    "students": "Estudiantes",
+    "academic-periods": "Períodos",
+    "courses": "Cursos",
+    "classrooms": "Salones",
+    "schedules": "Horarios",
+    "enrollment": "Matrículas",
+    "scheduling": "Programación",
+    "billing": "Cobranzas",
+    "accounting": "Contabilidad",
+    "settings": "Configuración",
+    "help": "Ayuda",
+    "logout": "Cerrar Sesión"
+  },
+  "footer": {
+    "rights": "Todos los derechos reservados."
+  },
+  "schedules": {
+    "page": {
+      "title": "Horarios Semanales",
+      "subtitle": "Gestiona los horarios de clase de tu academia"
+    },
+    "form": {
+      "title-create-weekly": "Crear Horario",
+      "title-edit-weekly": "Editar Nombre del Horario",
+      "name": "Nombre",
+      "name-placeholder": "Ingresa el nombre del horario",
+      "create-weekly": "Crear Horario",
+      "update-weekly": "Actualizar Nombre",
+      "cancel": "Cancelar",
+      "title-add-session": "Agregar Sesión",
+      "title-edit-session": "Editar Sesión",
+      "course": "Curso",
+      "select-course": "Selecciona un curso",
+      "classroom": "Salón",
+      "select-classroom": "Selecciona un salón",
+      "capacity": "Capacidad",
+      "teacher": "Profesor",
+      "select-teacher": "Selecciona un profesor",
+      "day": "Día de la Semana",
+      "select-day": "Selecciona un día",
+      "startTime": "Hora Inicio",
+      "endTime": "Hora Fin",
+      "add-session": "Agregar Sesión",
+      "update-session": "Actualizar Sesión"
+    },
+    "list": {
+      "search": "Buscar horarios...",
+      "loading": "Cargando horarios...",
+      "empty": "No hay horarios semanales aún",
+      "sessions": "sesiones",
+      "no-sessions": "No hay sesiones agregadas aún",
+      "edit": "Editar",
+      "delete": "Eliminar",
+      "edit-session": "Editar sesión",
+      "delete-session": "Eliminar sesión",
+      "day": "Día",
+      "time": "Horario",
+      "course": "Curso",
+      "teacher": "Profesor",
+      "actions": "Acciones"
+    },
+    "days": {
+      "MONDAY": "Lunes",
+      "TUESDAY": "Martes",
+      "WEDNESDAY": "Miércoles",
+      "THURSDAY": "Jueves",
+      "FRIDAY": "Viernes",
+      "SATURDAY": "Sábado",
+      "SUNDAY": "Domingo"
+    }
+  },
+  "classrooms": {
+    "page": {
+      "title": "Salones",
+      "subtitle": "Gestiona los salones e instalaciones de tu academia"
+    },
+    "form": {
+      "title-create": "Crear Salón",
+      "title-edit": "Editar Salón",
+      "code": "Código",
+      "code-placeholder": "Ingresa el código del salón",
+      "capacity": "Capacidad",
+      "capacity-placeholder": "Ingresa la capacidad",
+      "campus": "Sede",
+      "campus-placeholder": "Ingresa la sede",
+      "create": "Crear Salón",
+      "update": "Actualizar Salón",
+      "cancel": "Cancelar"
+    },
+    "list": {
+      "search": "Buscar salones...",
+      "loading": "Cargando salones...",
+      "empty": "No hay salones registrados aún",
+      "code": "Código",
+      "capacity": "Capacidad",
+      "campus": "Sede",
+      "actions": "Acciones",
+      "edit": "Editar",
+      "delete": "Eliminar"
+    }
+  },
+  "enrollments": {
+    "page": { "title": "Matrículas", "subtitle": "Gestiona las matrículas y pagos de estudiantes" },
+    "form": {
+      "title-create": "Crear Matrícula", "title-edit": "Editar Matrícula",
+      "student": "Estudiante", "select-student": "Selecciona un estudiante",
+      "period": "Período Académico", "select-period": "Selecciona período",
+      "schedule": "Horario", "select-schedule": "Selecciona horario",
+      "amount": "Monto", "amount-placeholder": "Ingresa el monto",
+      "currency": "Moneda",
+      "paymentStatus": "Estado de Pago",
+      "enrollmentStatus": "Estado de Matrícula",
+      "create": "Crear Matrícula", "update": "Actualizar Matrícula", "cancel": "Cancelar"
+    },
+    "list": {
+      "search": "Buscar por estudiante...", "loading": "Cargando matrículas...", "empty": "No hay matrículas aún",
+      "studentId": "Estudiante", "period": "Período", "schedule": "Horario",
+      "amount": "Monto", "payment": "Pago", "status": "Estado",
+      "actions": "Acciones", "edit": "Editar", "delete": "Eliminar"
+    },
+    "status": {
+      "PENDING": "Pendiente", "PAID": "Pagado", "PARTIAL": "Parcial", "CANCELLED": "Cancelado",
+      "ACTIVE": "Activo", "INACTIVE": "Inactivo", "COMPLETED": "Completado"
+    }
+  },
+  "academic-periods": {
+    "page": { "title": "Periodos", "subtitle": "Gestiona los periodos academicos de tu academia" },
+    "form": {
+      "title-create": "Crear Periodo", "title-edit": "Editar Periodo",
+      "name": "Nombre", "name-placeholder": "Ingresa el nombre del periodo",
+      "startDate": "Fecha Inicio", "endDate": "Fecha Fin",
+      "active": "Activo", "create": "Crear Periodo", "update": "Actualizar Periodo", "cancel": "Cancelar"
+    },
+    "list": {
+      "search": "Buscar periodos...", "loading": "Cargando periodos...", "empty": "No hay periodos aun",
+      "name": "Nombre", "startDate": "Inicio", "endDate": "Fin", "status": "Estado",
+      "active": "Activo", "inactive": "Inactivo", "actions": "Acciones", "edit": "Editar", "delete": "Eliminar"
+    }
+  },
+  "scheduling": {
+    "page": {
+      "title": "Buscar Horarios",
+      "subtitle": "Visualiza los horarios semanales de tu academia"
+    },
+    "dropdown": {
+      "placeholder": "Selecciona un horario...",
+      "sessions": "sesiones"
+    },
+    "timetable": {
+      "empty": "Este horario no tiene sesiones de clase",
+      "course": "Curso",
+      "classroom": "Salón",
+      "teacher": "Profesor"
+    },
+    "days": {
+      "MONDAY": "Lunes",
+      "TUESDAY": "Martes",
+      "WEDNESDAY": "Miércoles",
+      "THURSDAY": "Jueves",
+      "FRIDAY": "Viernes",
+      "SATURDAY": "Sábado",
+      "SUNDAY": "Domingo"
+    }
+  },
+  "courses": {
+    "page": {
+      "title": "Cursos",
+      "subtitle": "Gestiona el catálogo de cursos de tu academia"
+    },
+    "form": {
+      "title-create": "Crear Curso",
+      "title-edit": "Editar Curso",
+      "name": "Nombre",
+      "name-placeholder": "Ingresa el nombre del curso",
+      "code": "Código",
+      "code-placeholder": "Ingresa el código del curso",
+      "description": "Descripción",
+      "description-placeholder": "Ingresa la descripción del curso",
+      "create": "Crear Curso",
+      "update": "Actualizar Curso",
+      "cancel": "Cancelar"
+    },
+    "list": {
+      "search": "Buscar cursos...",
+      "loading": "Cargando cursos...",
+      "empty": "No hay cursos registrados aún",
+      "name": "Nombre",
+      "code": "Código",
+      "description": "Descripción",
+      "actions": "Acciones",
+      "edit": "Editar",
+      "delete": "Eliminar"
+    }
+  },
+  "teachers": {
+    "page": {
+      "title": "Profesores",
+      "subtitle": "Gestiona el personal docente de tu academia"
+    },
+    "form": {
+      "title": "Registrar Profesor",
+      "firstName": "Nombre",
+      "firstName-placeholder": "Ingresa el nombre",
+      "lastName": "Apellido",
+      "lastName-placeholder": "Ingresa el apellido",
+      "email": "Correo Electrónico",
+      "email-placeholder": "Ingresa el correo",
+      "countryCode": "Código",
+      "phone": "Teléfono",
+      "phone-placeholder": "Ingresa el teléfono",
+      "register": "Registrar Profesor"
+    },
+    "list": {
+      "search": "Buscar profesores...",
+      "loading": "Cargando profesores...",
+      "empty": "No hay profesores registrados aún",
+      "profile": "Profesor"
+    }
+  },
+  "students": {
+    "page": {
+      "title": "Estudiantes",
+      "subtitle": "Gestiona los estudiantes matriculados y su información personal"
+    },
+    "form": {
+      "title": "Registrar Estudiante",
+      "editTitle": "Editar Estudiante",
+      "firstName": "Nombre",
+      "firstName-placeholder": "Ingresa el nombre",
+      "lastName": "Apellido",
+      "lastName-placeholder": "Ingresa el apellido",
+      "dni": "DNI",
+      "dni-placeholder": "Ingresa el DNI",
+      "studentCode": "Código",
+      "studentCode-placeholder": "Ej. STU-001",
+      "email": "Correo Electrónico",
+      "email-placeholder": "Ingresa el correo",
+      "countryCode": "Código",
+      "phone": "Teléfono",
+      "phone-placeholder": "Ingresa el teléfono",
+      "sex": "Sexo",
+      "sex-placeholder": "Seleccionar...",
+      "birthDate": "Cumpleaños",
+      "birthDate-placeholder": "dd/mm/aaaa",
+      "street": "Dirección",
+      "street-placeholder": "Ej. Av. Los Pinos 123",
+      "district": "Distrito",
+      "district-placeholder": "Ej. Villa El Salvador",
+      "province": "Provincia / Depto",
+      "province-placeholder": "Ej. Lima",
+      "register": "Registrar Estudiante",
+      "update": "Actualizar Estudiante",
+      "cancel": "Cancelar",
+      "error-form": "Por favor corrige los campos resaltados.",
+      "department": "Departamento",
+      "department-placeholder": "Ej. Lima"
+    },
+    "list": {
+      "search": "Buscar estudiantes...",
+      "loading": "Cargando estudiantes...",
+      "empty": "No hay estudiantes registrados aún",
+      "profile": "Perfil"
+    }
+  },
+  "billing": {
+    "page": { "title": "Facturación", "subtitle": "Gestiona cuentas de cobro y comprobantes de estudiantes." },
+    "account": {
+      "title": "Cuentas de Cobro",
+      "form-title": "Nueva Cuenta",
+      "studentId": "ID Estudiante",
+      "dni": "DNI",
+      "create": "Crear Cuenta",
+      "empty": "No hay cuentas registradas"
+    },
+    "invoice": {
+      "title": "Facturas",
+      "assign-title": "Asignar Factura",
+      "edit-title": "Editar Factura",
+      "type": "Tipo",
+      "amount": "Monto",
+      "currency": "Moneda",
+      "description": "Descripción",
+      "issueDate": "F. Emisión",
+      "dueDate": "F. Vencimiento",
+      "status": "Estado",
+      "actions": "Acciones",
+      "mark-paid": "Pagar",
+      "delete": "Eliminar",
+      "save": "Guardar Factura",
+      "statuses": {
+        "PENDING": "Pendiente",
+        "PAID": "Pagado",
+        "OVERDUE": "Vencido",
+        "CANCELED": "Cancelado"
+      }
+    }
+  }
+}

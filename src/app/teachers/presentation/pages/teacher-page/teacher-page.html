@@ -1,0 +1,17 @@
+<header class="teachers-page__header">
+  <div class="teachers-page__header-text">
+    <span class="teachers-page__eyebrow">{{ 'sidebar.sections.administration' | translate }}</span>
+    <h1 class="teachers-page__title">{{ 'teachers.page.title' | translate }}</h1>
+    <p class="teachers-page__subtitle">{{ 'teachers.page.subtitle' | translate }}</p>
+  </div>
+</header>
+
+<div class="teachers-page__content">
+  <aside class="teachers-page__form-col">
+    <app-teacher-form />
+  </aside>
+
+  <section class="teachers-page__list-col">
+    <app-teacher-list />
+  </section>
+</div>
