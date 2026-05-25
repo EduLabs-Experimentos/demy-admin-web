@@ -1,4 +1,34 @@
 {
+  "dashboard": {
+    "page": {
+      "eyebrow": "Estadísticas",
+      "title": "Panel de Control",
+      "subtitle": "Resumen general de {{ academy }}"
+    },
+    "finance": {
+      "totalIncome": "Ingresos Totales",
+      "totalExpense": "Gastos Totales",
+      "balance": "Balance",
+      "pendingPayments": "Pagos Pendientes"
+    },
+    "charts": {
+      "incomeExpense": "Ingresos vs Gastos",
+      "expenseCategories": "Gastos por Categoría"
+    },
+    "academic": {
+      "title": "Estadísticas Académicas",
+      "students": "Estudiantes",
+      "teachers": "Profesores",
+      "courses": "Cursos",
+      "classrooms": "Aulas",
+      "enrollments": "Matrículas",
+      "schedules": "Horarios"
+    },
+    "loading": "Cargando dashboard...",
+    "error": "Ocurrió un error",
+    "retry": "Reintentar",
+    "refreshTooltip": "Actualizar datos"
+  },
   "sign-up": {
     "title": "Crear Cuenta",
     "subtitle": "Ingresa tu correo y contraseña para comenzar",
