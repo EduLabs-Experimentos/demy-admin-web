@@ -8,6 +8,7 @@ import { routes } from './app.routes';
 import { iamInterceptor } from './iam/infrastructure/iam.interceptor';
 import { providePrimeNG } from 'primeng/config';
 import { appPreset } from './app.preset';
+import { provideCharts, withDefaultRegisterables } from 'ng2-charts';
 
 const interceptors = [iamInterceptor];
 
@@ -37,5 +38,6 @@ export const appConfig: ApplicationConfig = {
         suffix: '.json',
       }),
     }),
+    provideCharts(withDefaultRegisterables()),
   ],
 };

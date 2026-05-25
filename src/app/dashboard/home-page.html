@@ -1,29 +1,100 @@
 <div class="dashboard-container">
-  <div class="welcome-card">
-    <h1 class="welcome-title">Dashboard</h1>
-    <p class="welcome-message">Welcome, <strong>{{ store.currentEmail() }}</strong></p>
-    <p class="welcome-subtext">This is your academy management dashboard. Use the sidebar to navigate through the different modules.</p>
-  </div>
+  @if (store.loading()) {
+    <div class="loading-container">
+      <p-progressSpinner styleClass="w-4rem h-4rem" strokeWidth="8" fill="var(--surface-ground)"></p-progressSpinner>
+      <p>{{ 'dashboard.loading' | translate }}</p>
+    </div>
+  } @else if (store.error()) {
+    <div class="error-container">
+      <i class="pi pi-exclamation-triangle" style="font-size: 3rem; color: var(--red-500)"></i>
+      <p>{{ store.error() }}</p>
+      <p-button label="{{ 'dashboard.retry' | translate }}" icon="pi pi-refresh" (onClick)="refresh()"></p-button>
+    </div>
+  } @else if (store.hasData()) {
+    <div class="dashboard-content">
+      <header class="page__header">
+        <div class="page__header-text">
+          <span class="page__eyebrow">{{ 'dashboard.page.eyebrow' | translate }}</span>
+          <h1 class="page__title">{{ 'dashboard.page.title' | translate }}</h1>
+          <p class="page__subtitle">{{ 'dashboard.page.subtitle' | translate: { academy: store.stats()?.academyName || 'tu academia' } }}</p>
+        </div>
+        <p-button icon="pi pi-refresh" severity="secondary" [rounded]="true" (onClick)="refresh()" [pTooltip]="'dashboard.refreshTooltip' | translate"></p-button>
+      </header>
 
-  <div class="quick-actions">
-    <h2 class="section-title">Quick Actions</h2>
-    <div class="actions-grid">
-      <div class="action-card">
-        <i class="pi pi-building"></i>
-        <span>Organization</span>
+      <!-- Finance Stats Row -->
+      <div class="stats-row finance-stats">
+        <p-card styleClass="stat-finance">
+          <div class="stat-content">
+            <div class="stat-icon income-icon">
+              <i class="pi pi-arrow-down"></i>
+            </div>
+            <div class="stat-info">
+              <span class="stat-value">{{ formatCurrency(store.stats()?.totalIncome || 0) }}</span>
+              <span class="stat-label">{{ 'dashboard.finance.totalIncome' | translate }}</span>
+            </div>
+          </div>
+        </p-card>
+        <p-card styleClass="stat-finance">
+          <div class="stat-content">
+            <div class="stat-icon expense-icon">
+              <i class="pi pi-arrow-up"></i>
+            </div>
+            <div class="stat-info">
+              <span class="stat-value">{{ formatCurrency(store.stats()?.totalExpense || 0) }}</span>
+              <span class="stat-label">{{ 'dashboard.finance.totalExpense' | translate }}</span>
+            </div>
+          </div>
+        </p-card>
+        <p-card styleClass="stat-finance" [class.positive]="(store.stats()?.balance || 0) >= 0" [class.negative]="(store.stats()?.balance || 0) < 0">
+          <div class="stat-content">
+            <div class="stat-icon balance-icon">
+              <i class="pi pi-wallet"></i>
+            </div>
+            <div class="stat-info">
+              <span class="stat-value">{{ formatCurrency(store.stats()?.balance || 0) }}</span>
+              <span class="stat-label">{{ 'dashboard.finance.balance' | translate }}</span>
+            </div>
+          </div>
+        </p-card>
+        <p-card styleClass="stat-finance">
+          <div class="stat-content">
+            <div class="stat-icon payments-icon">
+              <i class="pi pi-credit-card"></i>
+            </div>
+            <div class="stat-info">
+              <span class="stat-value">{{ store.stats()?.pendingPayments }}</span>
+              <span class="stat-label">{{ 'dashboard.finance.pendingPayments' | translate }}</span>
+            </div>
+          </div>
+        </p-card>
       </div>
-      <div class="action-card">
-        <i class="pi pi-users"></i>
-        <span>Students</span>
+
+      <!-- Charts Row -->
+      <div class="charts-row">
+        <div class="chart-main">
+          <app-income-expense-chart
+            [chartData]="store.chartData()?.incomeExpenseChart || { labels: [], income: [], expense: [] }">
+          </app-income-expense-chart>
+        </div>
+        <div class="chart-side">
+          <app-expense-categories-chart
+            [categories]="store.chartData()?.expenseCategories || []">
+          </app-expense-categories-chart>
+        </div>
       </div>
-      <div class="action-card">
-        <i class="pi pi-credit-card"></i>
-        <span>Payments</span>
-      </div>
-      <div class="action-card">
-        <i class="pi pi-calendar"></i>
-        <span>Schedules</span>
+
+      <!-- Academic Stats Row -->
+      <div class="academic-section">
+        <h2 class="section-title">{{ 'dashboard.academic.title' | translate }}</h2>
+        <app-academic-stats
+          [totalStudents]="store.stats()?.totalStudents || 0"
+          [totalTeachers]="store.stats()?.totalTeachers || 0"
+          [totalCourses]="store.stats()?.totalCourses || 0"
+          [totalClassrooms]="store.stats()?.totalClassrooms || 0"
+          [totalEnrollments]="store.stats()?.totalEnrollments || 0"
+          [totalSchedules]="store.stats()?.totalSchedules || 0">
+        </app-academic-stats>
       </div>
     </div>
-  </div>
+  }
 </div>
