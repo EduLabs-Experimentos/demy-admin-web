@@ -14,7 +14,7 @@ export class LanguageSwitcher {
   private translate: TranslateService = inject(TranslateService);
 
   constructor() {
-    const savedLang = localStorage.getItem('language');
+    const savedLang = localStorage.getItem('app-lang');
     if (savedLang && this.languages.includes(savedLang)) {
       this.currentLang = savedLang;
       this.translate.use(savedLang);
@@ -27,6 +27,6 @@ export class LanguageSwitcher {
   useLanguage(language: string) {
     this.translate.use(language);
     this.currentLang = language;
-    localStorage.setItem('language', language);
+    localStorage.setItem('app-lang', language);
   }
 }

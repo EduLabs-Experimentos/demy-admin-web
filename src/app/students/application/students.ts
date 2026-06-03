@@ -1,6 +1,7 @@
 import { computed, Injectable, Signal, signal } from '@angular/core';
 import { Student } from '../domain/model/student.entity';
 import { StudentsApi } from '../infrastructure/students-api';
+import { BillingStore } from '../../billing/application/billing.store';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { retry } from 'rxjs';
 
@@ -18,7 +19,7 @@ export class StudentsStore {
 
   readonly studentCount = computed(() => this.students().length);
 
-  constructor(private studentsApi: StudentsApi) {
+  constructor(private studentsApi: StudentsApi, private billingStore: BillingStore) {
     this.loadStudents();
   }
 
@@ -26,20 +27,19 @@ export class StudentsStore {
     return computed(() => id ? this.students().find(s => s.id === id) : undefined);
   }
 
-  // NUEVO: Metodo para limpiar errores manualmente
   clearError() {
     this.errorSignal.set(null);
   }
 
-  // MODIFICADO: Agregamos onSuccess para que el formulario sepa cuándo borrarse
   addStudent(student: Student, onSuccess?: () => void): void {
     this.loadingSignal.set(true);
     this.errorSignal.set(null);
     this.studentsApi.createStudent(student).pipe(retry(2)).subscribe({
       next: createdStudent => {
         this.studentsSignal.update(students => [...students, createdStudent]);
+        this.billingStore.createAccount(createdStudent.id, createdStudent.dni);
         this.loadingSignal.set(false);
-        if (onSuccess) onSuccess(); // Solo limpiamos si hay éxito
+        if (onSuccess) onSuccess();
       },
       error: err => {
         this.errorSignal.set(this.formatError(err, 'Failed to create student'));

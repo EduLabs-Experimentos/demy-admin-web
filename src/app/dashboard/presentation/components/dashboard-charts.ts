@@ -300,7 +300,7 @@ export class CoursesCategoryChartComponent {
 @Component({
   selector: 'app-recent-transactions',
   standalone: true,
-  imports: [CommonModule, CardModule, TableModule, ButtonModule],
+  imports: [CommonModule, CardModule, TableModule, ButtonModule, TranslateModule],
   template: `
     <p-card styleClass="chart-card">
       <ng-template pTemplate="header">
@@ -311,24 +311,20 @@ export class CoursesCategoryChartComponent {
         currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords}">
         <ng-template pTemplate="header">
           <tr>
-            <th>Descripción</th>
-            <th>Tipo</th>
-            <th>Monto</th>
-            <th>Fecha</th>
-            <th>Estado</th>
+            <th>{{ 'dashboard.transactions.description' | translate }}</th>
+            <th>{{ 'dashboard.transactions.type' | translate }}</th>
+            <th>{{ 'dashboard.transactions.amount' | translate }}</th>
+            <th>{{ 'dashboard.transactions.date' | translate }}</th>
           </tr>
         </ng-template>
         <ng-template pTemplate="body" let-txn>
           <tr>
             <td>{{ txn.description }}</td>
             <td>
-              <span [class]="'type-badge ' + txn.type.toLowerCase()">{{ txn.type }}</span>
+              <span [class]="'type-badge ' + txn.type.toLowerCase()">{{ 'accounting.type.' + txn.type | translate }}</span>
             </td>
             <td>{{ txn.amount | currency:'USD' }}</td>
             <td>{{ txn.date | date:'dd/MM/yyyy' }}</td>
-            <td>
-              <span [class]="'status-badge ' + txn.status.toLowerCase()">{{ txn.status }}</span>
-            </td>
           </tr>
         </ng-template>
       </p-table>
