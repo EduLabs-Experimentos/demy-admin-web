@@ -1,0 +1,16 @@
+<header class="accounting-page__header">
+  <div class="accounting-page__header-text">
+    <span class="accounting-page__eyebrow">{{ 'sidebar.sections.administration' | translate }}</span>
+    <h1 class="accounting-page__title">{{ 'accounting.page.title' | translate }}</h1>
+    <p class="accounting-page__subtitle">{{ 'accounting.page.subtitle' | translate }}</p>
+  </div>
+</header>
+
+<div class="accounting-page__content">
+  <aside class="accounting-page__form-col">
+    <app-transaction-form />
+  </aside>
+  <section class="accounting-page__list-col">
+    <app-transactions-table />
+  </section>
+</div>
