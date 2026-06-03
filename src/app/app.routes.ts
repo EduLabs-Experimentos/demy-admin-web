@@ -31,6 +31,7 @@ export const routes: Routes = [
 
       { path: 'students', loadChildren: () => import('./students/presentation/students.routes').then(m => m.studentsRoutes) },
       { path: 'billing', loadChildren:() => import('./billing/presentation/billing.routes').then(m => m.billingRoutes) },
+      { path: 'finance', loadChildren: () => import('./accounting/presentation/accounting.routes').then(m => m.accountingRoutes) },
 
       { path: 'organization/courses', loadChildren: () => import('./courses/presentation/courses.routes').then(m => m.coursesRoutes) },
       { path: 'organization/classrooms', loadChildren: () => import('./classrooms/presentation/classrooms.routes').then(m => m.classroomsRoutes) }

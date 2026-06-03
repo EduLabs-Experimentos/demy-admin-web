@@ -18,5 +18,7 @@ export const environment = {
   platformProviderEnrollmentsEndpointPath: '/api/v1/enrollments',
   platformProviderStudentsEndpointPath: '/api/v1/students',
   platformProviderBillingAccountsEndpointPath: '/api/v1/billing-accounts',
+  platformProviderTransactionsEndpointPath: '/api/v1/transactions',
+  platformProviderReportsTransactionsEndpointPath: '/api/v1/reports/transactions',
   platformProviderClassAttendancesEndpointPath: '/api/v1/class-attendances',
 };
