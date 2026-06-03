@@ -81,7 +81,7 @@ export class StatCardComponent {
       font-family: 'Inter', sans-serif;
       border-bottom: 1px solid var(--p-surface-200);
     }
-    .chart-container { height: 260px; position: relative; padding-top: 16px; }
+    .chart-container { height: 220px; position: relative; padding-top: 8px; }
   `]
 })
 export class IncomeExpenseChartComponent {
@@ -153,7 +153,7 @@ export class IncomeExpenseChartComponent {
       font-family: 'Inter', sans-serif;
       border-bottom: 1px solid var(--p-surface-200);
     }
-    .chart-container { height: 260px; position: relative; padding-top: 16px; }
+    .chart-container { height: 220px; position: relative; padding-top: 8px; }
   `]
 })
 export class ExpenseCategoriesChartComponent {
@@ -161,7 +161,7 @@ export class ExpenseCategoriesChartComponent {
 
   get doughnutChartData() {
     return {
-      labels: this.categories.map(c => c.category),
+      labels: this.categories.map(c => this.formatCategory(c.category)),
       datasets: [{
         data: this.categories.map(c => c.amount),
         backgroundColor: this.categories.map(c => c.color),
@@ -170,13 +170,22 @@ export class ExpenseCategoriesChartComponent {
     };
   }
 
+  formatCategory(category: string): string {
+    return category
+      .replace(/_/g, ' ')
+      .split(' ')
+      .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+      .join(' ');
+  }
+
   doughnutChartOptions = {
     responsive: true,
     maintainAspectRatio: false,
+    cutout: '60%',
     plugins: {
       legend: {
-        position: 'right' as const,
-        labels: { color: 'var(--p-surface-700)', padding: 16 }
+        position: 'bottom' as const,
+        labels: { color: 'var(--p-surface-700)', padding: 12, font: { size: 11 } }
       }
     }
   };
@@ -212,7 +221,7 @@ export class ExpenseCategoriesChartComponent {
       font-family: 'Inter', sans-serif;
       border-bottom: 1px solid var(--p-surface-100);
     }
-    .chart-container { height: 260px; position: relative; padding-top: 16px; }
+    .chart-container { height: 220px; position: relative; padding-top: 8px; }
   `]
 })
 export class EnrollmentTrendChartComponent {
@@ -271,7 +280,7 @@ export class EnrollmentTrendChartComponent {
       font-family: 'Inter', sans-serif;
       border-bottom: 1px solid var(--p-surface-100);
     }
-    .chart-container { height: 260px; position: relative; padding-top: 16px; }
+    .chart-container { height: 220px; position: relative; padding-top: 8px; }
   `]
 })
 export class CoursesCategoryChartComponent {
@@ -300,7 +309,7 @@ export class CoursesCategoryChartComponent {
 @Component({
   selector: 'app-recent-transactions',
   standalone: true,
-  imports: [CommonModule, CardModule, TableModule, ButtonModule],
+  imports: [CommonModule, CardModule, TableModule, ButtonModule, TranslateModule],
   template: `
     <p-card styleClass="chart-card">
       <ng-template pTemplate="header">
@@ -311,24 +320,20 @@ export class CoursesCategoryChartComponent {
         currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords}">
         <ng-template pTemplate="header">
           <tr>
-            <th>Descripción</th>
-            <th>Tipo</th>
-            <th>Monto</th>
-            <th>Fecha</th>
-            <th>Estado</th>
+            <th>{{ 'dashboard.transactions.description' | translate }}</th>
+            <th>{{ 'dashboard.transactions.type' | translate }}</th>
+            <th>{{ 'dashboard.transactions.amount' | translate }}</th>
+            <th>{{ 'dashboard.transactions.date' | translate }}</th>
           </tr>
         </ng-template>
         <ng-template pTemplate="body" let-txn>
           <tr>
             <td>{{ txn.description }}</td>
             <td>
-              <span [class]="'type-badge ' + txn.type.toLowerCase()">{{ txn.type }}</span>
+              <span [class]="'type-badge ' + txn.type.toLowerCase()">{{ 'accounting.type.' + txn.type | translate }}</span>
             </td>
             <td>{{ txn.amount | currency:'USD' }}</td>
             <td>{{ txn.date | date:'dd/MM/yyyy' }}</td>
-            <td>
-              <span [class]="'status-badge ' + txn.status.toLowerCase()">{{ txn.status }}</span>
-            </td>
           </tr>
         </ng-template>
       </p-table>

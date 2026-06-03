@@ -159,13 +159,22 @@
 
 .charts-row {
   display: grid;
-  grid-template-columns: 2fr 1fr;
+  grid-template-columns: 1.4fr 1fr;
   gap: 16px;
+  align-items: start;
 }
 
 .chart-main,
 .chart-side {
-  min-height: 320px;
+  min-height: 280px;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+:host ::ng-deep .chart-card {
+  height: 100%;
+  .p-card-body { height: 100%; }
+  .p-card-content { padding-top: 12px; }
 }
 
 .section-title {
@@ -188,6 +197,14 @@
 
   .charts-row {
     grid-template-columns: 1fr;
+    .chart-main, .chart-side { min-height: 260px; }
+  }
+}
+
+@media (max-width: 900px) {
+  .charts-row {
+    grid-template-columns: 1fr;
+    overflow-x: hidden;
   }
 }
 

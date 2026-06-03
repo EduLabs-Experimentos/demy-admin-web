@@ -27,6 +27,10 @@ export class BillingStore {
   // --- Propiedades Computadas ---
   readonly totalAccounts = computed(() => this.accounts().length);
 
+  getAccountByStudentId(studentId: number): BillingAccount | undefined {
+    return this.accounts().find(acc => acc.studentId === studentId);
+  }
+
   constructor(private billingApi: BillingApi) {
     this.loadAllAccounts();
   }

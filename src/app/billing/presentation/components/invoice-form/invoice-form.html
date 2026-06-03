@@ -1,4 +1,5 @@
 <article class="billing-form" style="margin-bottom: 20px;">
+  <h3 class="billing-form__title">{{ (invoice ? 'billing.invoice.edit-title' : 'billing.invoice.assign-title') | translate }}</h3>
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
 
     <div class="billing-form__row" style="display: flex; gap: 12px;">
@@ -9,6 +10,17 @@
       <div class="billing-form__field" style="flex: 1;">
         <label class="billing-form__label">{{ 'billing.invoice.amount' | translate }}</label>
         <input pInputText type="number" formControlName="amount" class="billing-form__input" [class.ng-invalid]="isInvalid('amount')" />
+      </div>
+    </div>
+
+    <div class="billing-form__row" style="display: flex; gap: 12px;">
+      <div class="billing-form__field" style="flex: 1;">
+        <label class="billing-form__label">{{ 'billing.invoice.currency' | translate }}</label>
+        <p-select [options]="currencyOptions" formControlName="currency" styleClass="billing-form__input p-0" [class.ng-invalid]="isInvalid('currency')"></p-select>
+      </div>
+      <div class="billing-form__field" style="flex: 1;">
+        <label class="billing-form__label">{{ 'billing.invoice.status' | translate }}</label>
+        <p-select [options]="statusOptions" formControlName="status" optionLabel="label" optionValue="value" styleClass="billing-form__input p-0" [class.ng-invalid]="isInvalid('status')"></p-select>
       </div>
     </div>
 
@@ -29,8 +41,8 @@
     </div>
 
     <div style="display: flex; gap: 10px; margin-top: 10px;">
-      <p-button [label]="'billing.invoice.save' | translate" styleClass="billing-form__submit" [loading]="store.loading()" [rounded]="true" type="submit" />
-      <p-button label="Cancelar" severity="secondary" [rounded]="true" (onClick)="cancel.emit()" type="button" />
+      <p-button [label]="(invoice ? 'billing.invoice.update' : 'billing.invoice.save') | translate" styleClass="billing-form__submit" [loading]="store.loading()" [rounded]="true" type="submit" />
+      <p-button [label]="'billing.invoice.cancel' | translate" severity="secondary" [rounded]="true" (onClick)="cancel.emit()" type="button" />
     </div>
   </form>
 </article>

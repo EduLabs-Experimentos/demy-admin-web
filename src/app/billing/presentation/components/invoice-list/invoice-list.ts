@@ -14,4 +14,5 @@ export class InvoiceList {
   @Input() invoices: Invoice[] = [];
   @Output() markPaid = new EventEmitter<number>();
   @Output() delete = new EventEmitter<number>();
+  @Output() edit = new EventEmitter<Invoice>();
 }
