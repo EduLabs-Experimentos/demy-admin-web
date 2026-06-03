@@ -81,7 +81,7 @@ export class StatCardComponent {
       font-family: 'Inter', sans-serif;
       border-bottom: 1px solid var(--p-surface-200);
     }
-    .chart-container { height: 260px; position: relative; padding-top: 16px; }
+    .chart-container { height: 220px; position: relative; padding-top: 8px; }
   `]
 })
 export class IncomeExpenseChartComponent {
@@ -153,7 +153,7 @@ export class IncomeExpenseChartComponent {
       font-family: 'Inter', sans-serif;
       border-bottom: 1px solid var(--p-surface-200);
     }
-    .chart-container { height: 260px; position: relative; padding-top: 16px; }
+    .chart-container { height: 220px; position: relative; padding-top: 8px; }
   `]
 })
 export class ExpenseCategoriesChartComponent {
@@ -161,7 +161,7 @@ export class ExpenseCategoriesChartComponent {
 
   get doughnutChartData() {
     return {
-      labels: this.categories.map(c => c.category),
+      labels: this.categories.map(c => this.formatCategory(c.category)),
       datasets: [{
         data: this.categories.map(c => c.amount),
         backgroundColor: this.categories.map(c => c.color),
@@ -170,13 +170,22 @@ export class ExpenseCategoriesChartComponent {
     };
   }
 
+  formatCategory(category: string): string {
+    return category
+      .replace(/_/g, ' ')
+      .split(' ')
+      .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+      .join(' ');
+  }
+
   doughnutChartOptions = {
     responsive: true,
     maintainAspectRatio: false,
+    cutout: '60%',
     plugins: {
       legend: {
-        position: 'right' as const,
-        labels: { color: 'var(--p-surface-700)', padding: 16 }
+        position: 'bottom' as const,
+        labels: { color: 'var(--p-surface-700)', padding: 12, font: { size: 11 } }
       }
     }
   };
@@ -212,7 +221,7 @@ export class ExpenseCategoriesChartComponent {
       font-family: 'Inter', sans-serif;
       border-bottom: 1px solid var(--p-surface-100);
     }
-    .chart-container { height: 260px; position: relative; padding-top: 16px; }
+    .chart-container { height: 220px; position: relative; padding-top: 8px; }
   `]
 })
 export class EnrollmentTrendChartComponent {
@@ -271,7 +280,7 @@ export class EnrollmentTrendChartComponent {
       font-family: 'Inter', sans-serif;
       border-bottom: 1px solid var(--p-surface-100);
     }
-    .chart-container { height: 260px; position: relative; padding-top: 16px; }
+    .chart-container { height: 220px; position: relative; padding-top: 8px; }
   `]
 })
 export class CoursesCategoryChartComponent {
