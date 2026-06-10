@@ -3,7 +3,8 @@
     "page": {
       "eyebrow": "Statistics",
       "title": "Control Panel",
-      "subtitle": "General overview of {{ academy }}"
+      "subtitle": "General overview of {{ academy }}",
+      "fallbackAcademy": "My Academy"
     },
     "finance": {
       "totalIncome": "Total Income",
@@ -13,7 +14,8 @@
     },
     "charts": {
       "incomeExpense": "Income vs Expenses",
-      "expenseCategories": "Expenses by Category"
+      "expenseCategories": "Expenses by Category",
+      "expenseCategoriesEmpty": "No expenses recorded"
     },
     "academic": {
       "title": "Academic Statistics",

@@ -37,7 +37,7 @@ export class CompleteAccountForm {
       this.form.markAllAsTouched();
       return;
     }
-    const userId = localStorage.getItem('userId');
+    const userId = this.store.currentUserId();
     if (!userId) {
       console.error('User ID not found');
       return;
@@ -48,7 +48,7 @@ export class CompleteAccountForm {
       countryCode: this.form.value.countryCode!,
       phone: this.form.value.phone!,
       dniNumber: this.form.value.dniNumber!,
-      userId: parseInt(userId, 10)
+      userId
     };
     this.store.completeAccount(request, this.router);
   }

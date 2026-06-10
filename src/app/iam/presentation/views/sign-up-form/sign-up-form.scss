@@ -80,64 +80,34 @@
 
   :host ::ng-deep .p-password {
     width: 100%;
-    position: relative;
 
     .p-password-input {
-      width: 100% !important;
-      padding: 0.6875rem 2.5rem 0.6875rem 0.875rem !important;
-      border: 1.5px solid #b0b0b0 !important;
-      border-radius: 8px !important;
+      width: 100%;
+      padding: 0.6875rem 0.875rem;
+      font-size: 0.875rem;
+      border: 1.5px solid #b0b0b0;
+      border-radius: 8px;
       transition: border-color 0.25s ease, box-shadow 0.25s ease;
-      background: #ffffff !important;
-      color: #1a1a2e !important;
-      font-size: 0.875rem !important;
-      font-family: 'Inter', sans-serif !important;
-      line-height: normal !important;
-      letter-spacing: normal !important;
-      text-indent: 0 !important;
-      box-sizing: border-box !important;
+      background: #ffffff;
+      color: #1a1a2e;
 
       &::placeholder {
-        color: #888888 !important;
-        font-size: 0.875rem !important;
-        font-family: 'Inter', sans-serif !important;
+        color: #888888;
       }
 
       &:hover {
-        border-color: #3F51B5 !important;
+        border-color: #3F51B5;
       }
 
       &:focus {
-        border-color: #3F51B5 !important;
-        box-shadow: 0 0 0 3px rgba(63, 81, 181, 0.15) !important;
-        outline: none !important;
-      }
-    }
-
-    .p-password-toggle {
-      position: absolute;
-      right: 0.75rem;
-      top: 50%;
-      transform: translateY(-50%);
-      cursor: pointer;
-      color: #888888;
-      padding: 0;
-
-      &:hover {
-        color: #3F51B5;
+        border-color: #3F51B5;
+        box-shadow: 0 0 0 3px rgba(63, 81, 181, 0.15);
+        outline: none;
       }
     }
 
     .p-password-panel {
-      display: none !important;
-    }
-
-    .p-password-meter {
-      display: none !important;
-    }
-
-    &.ng-invalid .p-password-input {
-      border-color: #dc3545 !important;
+      display: none;
     }
   }
 

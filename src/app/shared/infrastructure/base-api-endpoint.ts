@@ -1,5 +1,5 @@
 import {HttpClient, HttpErrorResponse} from '@angular/common/http';
-import {Observable, throwError} from 'rxjs';
+import {Observable, of, throwError} from 'rxjs';
 import {catchError, map} from 'rxjs/operators';
 import {BaseEntity} from '../domain/model/base-entity';
 import {BaseResource, BaseResponse} from './base-response';
@@ -38,7 +38,7 @@ export abstract class BaseApiEndpoint<
         }
         return this.assembler.toEntitiesFromResponse(response as TResponse);
       }),
-      catchError(this.handleError('Failed to fetch entities')),
+      catchError(() => of([])),
     );
   }
 

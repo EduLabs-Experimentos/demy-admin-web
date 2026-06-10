@@ -107,6 +107,7 @@ export class IamStore {
     this.iamApi.verify(request).subscribe({
       next: (verifyResource) => {
         localStorage.setItem('token', verifyResource.token);
+        localStorage.setItem('userId', verifyResource.id.toString());
         this.isSignedInSignal.set(true);
         this.currentEmailSignal.set(verifyResource.email);
         this.currentUserIdSignal.set(verifyResource.id);

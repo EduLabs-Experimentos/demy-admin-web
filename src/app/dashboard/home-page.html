@@ -1,22 +1,46 @@
 <div class="dashboard-container">
   @if (store.loading()) {
-    <div class="loading-container">
-      <p-progressSpinner styleClass="w-4rem h-4rem" strokeWidth="8" fill="var(--surface-ground)"></p-progressSpinner>
-      <p>{{ 'dashboard.loading' | translate }}</p>
+    <div class="dashboard-skeleton">
+      <div class="skeleton-header">
+        <div class="skeleton skeleton-eyebrow"></div>
+        <div class="skeleton skeleton-title"></div>
+        <div class="skeleton skeleton-subtitle"></div>
+      </div>
+      <div class="skeleton-stats-row">
+        @for (_ of [1,2,3,4]; track _) {
+          <div class="skeleton-card">
+            <div class="skeleton skeleton-icon"></div>
+            <div class="skeleton-card-text">
+              <div class="skeleton skeleton-stat-value"></div>
+              <div class="skeleton skeleton-stat-label"></div>
+            </div>
+          </div>
+        }
+      </div>
+      <div class="skeleton-charts-row">
+        <div class="skeleton-chart-main">
+          <div class="skeleton skeleton-chart"></div>
+        </div>
+        <div class="skeleton-chart-side">
+          <div class="skeleton skeleton-chart"></div>
+        </div>
+      </div>
+      <div class="skeleton-academic">
+        <div class="skeleton skeleton-section-title"></div>
+        <div class="skeleton-academic-grid">
+          @for (_ of [1,2,3,4,5,6]; track _) {
+            <div class="skeleton skeleton-academic-card"></div>
+          }
+        </div>
+      </div>
     </div>
-  } @else if (store.error()) {
-    <div class="error-container">
-      <i class="pi pi-exclamation-triangle" style="font-size: 3rem; color: var(--red-500)"></i>
-      <p>{{ store.error() }}</p>
-      <p-button label="{{ 'dashboard.retry' | translate }}" icon="pi pi-refresh" (onClick)="refresh()"></p-button>
-    </div>
-  } @else if (store.hasData()) {
+  } @else {
     <div class="dashboard-content">
       <header class="page__header">
         <div class="page__header-text">
           <span class="page__eyebrow">{{ 'dashboard.page.eyebrow' | translate }}</span>
           <h1 class="page__title">{{ 'dashboard.page.title' | translate }}</h1>
-          <p class="page__subtitle">{{ 'dashboard.page.subtitle' | translate: { academy: store.stats()?.academyName || 'tu academia' } }}</p>
+          <p class="page__subtitle">{{ 'dashboard.page.subtitle' | translate: { academy: store.stats()?.academyName || ('dashboard.page.fallbackAcademy' | translate) } }}</p>
         </div>
         <p-button icon="pi pi-refresh" severity="secondary" [rounded]="true" (onClick)="refresh()" [pTooltip]="'dashboard.refreshTooltip' | translate"></p-button>
       </header>

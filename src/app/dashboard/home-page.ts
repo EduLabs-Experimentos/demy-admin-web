@@ -2,7 +2,6 @@ import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CardModule } from 'primeng/card';
 import { ButtonModule } from 'primeng/button';
-import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { TooltipModule } from 'primeng/tooltip';
 import { TranslateModule } from '@ngx-translate/core';
 import { DashboardStore } from './application/dashboard.store';
@@ -19,7 +18,6 @@ import {
     CommonModule,
     CardModule,
     ButtonModule,
-    ProgressSpinnerModule,
     TooltipModule,
     TranslateModule,
     IncomeExpenseChartComponent,

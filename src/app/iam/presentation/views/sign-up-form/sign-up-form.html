@@ -29,7 +29,10 @@
               [class.ng-invalid]="isInvalidControl(form, 'password')"
               placeholder="{{ 'sign-up.password-placeholder' | translate }}"
               styleClass="w-full"
-              inputStyleClass="form-input" />
+              inputStyleClass="form-input"
+              autocomplete="current-password">
+      <i class="pi pi-lock"></i>
+    </p-password>
     @if (isInvalidControl(form, 'password')) {
       <small class="p-error">{{ errorMessagesForControl(form, 'password') }}</small>
     }
