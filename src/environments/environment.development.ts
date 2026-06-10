@@ -1,6 +1,6 @@
 export const environment = {
   production: false,
-  platformProviderApiBaseUrl: 'https://demy-app-backend-eygre7eda5g3hkfh.southeastasia-01.azurewebsites.net',
+  platformProviderApiBaseUrl: 'http://localhost:8080',
   platformProviderSignInEndpointPath: '/api/v1/authentication/sign-in',
   platformProviderSignUpEndpointPath: '/api/v1/authentication/sign-up',
   platformProviderVerifyEndpointPath: '/api/v1/authentication/verify',
