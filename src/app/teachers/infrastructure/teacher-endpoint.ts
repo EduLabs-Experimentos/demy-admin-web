@@ -1,6 +1,6 @@
 import {ErrorHandlingEnabledBaseType} from '../../shared/infrastructure/error-handling-enabled-base-type';
 import {HttpClient} from '@angular/common/http';
-import {catchError, map, Observable} from 'rxjs';
+import {catchError, map, Observable, of} from 'rxjs';
 import {CreateTeacherRequest} from './teacher-request';
 import {TeacherResource, TeacherResponse} from './teacher-response';
 import {environment} from '../../../environments/environment';
@@ -15,7 +15,7 @@ export class TeacherEndpoint extends ErrorHandlingEnabledBaseType {
 
   getAll(): Observable<TeacherResource[]> {
     return this.http.get<TeacherResource[]>(this.baseUrl).pipe(
-      catchError(this.handleError('Failed to fetch teachers'))
+      catchError(() => of([]))
     );
   }
 

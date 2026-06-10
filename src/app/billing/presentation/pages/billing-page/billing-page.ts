@@ -1,6 +1,7 @@
-import { Component, inject, signal, computed } from '@angular/core';
+import { Component, inject, signal, computed, OnInit } from '@angular/core';
 import { BillingStore } from '../../../application/billing.store';
 import { StudentsStore } from '../../../../students/application/students';
+import { EnrollmentStore } from '../../../../enrollments/application/store/enrollment.store';
 import { Invoice } from '../../../domain/model/invoice.entity';
 import { Student } from '../../../../students/domain/model/student.entity';
 import { TranslatePipe } from '@ngx-translate/core';
@@ -16,14 +17,20 @@ import { InvoiceList } from '../../components/invoice-list/invoice-list';
   templateUrl: './billing-page.html',
   styleUrl: './billing-page.scss'
 })
-export class BillingPage {
+export class BillingPage implements OnInit {
   store = inject(BillingStore);
   studentsStore = inject(StudentsStore);
+  enrollmentStore = inject(EnrollmentStore);
 
   selectedStudentId = signal<number | null>(null);
   searchQuery = signal<string>('');
   showInvoiceForm = false;
   editingInvoice: Invoice | null = null;
+
+  ngOnInit() {
+    this.store.loadAllAccounts();
+    this.enrollmentStore.loadEnrollments();
+  }
 
   selectedAccount = computed(() => {
     const studentId = this.selectedStudentId();
@@ -31,8 +38,9 @@ export class BillingPage {
   });
 
   filteredStudents = computed(() => {
+    const enrolledIds = new Set(this.enrollmentStore.enrollments().map(e => e.studentId));
     const query = this.searchQuery().toLowerCase().trim();
-    const students = this.studentsStore.students();
+    const students = this.studentsStore.students().filter(s => enrolledIds.has(s.id));
     if (!query) return students;
     return students.filter(s =>
       s.id.toString().includes(query) ||

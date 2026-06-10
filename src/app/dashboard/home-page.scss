@@ -7,19 +7,146 @@
   margin: 0 auto;
 }
 
-.loading-container,
-.error-container {
+.dashboard-skeleton {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 400px;
-  gap: 1rem;
+  gap: 24px;
+  animation: fade-in 0.15s ease;
+}
 
-  p {
-    color: var(--p-surface-600);
-    font-size: 14px;
-    font-family: 'Inter', sans-serif;
+.skeleton-header {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--p-surface-200) 25%,
+    var(--p-surface-100) 50%,
+    var(--p-surface-200) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.2s ease-in-out infinite;
+  border-radius: 6px;
+}
+
+.skeleton-eyebrow {
+  width: 80px;
+  height: 10px;
+}
+
+.skeleton-title {
+  width: 180px;
+  height: 24px;
+}
+
+.skeleton-subtitle {
+  width: 260px;
+  height: 12px;
+}
+
+.skeleton-stats-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.skeleton-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 20px;
+  background: var(--p-surface-0);
+  border-radius: 12px;
+  border: 1px solid var(--p-surface-200);
+}
+
+.skeleton-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 12px;
+  flex-shrink: 0;
+}
+
+.skeleton-card-text {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
+}
+
+.skeleton-stat-value {
+  width: 80px;
+  height: 20px;
+}
+
+.skeleton-stat-label {
+  width: 60px;
+  height: 10px;
+}
+
+.skeleton-charts-row {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 16px;
+}
+
+.skeleton-chart {
+  width: 100%;
+  height: 280px;
+}
+
+.skeleton-academic {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.skeleton-section-title {
+  width: 160px;
+  height: 14px;
+}
+
+.skeleton-academic-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.skeleton-academic-card {
+  height: 80px;
+}
+
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@media (max-width: 1200px) {
+  .skeleton-stats-row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .skeleton-charts-row {
+    grid-template-columns: 1fr;
+  }
+  .skeleton-academic-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .skeleton-stats-row {
+    grid-template-columns: 1fr;
+  }
+  .skeleton-academic-grid {
+    grid-template-columns: 1fr;
   }
 }
 
@@ -79,6 +206,10 @@
 
 :host ::ng-deep {
   .stat-finance {
+    background: var(--p-surface-0);
+    border: 1px solid var(--p-surface-200);
+    border-radius: 12px;
+
     .p-card-body {
       padding: 20px;
     }
@@ -100,7 +231,7 @@
       width: 52px;
       height: 52px;
       border-radius: 12px;
-      background: var(--p-surface-100);
+      background: var(--p-surface-200);
       flex-shrink: 0;
 
       i {
@@ -154,6 +285,16 @@
 
     &.positive .stat-value { color: #4CAF50; }
     &.negative .stat-value { color: #F44336; }
+  }
+
+  .chart-card {
+    background: var(--p-surface-0);
+    border: 1px solid var(--p-surface-200);
+  }
+
+  .stat-academic {
+    background: var(--p-surface-0);
+    border: 1px solid var(--p-surface-200);
   }
 }
 

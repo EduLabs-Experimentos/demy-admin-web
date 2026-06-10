@@ -1,6 +1,6 @@
 import {ErrorHandlingEnabledBaseType} from '../../shared/infrastructure/error-handling-enabled-base-type';
 import {HttpClient} from '@angular/common/http';
-import {catchError, map, Observable} from 'rxjs';
+import {catchError, map, Observable, of} from 'rxjs';
 import {CreateWeeklyScheduleRequest, UpdateWeeklyScheduleNameRequest, AddScheduleToWeeklyRequest, UpdateScheduleRequest} from './schedule-request';
 import {WeeklyScheduleResource, WeeklyScheduleResponse, ScheduleResource, ScheduleResponse} from './schedule-response';
 import {environment} from '../../../environments/environment';
@@ -15,7 +15,7 @@ export class ScheduleEndpoint extends ErrorHandlingEnabledBaseType {
 
   getAll(): Observable<WeeklyScheduleResource[]> {
     return this.http.get<WeeklyScheduleResource[]>(this.baseUrl).pipe(
-      catchError(this.handleError('Failed to fetch schedules'))
+      catchError(() => of([]))
     );
   }
 

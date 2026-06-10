@@ -44,8 +44,7 @@ export class DashboardStore {
         this.recentTransactionsSignal.set(result.recentTransactions);
         this.loadingSignal.set(false);
       },
-      error: (err) => {
-        this.errorSignal.set(err?.message || 'Error al cargar el dashboard');
+      error: () => {
         this.loadingSignal.set(false);
       }
     });

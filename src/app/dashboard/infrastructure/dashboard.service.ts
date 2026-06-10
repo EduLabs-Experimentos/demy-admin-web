@@ -1,5 +1,6 @@
 import { Injectable, inject } from '@angular/core';
-import { forkJoin } from 'rxjs';
+import { forkJoin, of } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 import { StudentsApi } from '../../students/infrastructure/students-api';
 import { TeacherApi } from '../../teachers/infrastructure/teacher-api';
 import { CourseApi } from '../../courses/infrastructure/course-api';
@@ -34,13 +35,13 @@ export class DashboardService {
         const academy = this.iamStore.currentAcademy();
         resolve({ name: academy?.name ?? 'Mi Academia' });
       }),
-      students: this.studentsApi.getStudents(),
-      teachers: this.teacherApi.getAll(),
-      courses: this.courseApi.getAll(),
-      classrooms: this.classroomApi.getAll(),
-      enrollments: this.enrollmentApi.getAll(),
-      schedules: this.scheduleApi.getAll(),
-      transactions: this.transactionApi.getAll()
+      students: this.studentsApi.getStudents().pipe(catchError(() => of([]))),
+      teachers: this.teacherApi.getAll().pipe(catchError(() => of([]))),
+      courses: this.courseApi.getAll().pipe(catchError(() => of([]))),
+      classrooms: this.classroomApi.getAll().pipe(catchError(() => of([]))),
+      enrollments: this.enrollmentApi.getAll().pipe(catchError(() => of([]))),
+      schedules: this.scheduleApi.getAll().pipe(catchError(() => of([]))),
+      transactions: this.transactionApi.getAll().pipe(catchError(() => of([])))
     });
   }
 

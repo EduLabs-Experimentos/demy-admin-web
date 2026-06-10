@@ -1,6 +1,6 @@
 import {ErrorHandlingEnabledBaseType} from '../../shared/infrastructure/error-handling-enabled-base-type';
 import {HttpClient} from '@angular/common/http';
-import {catchError, map, Observable} from 'rxjs';
+import {catchError, map, Observable, of} from 'rxjs';
 import {CreateClassroomRequest, UpdateClassroomRequest} from './classroom-request';
 import {ClassroomResource, ClassroomResponse} from './classroom-response';
 import {environment} from '../../../environments/environment';
@@ -15,7 +15,7 @@ export class ClassroomEndpoint extends ErrorHandlingEnabledBaseType {
 
   getAll(): Observable<ClassroomResource[]> {
     return this.http.get<ClassroomResource[]>(this.baseUrl).pipe(
-      catchError(this.handleError('Failed to fetch classrooms'))
+      catchError(() => of([]))
     );
   }
 

@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpResponse} from '@angular/common/http';
-import {Observable, throwError} from 'rxjs';
+import {Observable, of, throwError} from 'rxjs';
 import {catchError, map} from 'rxjs/operators';
 import {environment} from '../../../environments/environment';
 import {TransactionResource, RegisterTransactionResource, UpdateTransactionResource, TransactionFilterParams} from './transaction-response';
@@ -19,7 +19,7 @@ export class TransactionEndpoint {
   getAll(filters?: TransactionFilterParams): Observable<TransactionResource[]> {
     const params = this.buildFilterParams(filters);
     return this.http.get<TransactionResource[]>(this.baseUrl, {params}).pipe(
-      catchError(this.handleError('Failed to fetch transactions'))
+      catchError(() => of([]))
     );
   }
 

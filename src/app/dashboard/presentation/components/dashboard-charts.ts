@@ -115,10 +115,11 @@ export class IncomeExpenseChartComponent {
     responsive: true,
     maintainAspectRatio: false,
     plugins: {
-      legend: { position: 'bottom' as const }
+      legend: { labels: { color: 'var(--p-surface-700)' } }
     },
     scales: {
-      y: { beginAtZero: true }
+      x: { ticks: { color: 'var(--p-surface-600)' }, grid: { color: 'var(--p-surface-200)' } },
+      y: { beginAtZero: true, ticks: { color: 'var(--p-surface-600)' }, grid: { color: 'var(--p-surface-200)' } }
     }
   };
 }
@@ -133,11 +134,20 @@ export class IncomeExpenseChartComponent {
         <span class="chart-header">{{ 'dashboard.charts.expenseCategories' | translate }}</span>
       </ng-template>
       <div class="chart-container">
-        <canvas baseChart
-          [data]="doughnutChartData"
-          [options]="doughnutChartOptions"
-          [type]="'doughnut'">
-        </canvas>
+        @if (categories.length === 0) {
+          <div class="chart-empty">
+            <div class="chart-empty-ring">
+              <i class="pi pi-chart-pie"></i>
+            </div>
+            <span class="chart-empty-text">{{ 'dashboard.charts.expenseCategoriesEmpty' | translate }}</span>
+          </div>
+        } @else {
+          <canvas baseChart
+            [data]="doughnutChartData"
+            [options]="doughnutChartOptions"
+            [type]="'doughnut'">
+          </canvas>
+        }
       </div>
     </p-card>
   `,
@@ -154,6 +164,30 @@ export class IncomeExpenseChartComponent {
       border-bottom: 1px solid var(--p-surface-200);
     }
     .chart-container { height: 220px; position: relative; padding-top: 8px; }
+    .chart-empty {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      gap: 12px;
+    }
+    .chart-empty-ring {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      border: 2px dashed var(--p-surface-300);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--p-surface-400);
+      font-size: 1.5rem;
+    }
+    .chart-empty-text {
+      font-size: 12px;
+      color: var(--p-surface-500);
+      font-family: 'Inter', sans-serif;
+    }
   `]
 })
 export class ExpenseCategoriesChartComponent {

@@ -1,7 +1,7 @@
 import { computed, Injectable, Signal, signal } from '@angular/core';
 import { Student } from '../domain/model/student.entity';
 import { StudentsApi } from '../infrastructure/students-api';
-import { BillingStore } from '../../billing/application/billing.store';
+
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { retry } from 'rxjs';
 
@@ -19,7 +19,7 @@ export class StudentsStore {
 
   readonly studentCount = computed(() => this.students().length);
 
-  constructor(private studentsApi: StudentsApi, private billingStore: BillingStore) {
+  constructor(private studentsApi: StudentsApi) {
     this.loadStudents();
   }
 
@@ -37,7 +37,6 @@ export class StudentsStore {
     this.studentsApi.createStudent(student).pipe(retry(2)).subscribe({
       next: createdStudent => {
         this.studentsSignal.update(students => [...students, createdStudent]);
-        this.billingStore.createAccount(createdStudent.id, createdStudent.dni);
         this.loadingSignal.set(false);
         if (onSuccess) onSuccess();
       },
