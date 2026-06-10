@@ -1,6 +1,6 @@
 import {ErrorHandlingEnabledBaseType} from '../../shared/infrastructure/error-handling-enabled-base-type';
 import {HttpClient} from '@angular/common/http';
-import {catchError, map, Observable} from 'rxjs';
+import {catchError, map, Observable, of} from 'rxjs';
 import {CreateAcademicPeriodRequest, UpdateAcademicPeriodRequest} from './academic-period-request';
 import {AcademicPeriodResource, AcademicPeriodResponse} from './academic-period-response';
 import {environment} from '../../../environments/environment';
@@ -15,7 +15,7 @@ export class AcademicPeriodEndpoint extends ErrorHandlingEnabledBaseType {
 
   getAll(): Observable<AcademicPeriodResource[]> {
     return this.http.get<AcademicPeriodResource[]>(this.baseUrl).pipe(
-      catchError(this.handleError('Failed to fetch academic periods'))
+      catchError(() => of([]))
     );
   }
 

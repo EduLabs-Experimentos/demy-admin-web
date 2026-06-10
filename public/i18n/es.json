@@ -1,4 +1,42 @@
 {
+  "dashboard": {
+    "page": {
+      "eyebrow": "Estadísticas",
+      "title": "Panel de Control",
+      "subtitle": "Resumen general de {{ academy }}",
+      "fallbackAcademy": "Mi Academia"
+    },
+    "finance": {
+      "totalIncome": "Ingresos Totales",
+      "totalExpense": "Gastos Totales",
+      "balance": "Balance",
+      "pendingPayments": "Pagos Pendientes"
+    },
+    "charts": {
+      "incomeExpense": "Ingresos vs Gastos",
+      "expenseCategories": "Gastos por Categoría",
+      "expenseCategoriesEmpty": "Sin gastos registrados"
+    },
+    "academic": {
+      "title": "Estadísticas Académicas",
+      "students": "Estudiantes",
+      "teachers": "Profesores",
+      "courses": "Cursos",
+      "classrooms": "Aulas",
+      "enrollments": "Matrículas",
+      "schedules": "Horarios"
+    },
+    "loading": "Cargando dashboard...",
+    "error": "Ocurrió un error",
+    "retry": "Reintentar",
+    "refreshTooltip": "Actualizar datos",
+    "transactions": {
+      "description": "Descripción",
+      "type": "Tipo",
+      "amount": "Monto",
+      "date": "Fecha"
+    }
+  },
   "sign-up": {
     "title": "Crear Cuenta",
     "subtitle": "Ingresa tu correo y contraseña para comenzar",
@@ -427,15 +465,25 @@
       "profile": "Perfil"
     }
   },
-  "billing": {
-    "page": { "title": "Facturación", "subtitle": "Gestiona cuentas de cobro y comprobantes de estudiantes." },
+"billing": {
+    "page": { "eyebrow": "Administración", "title": "Facturación", "subtitle": "Gestiona cuentas de cobro y comprobantes de estudiantes." },
+    "student": {
+      "title": "Estudiantes",
+      "search-placeholder": "Buscar por nombre, ID o DNI...",
+      "empty": "No se encontraron estudiantes",
+      "select-student": "Selecciona un estudiante a la izquierda para ver su cuenta de cobro y facturas"
+    },
     "account": {
       "title": "Cuentas de Cobro",
       "form-title": "Nueva Cuenta",
       "studentId": "ID Estudiante",
       "dni": "DNI",
       "create": "Crear Cuenta",
-      "empty": "No hay cuentas registradas"
+      "empty": "No hay cuentas registradas",
+      "registered-accounts": "Cuentas Registradas",
+      "student-id-label": "ID Estudiante:",
+      "dni-label": "DNI:",
+      "select-account": "Selecciona una cuenta a la izquierda para ver sus facturas"
     },
     "invoice": {
       "title": "Facturas",
@@ -449,15 +497,90 @@
       "dueDate": "F. Vencimiento",
       "status": "Estado",
       "actions": "Acciones",
-      "mark-paid": "Pagar",
+      "mark-paid": "Marcar Pagado",
       "delete": "Eliminar",
+      "edit": "Editar",
+      "update": "Actualizar Factura",
       "save": "Guardar Factura",
+      "cancel": "Cancelar",
+      "empty": "No hay facturas registradas",
+      "search-placeholder": "Buscar por ID de estudiante o DNI...",
       "statuses": {
         "PENDING": "Pendiente",
         "PAID": "Pagado",
         "OVERDUE": "Vencido",
         "CANCELED": "Cancelado"
+      },
+      "types": {
+        "STUDENT_ENROLLMENT": "Matrícula",
+        "STUDENT_MONTHLY_FEE": "Cuota Mensual",
+        "STUDENT_ONE_TIME_PAYMENT": "Pago Único",
+        "OTHER": "Otro"
       }
+    }
+  },
+  "accounting": {
+    "page": { "title": "Contabilidad", "subtitle": "Gestiona transacciones financieras y exportaciones" },
+    "form": {
+      "title-create": "Nueva Transacción",
+      "title-edit": "Editar Transacción",
+      "type": "Tipo de Transacción",
+      "select-type": "Seleccionar tipo",
+      "category": "Categoría",
+      "select-category": "Seleccionar categoría",
+      "method": "Método de Pago",
+      "select-method": "Seleccionar método",
+      "amount": "Monto",
+      "amount-placeholder": "Ingresa el monto",
+      "currency": "Moneda",
+      "description": "Descripción",
+      "description-placeholder": "Ingresa la descripción",
+      "date": "Fecha de Transacción",
+      "create": "Crear Transacción",
+      "update": "Actualizar Transacción",
+      "cancel": "Cancelar"
+    },
+    "list": {
+      "search": "Buscar transacciones...",
+      "loading": "Cargando transacciones...",
+      "empty": "No hay transacciones aún",
+      "type": "Tipo",
+      "category": "Categoría",
+      "method": "Método",
+      "amount": "Monto",
+      "description": "Descripción",
+      "date": "Fecha",
+      "actions": "Acciones",
+      "edit": "Editar",
+      "delete": "Eliminar"
+    },
+    "filter": {
+      "all-categories": "Todas las Categorías",
+      "all-methods": "Todos los Métodos",
+      "all-types": "Todos los Tipos"
+    },
+    "type": {
+      "INCOME": "Ingreso",
+      "EXPENSE": "Gasto"
+    },
+    "category": {
+      "STUDENT_ENROLLMENT": "Matrícula de Estudiante",
+      "STUDENT_MONTHLY_FEE": "Cuota Mensual de Estudiante",
+      "STUDENT_ONE_TIME_PAYMENT": "Pago Único de Estudiante",
+      "TEACHER_SALARY": "Salario de Profesor",
+      "OFFICE_SUPPLIES": "Material de Oficina",
+      "OTHER": "Otro"
+    },
+    "method": {
+      "CASH": "Efectivo",
+      "CREDIT_CARD": "Tarjeta de Crédito",
+      "DEBIT_CARD": "Tarjeta de Débito",
+      "BANK_TRANSFER": "Transferencia Bancaria",
+      "CHECK": "Cheque"
+    },
+    "export": {
+      "pdf": "Exportar PDF",
+      "excel": "Exportar Excel"
     }
   }
 }

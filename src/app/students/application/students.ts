@@ -1,6 +1,7 @@
 import { computed, Injectable, Signal, signal } from '@angular/core';
 import { Student } from '../domain/model/student.entity';
 import { StudentsApi } from '../infrastructure/students-api';
+
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { retry } from 'rxjs';
 
@@ -26,12 +27,10 @@ export class StudentsStore {
     return computed(() => id ? this.students().find(s => s.id === id) : undefined);
   }
 
-  // NUEVO: Metodo para limpiar errores manualmente
   clearError() {
     this.errorSignal.set(null);
   }
 
-  // MODIFICADO: Agregamos onSuccess para que el formulario sepa cuándo borrarse
   addStudent(student: Student, onSuccess?: () => void): void {
     this.loadingSignal.set(true);
     this.errorSignal.set(null);
@@ -39,7 +38,7 @@ export class StudentsStore {
       next: createdStudent => {
         this.studentsSignal.update(students => [...students, createdStudent]);
         this.loadingSignal.set(false);
-        if (onSuccess) onSuccess(); // Solo limpiamos si hay éxito
+        if (onSuccess) onSuccess();
       },
       error: err => {
         this.errorSignal.set(this.formatError(err, 'Failed to create student'));

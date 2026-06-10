@@ -1,26 +1,34 @@
-<div class="page-header">
-  <div>
-    <h1 style="color: var(--p-surface-900);">{{ 'billing.page.title' | translate }}</h1>
-    <p style="color: var(--p-surface-500);">{{ 'billing.page.subtitle' | translate }}</p>
+<header class="billing-page__header">
+  <div class="billing-page__header-text">
+    <span class="billing-page__eyebrow">{{ 'billing.page.eyebrow' | translate }}</span>
+    <h1 class="billing-page__title">{{ 'billing.page.title' | translate }}</h1>
+    <p class="billing-page__subtitle">{{ 'billing.page.subtitle' | translate }}</p>
   </div>
-</div>
+</header>
 
 <div class="billing-layout">
   <div class="billing-layout__sidebar">
-    <app-billing-account-form></app-billing-account-form>
+    <div class="student-search">
+      <span class="p-input-icon-left student-search__input">
+        <i class="pi pi-search"></i>
+        <input pInputText type="text" [value]="searchQuery()"
+               (input)="onSearchChange($any($event.target).value)"
+               [placeholder]="'billing.student.search-placeholder' | translate" />
+      </span>
+    </div>
 
-    <div class="account-list" style="margin-top: 24px;">
-      <h4 style="color: var(--p-surface-900); margin-bottom: 12px;">Cuentas Registradas</h4>
-      @for (acc of store.accounts(); track acc.id) {
-        <div class="account-card" [class.account-card--active]="selectedAccount()?.id === acc.id" (click)="selectAccount(acc)">
-          <div class="account-card__info">
-            <span class="account-card__id">Estudiante ID: {{ acc.studentId }}</span>
-            <span class="account-card__dni">DNI: {{ acc.dniNumber }}</span>
+    <div class="student-list">
+      <h4 class="student-list__title">{{ 'billing.student.title' | translate }}</h4>
+      @for (student of filteredStudents(); track student.id) {
+        <div class="student-card" [class.student-card--active]="selectedStudentId() === student.id" (click)="selectStudent(student)">
+          <div class="student-card__info">
+            <span class="student-card__name">{{ student.firstName }} {{ student.lastName }}</span>
+            <span class="student-card__dni">{{ 'billing.account.dni-label' | translate }} {{ student.dni }}</span>
           </div>
           <i class="pi pi-chevron-right" style="color: var(--p-surface-500);"></i>
         </div>
       } @empty {
-        <p style="text-align: center; color: var(--p-surface-500); padding: 16px;">{{ 'billing.account.empty' | translate }}</p>
+        <p class="student-list__empty">{{ 'billing.student.empty' | translate }}</p>
       }
     </div>
   </div>
@@ -29,26 +37,29 @@
     @if (selectedAccount(); as acc) {
       <div class="content-card">
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-          <h3 style="color: var(--p-surface-900); margin: 0;">{{ 'billing.invoice.title' | translate }} - Estudiante #{{ acc.studentId }}</h3>
+          <h3 style="color: var(--p-surface-900); margin: 0;">{{ 'billing.invoice.title' | translate }} - {{ getStudentName(acc.studentId) }}</h3>
           <p-button icon="pi pi-plus" [label]="'billing.invoice.assign-title' | translate"
-                    [text]="true" (onClick)="showInvoiceForm = true" />
+                    [text]="true" (onClick)="startCreateInvoice()" />
         </div>
 
         @if (showInvoiceForm) {
-          <app-invoice-form [accountId]="acc.id" (cancel)="showInvoiceForm = false" style="margin-bottom: 24px; display: block;" />
+          <app-invoice-form [accountId]="acc.id" [invoice]="editingInvoice" (cancel)="cancelInvoiceForm()" style="margin-bottom: 24px; display: block;" />
         }
 
         <app-invoice-list
           [invoices]="acc.invoices"
           (markPaid)="store.markInvoiceAsPaid(acc.id, $event)"
-          (delete)="store.deleteInvoice(acc.id, $event)">
+          (delete)="store.deleteInvoice(acc.id, $event)"
+          (edit)="startEditInvoice($event)">
         </app-invoice-list>
 
       </div>
     } @else {
-      <div style="text-align: center; padding: 60px; color: var(--p-surface-500); background: var(--p-surface-50); border-radius: 14px;">
-        <i class="pi pi-wallet" style="font-size: 3rem; margin-bottom: 16px;"></i>
-        <p>Selecciona una cuenta a la izquierda para ver sus facturas</p>
+      <div class="content-card content-card--empty">
+        <div style="text-align: center; padding: 40px; color: var(--p-surface-500);">
+          <i class="pi pi-user" style="font-size: 3rem; margin-bottom: 16px;"></i>
+          <p>{{ 'billing.student.select-student' | translate }}</p>
+        </div>
       </div>
     }
   </div>

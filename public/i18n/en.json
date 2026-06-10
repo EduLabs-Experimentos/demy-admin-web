@@ -1,4 +1,42 @@
 {
+  "dashboard": {
+    "page": {
+      "eyebrow": "Statistics",
+      "title": "Control Panel",
+      "subtitle": "General overview of {{ academy }}",
+      "fallbackAcademy": "My Academy"
+    },
+    "finance": {
+      "totalIncome": "Total Income",
+      "totalExpense": "Total Expenses",
+      "balance": "Balance",
+      "pendingPayments": "Pending Payments"
+    },
+    "charts": {
+      "incomeExpense": "Income vs Expenses",
+      "expenseCategories": "Expenses by Category",
+      "expenseCategoriesEmpty": "No expenses recorded"
+    },
+    "academic": {
+      "title": "Academic Statistics",
+      "students": "Students",
+      "teachers": "Teachers",
+      "courses": "Courses",
+      "classrooms": "Classrooms",
+      "enrollments": "Enrollments",
+      "schedules": "Schedules"
+    },
+    "loading": "Loading dashboard...",
+    "error": "An error occurred",
+    "retry": "Retry",
+    "refreshTooltip": "Refresh data",
+    "transactions": {
+      "description": "Description",
+      "type": "Type",
+      "amount": "Amount",
+      "date": "Date"
+    }
+  },
   "sign-up": {
     "title": "Create Account",
     "subtitle": "Enter your email and password to get started",
@@ -428,14 +466,24 @@
     }
   },
   "billing": {
-    "page": { "title": "Billing", "subtitle": "Manage student billing accounts and invoices." },
+    "page": { "eyebrow": "Administration", "title": "Billing", "subtitle": "Manage student billing accounts and invoices." },
+    "student": {
+      "title": "Students",
+      "search-placeholder": "Search by name, ID or DNI...",
+      "empty": "No students found",
+      "select-student": "Select a student on the left to view their billing account and invoices"
+    },
     "account": {
       "title": "Billing Accounts",
       "form-title": "New Account",
       "studentId": "Student ID",
       "dni": "DNI",
       "create": "Create Account",
-      "empty": "No accounts registered"
+      "empty": "No accounts registered",
+      "registered-accounts": "Registered Accounts",
+      "student-id-label": "Student ID:",
+      "dni-label": "DNI:",
+      "select-account": "Select an account on the left to view its invoices"
     },
     "invoice": {
       "title": "Invoices",
@@ -451,13 +499,88 @@
       "actions": "Actions",
       "mark-paid": "Mark Paid",
       "delete": "Delete",
+      "edit": "Edit",
+      "update": "Update Invoice",
       "save": "Save Invoice",
+      "cancel": "Cancel",
+      "empty": "No invoices registered",
+      "search-placeholder": "Search by student ID or DNI...",
       "statuses": {
         "PENDING": "Pending",
         "PAID": "Paid",
         "OVERDUE": "Overdue",
         "CANCELED": "Canceled"
+      },
+      "types": {
+        "STUDENT_ENROLLMENT": "Enrollment",
+        "STUDENT_MONTHLY_FEE": "Monthly Fee",
+        "STUDENT_ONE_TIME_PAYMENT": "One-Time Payment",
+        "OTHER": "Other"
       }
+    }
+  },
+  "accounting": {
+    "page": { "title": "Accounting", "subtitle": "Manage financial transactions and exports" },
+    "form": {
+      "title-create": "New Transaction",
+      "title-edit": "Edit Transaction",
+      "type": "Transaction Type",
+      "select-type": "Select type",
+      "category": "Category",
+      "select-category": "Select category",
+      "method": "Payment Method",
+      "select-method": "Select method",
+      "amount": "Amount",
+      "amount-placeholder": "Enter amount",
+      "currency": "Currency",
+      "description": "Description",
+      "description-placeholder": "Enter description",
+      "date": "Transaction Date",
+      "create": "Create Transaction",
+      "update": "Update Transaction",
+      "cancel": "Cancel"
+    },
+    "list": {
+      "search": "Search transactions...",
+      "loading": "Loading transactions...",
+      "empty": "No transactions yet",
+      "type": "Type",
+      "category": "Category",
+      "method": "Method",
+      "amount": "Amount",
+      "description": "Description",
+      "date": "Date",
+      "actions": "Actions",
+      "edit": "Edit",
+      "delete": "Delete"
+    },
+    "filter": {
+      "all-categories": "All Categories",
+      "all-methods": "All Methods",
+      "all-types": "All Types"
+    },
+    "type": {
+      "INCOME": "Income",
+      "EXPENSE": "Expense"
+    },
+    "category": {
+      "STUDENT_ENROLLMENT": "Student Enrollment",
+      "STUDENT_MONTHLY_FEE": "Student Monthly Fee",
+      "STUDENT_ONE_TIME_PAYMENT": "Student One-Time Payment",
+      "TEACHER_SALARY": "Teacher Salary",
+      "OFFICE_SUPPLIES": "Office Supplies",
+      "OTHER": "Other"
+    },
+    "method": {
+      "CASH": "Cash",
+      "CREDIT_CARD": "Credit Card",
+      "DEBIT_CARD": "Debit Card",
+      "BANK_TRANSFER": "Bank Transfer",
+      "CHECK": "Check"
+    },
+    "export": {
+      "pdf": "Export PDF",
+      "excel": "Export Excel"
     }
   }
 }

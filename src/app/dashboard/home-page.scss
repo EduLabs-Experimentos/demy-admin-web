@@ -1,82 +1,361 @@
+:host {
+  display: block;
+}
+
 .dashboard-container {
-  max-width: 800px;
+  max-width: 1600px;
+  margin: 0 auto;
 }
 
-.welcome-card {
-  background: linear-gradient(135deg, #3F51B5 0%, #303F9F 100%);
-  border-radius: 16px;
-  padding: 2rem;
-  color: #fff;
-  margin-bottom: 2rem;
-  box-shadow: 0 4px 20px rgba(63, 81, 181, 0.25);
+.dashboard-skeleton {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  animation: fade-in 0.15s ease;
 }
 
-.welcome-title {
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  font-size: 1.5rem;
+.skeleton-header {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--p-surface-200) 25%,
+    var(--p-surface-100) 50%,
+    var(--p-surface-200) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.2s ease-in-out infinite;
+  border-radius: 6px;
+}
+
+.skeleton-eyebrow {
+  width: 80px;
+  height: 10px;
+}
+
+.skeleton-title {
+  width: 180px;
+  height: 24px;
+}
+
+.skeleton-subtitle {
+  width: 260px;
+  height: 12px;
+}
+
+.skeleton-stats-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.skeleton-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 20px;
+  background: var(--p-surface-0);
+  border-radius: 12px;
+  border: 1px solid var(--p-surface-200);
+}
+
+.skeleton-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 12px;
+  flex-shrink: 0;
+}
+
+.skeleton-card-text {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
+}
+
+.skeleton-stat-value {
+  width: 80px;
+  height: 20px;
+}
+
+.skeleton-stat-label {
+  width: 60px;
+  height: 10px;
+}
+
+.skeleton-charts-row {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 16px;
+}
+
+.skeleton-chart {
+  width: 100%;
+  height: 280px;
+}
+
+.skeleton-academic {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.skeleton-section-title {
+  width: 160px;
+  height: 14px;
+}
+
+.skeleton-academic-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.skeleton-academic-card {
+  height: 80px;
+}
+
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@media (max-width: 1200px) {
+  .skeleton-stats-row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .skeleton-charts-row {
+    grid-template-columns: 1fr;
+  }
+  .skeleton-academic-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .skeleton-stats-row {
+    grid-template-columns: 1fr;
+  }
+  .skeleton-academic-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.dashboard-content {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.page__header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.page__header-text {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.page__eyebrow {
+  font-size: 11px;
   font-weight: 700;
-  margin: 0 0 0.5rem 0;
-  color: #fff;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--p-surface-600);
+  font-family: 'Inter', sans-serif;
 }
 
-.welcome-message {
-  font-size: 1.05rem;
-  margin: 0 0 0.25rem 0;
-  opacity: 0.9;
-}
-
-.welcome-subtext {
-  font-size: 0.875rem;
+.page__title {
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--p-surface-950);
   margin: 0;
-  opacity: 0.7;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+.page__subtitle {
+  font-size: 13px;
+  color: var(--p-surface-600);
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+}
+
+.stats-row {
+  display: grid;
+  gap: 16px;
+
+  &.finance-stats {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+:host ::ng-deep {
+  .stat-finance {
+    background: var(--p-surface-0);
+    border: 1px solid var(--p-surface-200);
+    border-radius: 12px;
+
+    .p-card-body {
+      padding: 20px;
+    }
+
+    .p-card-content {
+      padding: 0;
+    }
+
+    .stat-content {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .stat-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 52px;
+      height: 52px;
+      border-radius: 12px;
+      background: var(--p-surface-200);
+      flex-shrink: 0;
+
+      i {
+        font-size: 1.25rem;
+      }
+
+      &.income-icon {
+        color: #4CAF50;
+        background: color-mix(in srgb, #4CAF50 12%, transparent);
+      }
+
+      &.expense-icon {
+        color: #F44336;
+        background: color-mix(in srgb, #F44336 12%, transparent);
+      }
+
+      &.balance-icon {
+        color: var(--demy-primary);
+        background: color-mix(in srgb, var(--demy-primary) 12%, transparent);
+      }
+
+      &.payments-icon {
+        color: #FF9800;
+        background: color-mix(in srgb, #FF9800 12%, transparent);
+      }
+    }
+
+    .stat-info {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      min-width: 0;
+    }
+
+    .stat-value {
+      font-size: 1.375rem;
+      font-weight: 700;
+      color: var(--p-surface-950);
+      line-height: 1.2;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .stat-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--p-surface-600);
+      font-family: 'Inter', sans-serif;
+    }
+
+    &.positive .stat-value { color: #4CAF50; }
+    &.negative .stat-value { color: #F44336; }
+  }
+
+  .chart-card {
+    background: var(--p-surface-0);
+    border: 1px solid var(--p-surface-200);
+  }
+
+  .stat-academic {
+    background: var(--p-surface-0);
+    border: 1px solid var(--p-surface-200);
+  }
+}
+
+.charts-row {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 16px;
+  align-items: start;
+}
+
+.chart-main,
+.chart-side {
+  min-height: 280px;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+:host ::ng-deep .chart-card {
+  height: 100%;
+  .p-card-body { height: 100%; }
+  .p-card-content { padding-top: 12px; }
 }
 
 .section-title {
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: #1a1a2e;
-  margin: 0 0 1rem 0;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--p-surface-800);
+  margin: 0 0 16px 0;
+  font-family: 'Inter', sans-serif;
 }
 
-.actions-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1rem;
+.academic-section {
+  margin-top: 8px;
 }
 
-.action-card {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 1.5rem 1rem;
-  background: var(--p-surface-0, #fff);
-  border-radius: 12px;
-  border: 1px solid var(--p-surface-200, #e0e0e0);
-  cursor: pointer;
-  transition: all 0.2s ease;
-
-  i {
-    font-size: 1.5rem;
-    color: var(--demy-primary, #3F51B5);
-  }
-
-  span {
-    font-size: 0.8125rem;
-    font-weight: 500;
-    color: #4a4a5a;
-  }
-
-  &:hover {
-    border-color: var(--demy-primary, #3F51B5);
-    box-shadow: 0 4px 12px rgba(63, 81, 181, 0.15);
-    transform: translateY(-2px);
-  }
-}
-
-@media (max-width: 600px) {
-  .actions-grid {
+@media (max-width: 1200px) {
+  .stats-row.finance-stats {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .charts-row {
+    grid-template-columns: 1fr;
+    .chart-main, .chart-side { min-height: 260px; }
+  }
+}
+
+@media (max-width: 900px) {
+  .charts-row {
+    grid-template-columns: 1fr;
+    overflow-x: hidden;
+  }
+}
+
+@media (max-width: 768px) {
+  .page__header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .stats-row.finance-stats {
+    grid-template-columns: 1fr;
   }
 }

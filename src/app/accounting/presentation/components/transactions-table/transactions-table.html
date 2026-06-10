@@ -1,0 +1,82 @@
+<header class="transactions-table__toolbar">
+  <span class="p-input-icon-left transactions-table__search">
+    <i class="pi pi-search"></i>
+    <input pInputText type="text" [value]="store.searchQuery()"
+           (input)="onSearchChange($any($event.target).value)"
+           [placeholder]="'accounting.list.search' | translate" />
+  </span>
+
+  <div class="transactions-table__filters">
+    <select class="transactions-table__filter-select"
+            [value]="store.filterCategory() ?? ''"
+            (change)="onFilterChange('category', $any($event.target).value)">
+      <option value="">{{ 'accounting.filter.all-categories' | translate }}</option>
+      @for (c of store.transactionCategories; track c) { <option [value]="c">{{ 'accounting.category.' + c | translate }}</option> }
+    </select>
+
+    <select class="transactions-table__filter-select"
+            [value]="store.filterMethod() ?? ''"
+            (change)="onFilterChange('method', $any($event.target).value)">
+      <option value="">{{ 'accounting.filter.all-methods' | translate }}</option>
+      @for (m of store.transactionMethods; track m) { <option [value]="m">{{ 'accounting.method.' + m | translate }}</option> }
+    </select>
+
+    <select class="transactions-table__filter-select"
+            [value]="store.filterType() ?? ''"
+            (change)="onFilterChange('type', $any($event.target).value)">
+      <option value="">{{ 'accounting.filter.all-types' | translate }}</option>
+      @for (t of store.transactionTypes; track t) { <option [value]="t">{{ 'accounting.type.' + t | translate }}</option> }
+    </select>
+  </div>
+
+  <div class="transactions-table__actions">
+    <p-button [label]="'accounting.export.pdf' | translate" icon="pi pi-file-pdf"
+              styleClass="transactions-table__export-btn" [rounded]="true" severity="secondary"
+              [loading]="store.isExportingPdf()" (onClick)="exportPdf()" />
+    <p-button [label]="'accounting.export.excel' | translate" icon="pi pi-file-excel"
+              styleClass="transactions-table__export-btn transactions-table__export-btn--excel" [rounded]="true" severity="secondary"
+              [loading]="store.isExportingExcel()" (onClick)="exportExcel()" />
+  </div>
+</header>
+
+<div class="transactions-table__scroll">
+  <table class="transactions-roster">
+    <thead>
+      <tr>
+        <th>{{ 'accounting.list.type' | translate }}</th>
+        <th>{{ 'accounting.list.category' | translate }}</th>
+        <th>{{ 'accounting.list.method' | translate }}</th>
+        <th>{{ 'accounting.list.amount' | translate }}</th>
+        <th>{{ 'accounting.list.description' | translate }}</th>
+        <th>{{ 'accounting.list.date' | translate }}</th>
+        <th class="transactions-table__actions-col">{{ 'accounting.list.actions' | translate }}</th>
+      </tr>
+    </thead>
+    <tbody>
+      @if (store.isLoadingTransactions()) {
+        <tr><td colspan="7" class="transactions-roster__empty"><i class="pi pi-spin pi-spinner"></i><span>{{ 'accounting.list.loading' | translate }}</span></td></tr>
+      } @else if (store.filteredTransactions().length === 0) {
+        <tr><td colspan="7" class="transactions-roster__empty"><i class="pi pi-wallet"></i><span>{{ 'accounting.list.empty' | translate }}</span></td></tr>
+      } @else {
+        @for (tx of store.filteredTransactions(); track tx.id) {
+          <tr class="transactions-roster__row" [class.transactions-roster__row--editing]="store.selectedTransactionId() === tx.id">
+            <td><span class="transactions-roster__badge" [class.transactions-roster__badge--income]="tx.transactionType === 'INCOME'">{{ 'accounting.type.' + tx.transactionType | translate }}</span></td>
+            <td><span class="transactions-roster__ref">{{ 'accounting.category.' + tx.transactionCategory | translate }}</span></td>
+            <td><span class="transactions-roster__ref">{{ 'accounting.method.' + tx.transactionMethod | translate }}</span></td>
+            <td><span class="transactions-roster__amount" [class.transactions-roster__amount--income]="tx.transactionType === 'INCOME'">{{ tx.amount | number:'1.2-2' }} {{ tx.currency }}</span></td>
+            <td><span class="transactions-roster__description">{{ tx.description || '-' }}</span></td>
+            <td><span class="transactions-roster__date">{{ tx.transactionDate | date:'mediumDate' }}</span></td>
+            <td class="transactions-table__actions-col">
+              <div class="transactions-roster__actions">
+                <button class="transactions-roster__action-btn" [disabled]="store.isLoading() || store.isDeleting()"
+                        (click)="editTransaction(tx.id)" [attr.aria-label]="'accounting.list.edit' | translate"><i class="pi pi-pencil"></i></button>
+                <button class="transactions-roster__action-btn transactions-roster__action-btn--danger" [disabled]="store.isLoading() || store.isDeleting()"
+                        (click)="deleteTransaction(tx.id)" [attr.aria-label]="'accounting.list.delete' | translate"><i class="pi pi-trash"></i></button>
+              </div>
+            </td>
+          </tr>
+        }
+      }
+    </tbody>
+  </table>
+</div>

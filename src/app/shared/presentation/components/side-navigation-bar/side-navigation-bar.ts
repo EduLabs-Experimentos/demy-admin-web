@@ -1,4 +1,4 @@
-import {Component, EventEmitter, inject, Input, Output} from '@angular/core';
+  import {Component, EventEmitter, inject, Input, Output} from '@angular/core';
 import {RouterLink, RouterLinkActive} from '@angular/router';
 import {TranslatePipe} from '@ngx-translate/core';
 import {UserService} from '../../../../iam/application/services/user.service';

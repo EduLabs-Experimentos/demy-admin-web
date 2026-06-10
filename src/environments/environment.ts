@@ -1,6 +1,6 @@
 export const environment = {
   production: true,
-  platformProviderApiBaseUrl: 'https://demy-experimentos-backend-production.up.railway.app',
+  platformProviderApiBaseUrl: 'https://demy-app-backend-eygre7eda5g3hkfh.southeastasia-01.azurewebsites.net',
   platformProviderSignInEndpointPath: '/api/v1/authentication/sign-in',
   platformProviderSignUpEndpointPath: '/api/v1/authentication/sign-up',
   platformProviderVerifyEndpointPath: '/api/v1/authentication/verify',
@@ -18,4 +18,7 @@ export const environment = {
   platformProviderEnrollmentsEndpointPath: '/api/v1/enrollments',
   platformProviderStudentsEndpointPath: '/api/v1/students',
   platformProviderBillingAccountsEndpointPath: '/api/v1/billing-accounts',
+  platformProviderTransactionsEndpointPath: '/api/v1/transactions',
+  platformProviderReportsTransactionsEndpointPath: '/api/v1/reports/transactions',
+  platformProviderClassAttendancesEndpointPath: '/api/v1/class-attendances',
 };

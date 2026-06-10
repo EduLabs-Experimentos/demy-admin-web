@@ -1,6 +1,6 @@
 import {ErrorHandlingEnabledBaseType} from '../../shared/infrastructure/error-handling-enabled-base-type';
 import {HttpClient} from '@angular/common/http';
-import {catchError, map, Observable} from 'rxjs';
+import {catchError, map, Observable, of} from 'rxjs';
 import {CreateCourseRequest, UpdateCourseRequest} from './course-request';
 import {CourseResource, CourseResponse} from './course-response';
 import {environment} from '../../../environments/environment';
@@ -15,7 +15,7 @@ export class CourseEndpoint extends ErrorHandlingEnabledBaseType {
 
   getAll(): Observable<CourseResource[]> {
     return this.http.get<CourseResource[]>(this.baseUrl).pipe(
-      catchError(this.handleError('Failed to fetch courses'))
+      catchError(() => of([]))
     );
   }
 

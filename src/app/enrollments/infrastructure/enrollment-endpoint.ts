@@ -1,6 +1,6 @@
 import {ErrorHandlingEnabledBaseType} from '../../shared/infrastructure/error-handling-enabled-base-type';
 import {HttpClient} from '@angular/common/http';
-import {catchError, map, Observable} from 'rxjs';
+import {catchError, map, Observable, of} from 'rxjs';
 import {CreateEnrollmentRequest, UpdateEnrollmentRequest} from './enrollment-request';
 import {EnrollmentResource, EnrollmentResponse} from './enrollment-response';
 import {environment} from '../../../environments/environment';
@@ -15,7 +15,7 @@ export class EnrollmentEndpoint extends ErrorHandlingEnabledBaseType {
 
   getAll(): Observable<EnrollmentResource[]> {
     return this.http.get<EnrollmentResource[]>(this.baseUrl).pipe(
-      catchError(this.handleError('Failed to fetch enrollments'))
+      catchError(() => of([]))
     );
   }
 
