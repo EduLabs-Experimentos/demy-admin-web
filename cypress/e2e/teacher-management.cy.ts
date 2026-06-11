@@ -1,15 +1,64 @@
 describe('E2E: Gestión de Profesores (Teacher)', () => {
 
   beforeEach(() => {
-    // Login (Se usa los selectores del componente sign-in)
-    cy.visit('http://localhost:4200/sign-in');
-    cy.get('#email').type('diegovilcatut@gmail.com');
-    cy.get('#password').type('Sofiamia');
-    cy.get('.submit-button').click();
+    const timestamp = Date.now().toString();
+    const uniqueEmail = `teacher_${timestamp}@nistra.com`;
+    const uniqueDni = timestamp.slice(-8);
+    const uniqueRuc = `10${timestamp.slice(-9)}`;
 
-    // Esperamos a que inicie sesión y luego vamos a profesores
-    cy.url({ timeout: 10000 }).should('include', '/home');
-    cy.visit('http://localhost:4200/teachers');
+    // Crear usuario vía API
+    cy.request({
+      method: 'POST',
+      url: 'https://demy-app-backend-eygre7eda5g3hkfh.southeastasia-01.azurewebsites.net/api/v1/authentication/sign-up',
+      body: { emailAddress: uniqueEmail, password: 'Password123!', termsAndConditions: true },
+      failOnStatusCode: false
+    }).then(() => {
+      // Iniciar sesión y obtener token
+      cy.request({
+        method: 'POST',
+        url: 'https://demy-app-backend-eygre7eda5g3hkfh.southeastasia-01.azurewebsites.net/api/v1/authentication/sign-in',
+        body: { emailAddress: uniqueEmail, password: 'Password123!' }
+      }).then((signInRes) => {
+        const token = signInRes.body.token;
+        const userId = signInRes.body.id;
+
+        cy.window().then((win) => {
+          win.localStorage.setItem('token', token);
+          win.localStorage.setItem('userId', userId.toString());
+        });
+
+        // Registrar administrador vía API
+        cy.request({
+          method: 'POST',
+          url: 'https://demy-app-backend-eygre7eda5g3hkfh.southeastasia-01.azurewebsites.net/api/v1/administrators',
+          body: { firstName: 'Admin', lastName: 'Test', countryCode: '+51', phone: '999888777', dniNumber: uniqueDni, userId },
+          headers: { Authorization: `Bearer ${token}` }
+        }).then((adminRes) => {
+          const adminId = adminRes.body.id;
+
+          cy.window().then((win) => {
+            win.localStorage.setItem('adminId', adminId.toString());
+          });
+
+          // Registrar academia vía API
+          cy.request({
+            method: 'POST',
+            url: 'https://demy-app-backend-eygre7eda5g3hkfh.southeastasia-01.azurewebsites.net/api/v1/academies',
+            body: { academyName: `Academia ${timestamp}`, academyDescription: 'E2E Test', ruc: uniqueRuc, street: 'Av. Test 123', district: 'Lima', province: 'Lima', department: 'Lima', emailAddress: `contacto_${timestamp}@demy.com`, countryCode: '+51', phone: '987654321', administratorId: adminId },
+            headers: { Authorization: `Bearer ${token}` }
+          }).then((academyRes) => {
+            const academyId = academyRes.body.id;
+
+            cy.window().then((win) => {
+              win.localStorage.setItem('academyId', academyId.toString());
+            });
+
+            // Ir a la página de profesores
+            cy.visit('http://localhost:4200/teachers');
+          });
+        });
+      });
+    });
   });
 
   it('Debería registrar un nuevo profesor y mostrarlo en la tabla', () => {
