@@ -45,8 +45,9 @@ export class IamStore {
     } else {
       this.isSignedInSignal.set(false);
     }
+    const userId = localStorage.getItem('userId');
+    this.currentUserIdSignal.set(userId ? Number(userId) : null);
     this.currentEmailSignal.set(null);
-    this.currentUserIdSignal.set(null);
   }
 
   signIn(signInCommand: SignInCommand, router: Router) {

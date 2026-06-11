@@ -44,7 +44,7 @@ describe('E2E: Gestión de Profesores (Teacher)', () => {
           cy.request({
             method: 'POST',
             url: 'https://demy-app-backend-eygre7eda5g3hkfh.southeastasia-01.azurewebsites.net/api/v1/academies',
-            body: { academyName: `Academia ${timestamp}`, academyDescription: 'E2E Test', ruc: uniqueRuc, street: 'Av. Test 123', district: 'Lima', province: 'Lima', department: 'Lima', emailAddress: `contacto_${timestamp}@demy.com`, countryCode: '+51', phone: '987654321' },
+            body: { academyName: `Academia ${timestamp}`, academyDescription: 'E2E Test', ruc: uniqueRuc, street: 'Av. Test 123', district: 'Lima', province: 'Lima', department: 'Lima', emailAddress: `contacto_${timestamp}@demy.com`, countryCode: '+51', phone: '987654321', administratorId: adminId },
             headers: { Authorization: `Bearer ${token}` }
           }).then((academyRes) => {
             const academyId = academyRes.body.id;
