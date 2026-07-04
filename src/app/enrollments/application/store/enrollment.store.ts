@@ -14,7 +14,6 @@ import {Student} from '../../../students/domain/model/student.entity';
 export interface EnrollmentUmuxSurveyContext {
   flow: 'enrollment_registration';
   academyId: number;
-  title: string;
 }
 
 @Injectable({providedIn: 'root'})
@@ -128,7 +127,6 @@ export class EnrollmentStore {
         this.umuxSurveyContextSignal.set({
           flow: 'enrollment_registration',
           academyId: createdEnrollment.academyId,
-          title: '¿Qué tan fácil fue realizar esta matrícula?',
         });
       },
       error: (err) => {

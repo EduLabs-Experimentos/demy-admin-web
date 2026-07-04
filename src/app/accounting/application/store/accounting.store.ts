@@ -11,7 +11,6 @@ import {TransactionAssembler} from '../../infrastructure/transaction-assembler';
 export interface AccountingUmuxSurveyContext {
   flow: 'accounting_transaction_create';
   academyId?: string;
-  title: string;
 }
 
 export interface TransactionFormData {
@@ -134,7 +133,6 @@ export class AccountingStore {
         this.umuxSurveyContextSignal.set({
           flow: 'accounting_transaction_create',
           academyId: localStorage.getItem('academyId') ?? undefined,
-          title: '¿Qué tan fácil fue registrar esta transacción?',
         });
       },
       error: (err) => {

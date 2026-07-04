@@ -13,7 +13,6 @@ import { retry } from 'rxjs';
 export interface BillingUmuxSurveyContext {
   flow: 'billing_invoice_create';
   academyId: number;
-  title: string;
 }
 
 @Injectable({
@@ -98,7 +97,6 @@ export class BillingStore {
         this.umuxSurveyContextSignal.set({
           flow: 'billing_invoice_create',
           academyId: updatedAccount.academyId,
-          title: '¿Qué tan fácil fue registrar este cobro?',
         });
       },
       error: (err) => {

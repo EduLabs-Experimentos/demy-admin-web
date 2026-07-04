@@ -1,17 +1,17 @@
 import { Component, EventEmitter, inject, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
+import { TranslateModule } from '@ngx-translate/core';
 import { ButtonModule } from 'primeng/button';
 import { ApplicationInsightsService } from '../../../infrastructure/analytics/application-insights.service';
 
 export interface UmuxSurveyContext {
   flow: string;
   academyId?: number | string;
-  title?: string;
 }
 
 @Component({
   selector: 'app-umux-survey-dialog',
   standalone: true,
-  imports: [ButtonModule],
+  imports: [ButtonModule, TranslateModule],
   templateUrl: './umux-survey-dialog.html',
   styleUrl: './umux-survey-dialog.scss',
 })
@@ -27,8 +27,17 @@ export class UmuxSurveyDialog implements OnChanges {
   protected scoreUsability: number | null = null;
   protected scoreUtility: number | null = null;
 
-  protected get title(): string {
-    return this.context?.title ?? '¿Qué tan fácil fue realizar este flujo?';
+  protected get titleKey(): string {
+    switch (this.context?.flow) {
+      case 'enrollment_registration':
+        return 'umuxSurvey.title.enrollment';
+      case 'billing_invoice_create':
+        return 'umuxSurvey.title.billing';
+      case 'accounting_transaction_create':
+        return 'umuxSurvey.title.accounting';
+      default:
+        return 'umuxSurvey.title.default';
+    }
   }
 
   protected get shouldShow(): boolean {
