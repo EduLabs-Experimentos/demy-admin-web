@@ -10,6 +10,12 @@ import {
 } from '../infrastructure/billing-response';
 import { retry } from 'rxjs';
 
+export interface BillingUmuxSurveyContext {
+  flow: 'billing_invoice_create';
+  academyId: number;
+  title: string;
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -18,11 +24,13 @@ export class BillingStore {
   private readonly accountsSignal = signal<BillingAccount[]>([]);
   private readonly loadingSignal = signal<boolean>(false);
   private readonly errorSignal = signal<string | null>(null);
+  private readonly umuxSurveyContextSignal = signal<BillingUmuxSurveyContext | null>(null);
 
   // --- Estado de Solo Lectura ---
   readonly accounts = this.accountsSignal.asReadonly();
   readonly loading = this.loadingSignal.asReadonly();
   readonly error = this.errorSignal.asReadonly();
+  readonly umuxSurveyContext = this.umuxSurveyContextSignal.asReadonly();
 
   // --- Propiedades Computadas ---
   readonly totalAccounts = computed(() => this.accounts().length);
@@ -84,14 +92,24 @@ export class BillingStore {
         this.accountsSignal.update(accounts =>
           accounts.map(acc => acc.id === accountId ? updatedAccount : acc)
         );
+        localStorage.setItem('academyId', updatedAccount.academyId.toString());
         this.loadingSignal.set(false);
         if (onSuccess) onSuccess();
+        this.umuxSurveyContextSignal.set({
+          flow: 'billing_invoice_create',
+          academyId: updatedAccount.academyId,
+          title: '¿Qué tan fácil fue registrar este cobro?',
+        });
       },
       error: (err) => {
         this.errorSignal.set(this.formatError(err, 'Failed to assign invoice'));
         this.loadingSignal.set(false);
       }
     });
+  }
+
+  dismissUmuxSurvey(): void {
+    this.umuxSurveyContextSignal.set(null);
   }
 
   updateInvoice(accountId: number, invoiceId: number, resource: UpdateInvoiceResource, onSuccess?: () => void) {
