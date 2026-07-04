@@ -8,6 +8,12 @@ import {ExportTransactionsService} from '../services/export-transactions.service
 import {TransactionResource, RegisterTransactionResource, UpdateTransactionResource, TransactionFilterParams} from '../../infrastructure/transaction-response';
 import {TransactionAssembler} from '../../infrastructure/transaction-assembler';
 
+export interface AccountingUmuxSurveyContext {
+  flow: 'accounting_transaction_create';
+  academyId?: string;
+  title: string;
+}
+
 export interface TransactionFormData {
   transactionType: string;
   transactionCategory: string;
@@ -31,6 +37,7 @@ export class AccountingStore {
   private readonly formDataSignal = signal<TransactionFormData>(this.getDefaultFormData());
   private readonly searchQuerySignal = signal<string>('');
   private readonly selectedTransactionIdSignal = signal<number | null>(null);
+  private readonly umuxSurveyContextSignal = signal<AccountingUmuxSurveyContext | null>(null);
 
   private readonly filterCategorySignal = signal<string | null>(null);
   private readonly filterMethodSignal = signal<string | null>(null);
@@ -47,6 +54,7 @@ export class AccountingStore {
   readonly formData = this.formDataSignal.asReadonly();
   readonly searchQuery = this.searchQuerySignal.asReadonly();
   readonly selectedTransactionId = this.selectedTransactionIdSignal.asReadonly();
+  readonly umuxSurveyContext = this.umuxSurveyContextSignal.asReadonly();
 
   readonly filterCategory = this.filterCategorySignal.asReadonly();
   readonly filterMethod = this.filterMethodSignal.asReadonly();
@@ -123,6 +131,11 @@ export class AccountingStore {
         this.isLoadingSignal.set(false);
         this.resetForm();
         this.loadTransactions();
+        this.umuxSurveyContextSignal.set({
+          flow: 'accounting_transaction_create',
+          academyId: localStorage.getItem('academyId') ?? undefined,
+          title: '¿Qué tan fácil fue registrar esta transacción?',
+        });
       },
       error: (err) => {
         this.errorSignal.set(err?.error?.message || err?.message || 'Failed to create transaction');
@@ -212,6 +225,10 @@ export class AccountingStore {
 
   clearError(): void {
     this.errorSignal.set(null);
+  }
+
+  dismissUmuxSurvey(): void {
+    this.umuxSurveyContextSignal.set(null);
   }
 
   exportToPdf(): void {
