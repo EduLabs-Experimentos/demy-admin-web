@@ -11,6 +11,12 @@ import {EnrollmentPeriodReference, EnrollmentScheduleReference} from '../../infr
 import {StudentsStore} from '../../../students/application/students';
 import {Student} from '../../../students/domain/model/student.entity';
 
+export interface EnrollmentUmuxSurveyContext {
+  flow: 'enrollment_registration';
+  academyId: number;
+  title: string;
+}
+
 @Injectable({providedIn: 'root'})
 export class EnrollmentStore {
   private readonly enrollmentsSignal = signal<Enrollment[]>([]);
@@ -28,6 +34,7 @@ export class EnrollmentStore {
   private readonly periodsSignal = signal<EnrollmentPeriodReference[]>([]);
   private readonly schedulesSignal = signal<EnrollmentScheduleReference[]>([]);
   private readonly isLoadingRefsSignal = signal<boolean>(false);
+  private readonly umuxSurveyContextSignal = signal<EnrollmentUmuxSurveyContext | null>(null);
 
   readonly enrollments = this.enrollmentsSignal.asReadonly();
   readonly filteredEnrollments = this.filteredEnrollmentsSignal.asReadonly();
@@ -41,6 +48,7 @@ export class EnrollmentStore {
   readonly periods = this.periodsSignal.asReadonly();
   readonly schedules = this.schedulesSignal.asReadonly();
   readonly isLoadingRefs = this.isLoadingRefsSignal.asReadonly();
+  readonly umuxSurveyContext = this.umuxSurveyContextSignal.asReadonly();
   readonly students: () => Student[] = () => this.studentsStore.students();
   readonly isEditing = () => this.selectedEnrollmentIdSignal() !== null;
   readonly currencies = ['PEN', 'USD'];
@@ -109,11 +117,20 @@ export class EnrollmentStore {
       currency: data.currency,
       paymentStatus: data.paymentStatus
     };
-
     this.isLoadingSignal.set(true);
     this.errorSignal.set(null);
     this.createEnrollmentService.execute(request).subscribe({
-      next: () => { this.isLoadingSignal.set(false); this.resetForm(); this.loadEnrollments(); },
+      next: (createdEnrollment) => {
+        localStorage.setItem('academyId', createdEnrollment.academyId.toString());
+        this.isLoadingSignal.set(false);
+        this.resetForm();
+        this.loadEnrollments();
+        this.umuxSurveyContextSignal.set({
+          flow: 'enrollment_registration',
+          academyId: createdEnrollment.academyId,
+          title: '¿Qué tan fácil fue realizar esta matrícula?',
+        });
+      },
       error: (err) => {
         this.errorSignal.set(err?.error?.message || err?.message || 'Failed to create enrollment');
         this.isLoadingSignal.set(false);
@@ -188,6 +205,7 @@ export class EnrollmentStore {
 
   onSearchQueryChange(query: string): void { this.searchQuerySignal.set(query); this.applyFilter(query); }
   clearError(): void { this.errorSignal.set(null); }
+  dismissUmuxSurvey(): void { this.umuxSurveyContextSignal.set(null); }
 
   private resetForm(): void {
     this.formDataSignal.set({
