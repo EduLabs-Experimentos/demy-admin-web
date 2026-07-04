@@ -1,0 +1,46 @@
+@if (shouldShow) {
+  <div class="umux-dialog__backdrop" role="presentation" (click)="dismiss()">
+    <section class="umux-dialog" role="dialog" aria-modal="true" aria-labelledby="umux-title" (click)="$event.stopPropagation()">
+      <header class="umux-dialog__header">
+        <span class="umux-dialog__eyebrow">Encuesta rápida</span>
+        <h2 id="umux-title" class="umux-dialog__title">{{ title }}</h2>
+        <p class="umux-dialog__subtitle">Tu respuesta ayuda a mejorar Demy. Solo toma unos segundos.</p>
+      </header>
+
+      <div class="umux-dialog__question">
+        <p class="umux-dialog__label">Facilidad del flujo</p>
+        <div class="umux-dialog__scale" aria-label="Puntaje de facilidad de 1 a 5">
+          @for (score of scoreOptions; track score) {
+            <button
+              type="button"
+              class="umux-dialog__score"
+              [class.umux-dialog__score--selected]="scoreUsability === score"
+              (click)="selectUsability(score)">
+              {{ score }}
+            </button>
+          }
+        </div>
+      </div>
+
+      <div class="umux-dialog__question">
+        <p class="umux-dialog__label">Utilidad para tu trabajo</p>
+        <div class="umux-dialog__scale" aria-label="Puntaje de utilidad de 1 a 5">
+          @for (score of scoreOptions; track score) {
+            <button
+              type="button"
+              class="umux-dialog__score"
+              [class.umux-dialog__score--selected]="scoreUtility === score"
+              (click)="selectUtility(score)">
+              {{ score }}
+            </button>
+          }
+        </div>
+      </div>
+
+      <footer class="umux-dialog__actions">
+        <p-button label="Omitir" severity="secondary" [text]="true" (onClick)="dismiss()" />
+        <p-button label="Enviar" [disabled]="!scoreUsability || !scoreUtility" (onClick)="submit()" />
+      </footer>
+    </section>
+  </div>
+}
