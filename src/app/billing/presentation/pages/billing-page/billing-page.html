@@ -64,3 +64,10 @@
     }
   </div>
 </div>
+
+<app-umux-survey-dialog
+  [visible]="!!store.umuxSurveyContext()"
+  [context]="store.umuxSurveyContext()"
+  (submitted)="store.dismissUmuxSurvey()"
+  (dismissed)="store.dismissUmuxSurvey()"
+/>

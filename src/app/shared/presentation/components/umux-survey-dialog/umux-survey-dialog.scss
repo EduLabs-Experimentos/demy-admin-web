@@ -1,0 +1,110 @@
+.umux-dialog__backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgba(15, 23, 42, 0.38);
+}
+
+.umux-dialog {
+  width: min(440px, 100%);
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 22px;
+  border: 1px solid var(--p-surface-200);
+  border-radius: 12px;
+  background: var(--p-surface-0);
+  color: var(--p-surface-950);
+  box-shadow: 0 22px 55px rgba(15, 23, 42, 0.22);
+}
+
+.umux-dialog__header {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.umux-dialog__eyebrow {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--p-primary-color);
+}
+
+.umux-dialog__title {
+  margin: 0;
+  color: var(--p-surface-950);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 20px;
+  line-height: 1.25;
+}
+
+.umux-dialog__subtitle {
+  margin: 0;
+  color: var(--p-surface-600);
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.umux-dialog__question {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.umux-dialog__label {
+  margin: 0;
+  color: var(--p-surface-700);
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.umux-dialog__scale {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(42px, 1fr));
+  gap: 8px;
+}
+
+.umux-dialog__score {
+  height: 42px;
+  border: 1px solid var(--p-surface-300);
+  border-radius: 8px;
+  background: var(--p-surface-50);
+  color: var(--p-surface-800);
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 800;
+  cursor: pointer;
+  transition: background-color 120ms ease, border-color 120ms ease, color 120ms ease;
+}
+
+.umux-dialog__score:hover,
+.umux-dialog__score--selected {
+  border-color: var(--p-primary-color);
+  background: color-mix(in srgb, var(--p-primary-color) 14%, var(--p-surface-0));
+  color: var(--p-primary-color);
+}
+
+.umux-dialog__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+@media (max-width: 520px) {
+  .umux-dialog {
+    padding: 18px;
+  }
+
+  .umux-dialog__actions {
+    flex-direction: column-reverse;
+  }
+}

@@ -9,11 +9,12 @@ import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { InvoiceForm } from '../../components/invoice-form/invoice-form';
 import { InvoiceList } from '../../components/invoice-list/invoice-list';
+import { UmuxSurveyDialog } from '../../../../shared/presentation/components/umux-survey-dialog/umux-survey-dialog';
 
 @Component({
   selector: 'app-billing-page',
   standalone: true,
-  imports: [TranslatePipe, ButtonModule, InputTextModule, InvoiceForm, InvoiceList],
+  imports: [TranslatePipe, ButtonModule, InputTextModule, InvoiceForm, InvoiceList, UmuxSurveyDialog],
   templateUrl: './billing-page.html',
   styleUrl: './billing-page.scss'
 })
