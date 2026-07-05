@@ -1,5 +1,6 @@
 export const environment = {
   production: true,
+  applicationInsightsConnectionString: '',
   platformProviderApiBaseUrl: 'https://demy-app-backend-eygre7eda5g3hkfh.southeastasia-01.azurewebsites.net',
   platformProviderSignInEndpointPath: '/api/v1/authentication/sign-in',
   platformProviderSignUpEndpointPath: '/api/v1/authentication/sign-up',
