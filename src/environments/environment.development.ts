@@ -1,5 +1,6 @@
 export const environment = {
   production: false,
+  applicationInsightsConnectionString: '',
   platformProviderApiBaseUrl: 'http://localhost:8080',
   platformProviderSignInEndpointPath: '/api/v1/authentication/sign-in',
   platformProviderSignUpEndpointPath: '/api/v1/authentication/sign-up',

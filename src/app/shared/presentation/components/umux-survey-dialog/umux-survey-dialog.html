@@ -1,0 +1,46 @@
+@if (shouldShow) {
+  <div class="umux-dialog__backdrop" role="presentation" (click)="dismiss()">
+    <section class="umux-dialog" role="dialog" aria-modal="true" aria-labelledby="umux-title" (click)="$event.stopPropagation()">
+      <header class="umux-dialog__header">
+        <span class="umux-dialog__eyebrow">{{ 'umuxSurvey.eyebrow' | translate }}</span>
+        <h2 id="umux-title" class="umux-dialog__title">{{ titleKey | translate }}</h2>
+        <p class="umux-dialog__subtitle">{{ 'umuxSurvey.subtitle' | translate }}</p>
+      </header>
+
+      <div class="umux-dialog__question">
+        <p class="umux-dialog__label">{{ 'umuxSurvey.usability.label' | translate }}</p>
+        <div class="umux-dialog__scale" [attr.aria-label]="'umuxSurvey.usability.ariaLabel' | translate">
+          @for (score of scoreOptions; track score) {
+            <button
+              type="button"
+              class="umux-dialog__score"
+              [class.umux-dialog__score--selected]="scoreUsability === score"
+              (click)="selectUsability(score)">
+              {{ score }}
+            </button>
+          }
+        </div>
+      </div>
+
+      <div class="umux-dialog__question">
+        <p class="umux-dialog__label">{{ 'umuxSurvey.utility.label' | translate }}</p>
+        <div class="umux-dialog__scale" [attr.aria-label]="'umuxSurvey.utility.ariaLabel' | translate">
+          @for (score of scoreOptions; track score) {
+            <button
+              type="button"
+              class="umux-dialog__score"
+              [class.umux-dialog__score--selected]="scoreUtility === score"
+              (click)="selectUtility(score)">
+              {{ score }}
+            </button>
+          }
+        </div>
+      </div>
+
+      <footer class="umux-dialog__actions">
+        <p-button [label]="'umuxSurvey.actions.skip' | translate" severity="secondary" [text]="true" (onClick)="dismiss()" />
+        <p-button [label]="'umuxSurvey.actions.submit' | translate" [disabled]="!scoreUsability || !scoreUtility" (onClick)="submit()" />
+      </footer>
+    </section>
+  </div>
+}

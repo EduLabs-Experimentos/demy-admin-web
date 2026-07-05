@@ -582,5 +582,27 @@
       "pdf": "Export PDF",
       "excel": "Export Excel"
     }
+  },
+  "umuxSurvey": {
+    "eyebrow": "Quick survey",
+    "title": {
+      "default": "How easy was it to complete this flow?",
+      "enrollment": "How easy was it to complete this enrollment?",
+      "billing": "How easy was it to register this charge?",
+      "accounting": "How easy was it to register this transaction?"
+    },
+    "subtitle": "Your response helps improve Demy. It only takes a few seconds.",
+    "usability": {
+      "label": "Flow ease",
+      "ariaLabel": "Ease score from 1 to 5"
+    },
+    "utility": {
+      "label": "Usefulness for your work",
+      "ariaLabel": "Usefulness score from 1 to 5"
+    },
+    "actions": {
+      "skip": "Skip",
+      "submit": "Submit"
+    }
   }
 }
